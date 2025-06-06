@@ -1,3 +1,22 @@
+## Theme Colors (in HEX Code)
+
+```
+White: 
+     Hex Value - #ffffff
+     RGB Value - rgb(255, 255, 255)
+     HSL Value - hsl(0,0%,100%)
+
+SAMify & first blue square:
+     Hex Value - #102036
+     RGB Value - rgb(16, 32, 54)
+     HSL Value - hsl(215,54%,14%)
+
+Second Blue Square:
+     Hex Value - #3682ae
+     RGB Value - rgb(54, 130, 174)
+     HSL Value - hsl(202,53%,45%)
+```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
