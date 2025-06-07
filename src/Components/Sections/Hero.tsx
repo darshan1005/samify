@@ -63,7 +63,7 @@ const Hero = () => {
         }
     ];
 
-    const navItems = ['Home', 'About', 'Services', 'We Work for', 'Contact'];
+    const navItems = ['Home', 'About', 'Services', 'We Work', 'Contact'];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -109,7 +109,7 @@ const Hero = () => {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Box component={'img'} src={Logo} alt="Company Logo" sx={{ width: 180, display: 'flex', alignItems: 'center', justifyContent: 'start' }} />
+            <Box component={'img'} src={Logo} alt="Company Logo" sx={{ width: 160, display: 'flex', alignItems: 'center', justifyContent: 'start' }} />
             <List>
                 {navItems.map((item) => (
                     <ListItem key={item}>
@@ -198,7 +198,7 @@ const Hero = () => {
                     }}
                 >
                     <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-                        <Box component={'img'} src={Logo} alt="Company Logo" sx={{ width: 140 }} />
+                        <Box component={'img'} src={Logo} alt="Company Logo" sx={{ width: 110 }} />
                     </Box>
                     {!isMobile ? (
                         <Box sx={{ display: 'flex', gap: 2 }}>
@@ -276,7 +276,7 @@ const Hero = () => {
             <Box
                 id="hero-section"
                 sx={{
-                    minHeight: '100vh',
+                    minHeight: {xs:'590px', md:'100vh'},
                     bgcolor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     position: 'relative',
@@ -350,7 +350,7 @@ const Hero = () => {
                         {/* Left Content */}
                         <Grid xs={12} md={6} sx={{ zIndex: 2 }}>
                             <Fade in={true} timeout={1000}>
-                                <Box sx={{ color: 'white', pr: { md: 4 } }}>
+                                <Box sx={{ color: 'white' }}>
                                     <Typography
                                         variant="overline"
                                         sx={{

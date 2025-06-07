@@ -1,9 +1,11 @@
+import type { Theme } from '@emotion/react';
+import { Box, Typography, type SxProps } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 interface FlippingProps {
   text: string;
-  sx?: React.CSSProperties;
+  sx?: SxProps<Theme>;
   speed?: number;
 }
 
@@ -28,20 +30,20 @@ const FlippingText: React.FC<FlippingProps> = ({ text = "", sx = {}, speed = 150
     return () => clearInterval(timer);
   }, [inView, text, speed]);
 
-  const baseStyles: React.CSSProperties = {
+  const baseStyles: SxProps<Theme> = {
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
   };
 
-  const combinedStyles = { ...baseStyles, ...sx };
-
   return (
-    <div ref={ref} style={combinedStyles}>
+    <Box ref={ref} sx={baseStyles}>
       {text.split('').map((letter, index) => (
-        <span
+        <Typography
+          component={'span'}
           key={`${letter}-${index}`}
-          style={{
+          sx={{
+            ...sx,
             display: 'inline-block',
             color: 'black',
             transition: 'all 0.5s ease-in-out',
@@ -52,9 +54,9 @@ const FlippingText: React.FC<FlippingProps> = ({ text = "", sx = {}, speed = 150
           }}
         >
           {letter === ' ' ? '\u00A0' : letter}
-        </span>
+        </Typography>
       ))}
-    </div>
+    </Box>
   );
 };
 
