@@ -63,7 +63,7 @@ const Hero = () => {
         }
     ];
 
-    const navItems = ['Home', 'About', 'Services', 'We Work', 'Contact'];
+    const navItems = ['Home', 'About', 'Services', 'Portfolio', 'Q&A', 'Contact'];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -276,7 +276,7 @@ const Hero = () => {
             <Box
                 id="hero-section"
                 sx={{
-                    minHeight: {xs:'590px', md:'100vh'},
+                    minHeight: { xs: '590px', md: '100vh' },
                     bgcolor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     position: 'relative',

@@ -5,6 +5,9 @@ import OurTeam from "../Sections/OurTeam";
 import WorkingProcess from "../Sections/OurWork";
 import WorkFor from "../Sections/WorkFor";
 import Testimonies from "../Sections/Testimonies";
+import FAQs from "../Sections/FAQs";
+import GetInTouch from "../Sections/GenInTouch";
+import Footer from "../Sections/Footer";
 
 const Home = () => {
   return (
@@ -16,6 +19,9 @@ const Home = () => {
       <WorkingProcess />
       <WorkFor />
       <Testimonies />
+      <FAQs />
+      <GetInTouch />
+      <Footer />
     </>
   );
 };
