@@ -4,13 +4,13 @@ import TechBg2 from '../../assets/tech-bg-2.jpg'
 const GetInTouch = () => {
     return (
         <Box
-            id="work-for"
+            id="getintouch-section"
             sx={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 position: 'relative',
-                py: { xs: 6, md: 10 },
+                py: { xs: 6, md: 5 },
                 backgroundImage: `url(${TechBg2})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
@@ -18,6 +18,7 @@ const GetInTouch = () => {
                 overflow: 'hidden',
                 mt: 4,
                 minHeight: { xs: 180, sm: 220, md: 140 },
+                scrollMarginTop: { xs: '56px', md: '64px' }
             }}
         >
             {/* Overlay */}

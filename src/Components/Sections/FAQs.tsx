@@ -16,8 +16,19 @@ export default function AccordionUsage() {
     };
 
   return (
-    <Box sx={{ width: '100%', maxWidth: 800, mx: 'auto', mt: 4 , gap: 2, px: 2 }}>
-        <Typography
+    <Box
+      id="faq-section"
+      sx={{
+        width: '100%',
+        maxWidth: 800,
+        mx: 'auto',
+        gap: 2,
+        px: 2,
+        py: { xs: 6, md: 5 },
+        scrollMarginTop: { xs: '56px', md: '64px' }
+      }}
+    >
+      <Typography
         variant="h4"
         fontWeight="bold"
         align="center"

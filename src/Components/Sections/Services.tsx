@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ServiceCard from '../Resuable/cards/services';
-import services from '../../Content/services.json';
+import services from '../../Content/Services.json';
 
 // Responsive container for cards
 const ServicesGrid = styled(Box)(({ theme }) => ({
@@ -36,13 +36,14 @@ const Services: React.FC = () => {
 
     return (
         <Box
-            id="services"
+            id="services-section"
             component="section"
             sx={{
                 py: { xs: 6, md: 10 },
                 bgcolor: 'background.default',
                 position: 'relative',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                scrollMarginTop: { xs: '56px', md: '64px' }
             }}
         >
             <Container maxWidth="lg">

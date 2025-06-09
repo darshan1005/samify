@@ -1,0 +1,99 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: 'public/uploads'
+public_folder: '/uploads'
+
+collections:
+  - name: 'faqs'
+    label: 'FAQs'
+    files:
+      - label: 'AllFAQs'
+        name: 'AllFAQs'
+        file: 'src/content/FAQs.json'
+        format: 'json'
+        fields:
+          - label: 'FAQs'
+            name: 'FAQs'
+            widget: 'list'
+            label_singular: 'FAQ'
+            fields:
+              - label: 'Question'
+                name: 'question'
+                widget: 'string'
+              - label: 'Answer'
+                name: 'answer'
+                widget: 'text'
+  - name: 'services'
+    label: 'Services'
+    files: 
+      - label: 'ServicesData'
+        name: 'ServicesData'
+        file: 'src/content/services.json'
+        format: 'json'
+        fields:
+          - label: 'services'
+            name: 'services'
+            widget: 'list'
+            label_singular: 'Service'
+            fields:
+              - label: 'ID'
+                name: 'id'
+                widget: 'string'
+              - label: 'Title'
+                name: 'title'
+                widget: 'string'
+              - label: 'Description'
+                name: 'description'
+                widget: 'text'
+              - label: 'Category'
+                name: 'category'
+                widget: 'string'
+              - label: 'Tags'
+                name: 'tags'
+                widget: 'list'
+                field:
+                  { label: 'Tag', name: 'tag', widget: 'string' }
+              - label: 'Features'
+                name: 'features'
+                widget: 'list'
+                field:
+                  { label: 'Feature', name: 'feature', widget: 'string' }
+              - label: 'Icon'
+                name: 'icon'
+                widget: 'image'
+              - label: 'Priority'
+                name: 'priority'
+                widget: 'number'
+              - label: 'Is Active'
+                name: 'isActive'
+                widget: 'boolean'
+  - name: 'testimonies'
+    label: 'Testimonies'
+    files:
+      - label: 'AllTestimonies'
+        name: 'AllTestimonies'
+        file: 'src/Content/Testimonies.json'
+        format: 'json'
+        fields:
+          - label: 'Testimonies'
+            name: 'Testimonies'
+            widget: 'list'
+            label_singular: 'Testimony'
+            fields:
+              - label: 'ID'
+                name: 'id'
+                widget: 'number'
+              - label: 'Name'
+                name: 'name'
+                widget: 'string'
+              - label: 'Role'
+                name: 'role'
+                widget: 'string'
+              - label: 'Company'
+                name: 'company'
+                widget: 'string'
+              - label: 'Text'
+                name: 'text'
+                widget: 'text'

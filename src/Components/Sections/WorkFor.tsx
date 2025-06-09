@@ -107,12 +107,13 @@ const WorkFor: React.FC = () => {
             id="work-for"
             sx={{
                 position: 'relative',
-                py: { xs: 6, md: 10 },
+                py: 6,
                 backgroundImage: `url(${office})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                scrollMarginTop: { xs: '56px', md: '64px' }
             }}
         >
             {/* Overlay */}

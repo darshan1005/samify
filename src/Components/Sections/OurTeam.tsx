@@ -47,7 +47,14 @@ const OurTeam: React.FC = () => {
   }, []);
 
   return (
-    <Box id="our-team" sx={{ my: 4, p: 2, bgcolor: 'background.default' }}>
+    <Box
+      id="ourteam-section"
+      sx={{
+        py: { xs: 6, md: 8 },
+        bgcolor: 'background.default',
+        scrollMarginTop: { xs: '56px', md: '64px' },
+        px: 2,
+      }}>
       <Typography
         variant="h4"
         fontWeight="bold"

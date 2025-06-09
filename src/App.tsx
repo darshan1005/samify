@@ -1,8 +1,14 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Loading from './Components/Sections/Loading';
 import Cursor from './Components/Animations/Cursor';
 import { useMediaQuery, useTheme } from '@mui/material';
+import Footer from './Components/Sections/Footer';
+import NavHeader from './Components/Sections/NavHeader';
+import PrivacyPolicy from './Components/Pages/Privacypolicy';
+import Request from './Components/Pages/Request';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ScrollToTop from './Components/Animations/ScrollTop';
+
 const Home = React.lazy(() => import("./Components/Pages/Home"));
 
 const App = () => {
@@ -30,11 +36,17 @@ const App = () => {
     )
   }
   return (
-    <>
+    <Router>
+      <NavHeader />
       {!isMobile && <Cursor />}
-      <Suspense fallback={<Loading />}><Home /></Suspense>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+        <Route path="/request" element={<Request />} />
+      </Routes>
+      <Footer />
       <ScrollToTop />
-    </>
+    </Router>
   )
 }
 

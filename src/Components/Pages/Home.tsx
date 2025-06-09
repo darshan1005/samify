@@ -7,7 +7,6 @@ import WorkFor from "../Sections/WorkFor";
 import Testimonies from "../Sections/Testimonies";
 import FAQs from "../Sections/FAQs";
 import GetInTouch from "../Sections/GenInTouch";
-import Footer from "../Sections/Footer";
 
 const Home = () => {
   return (
@@ -21,7 +20,6 @@ const Home = () => {
       <Testimonies />
       <FAQs />
       <GetInTouch />
-      <Footer />
     </>
   );
 };

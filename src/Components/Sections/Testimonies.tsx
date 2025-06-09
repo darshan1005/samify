@@ -7,7 +7,13 @@ const Testimonies: React.FC = () => {
   const testimonies = testimoniesData.Testimonies;
 
   return (
-    <Box id="testimonies" sx={{ py: { xs: 6, md: 10 }, bgcolor: 'background.default' }}>
+    <Box
+      id="testimonial-section"
+      sx={{
+        py: { xs: 6, md: 5 },
+        bgcolor: 'background.default',
+        scrollMarginTop: { xs: '56px', md: '64px' }
+      }}>
       <Typography
         variant="h4"
         fontWeight="bold"

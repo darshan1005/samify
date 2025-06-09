@@ -7,6 +7,8 @@ const quickNavs = [
     { label: "Portfolio", href: "/portfolio" },
     { label: "FAQs", href: "/faqs" },
     { label: "Contact", href: "/contact" },
+    { label: "Privacy Policy", href: "/privacypolicy" },
+    { label: "Request a Quote", href: "/request" }
 ];
 
 const services = [
@@ -25,7 +27,7 @@ const contactInfo = [
 ];
 
 const Footer = () => (
-    <Box sx={{ bgcolor: "#102036", color: "white", py: 6 }}>
+    <Box id='footer' sx={{ bgcolor: "#102036", color: "white", py: 6 }}>
         <Container maxWidth="lg">
             <Box sx={{
                 display: 'flex',

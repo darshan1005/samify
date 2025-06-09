@@ -8,7 +8,7 @@ import {
   CardContent
 } from '@mui/material';
 
-const StyledCard = styled(Card)(({ theme }) => ({
+const StyledCard = styled(Card)(() => ({
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
@@ -85,7 +85,7 @@ const WorkingProcess = () => {
   ];
 
   return (
-    <Container maxWidth="lg" sx={{ py:4 }}>
+    <Container id='working-process' maxWidth="lg" sx={{ py: { xs: 6, md: 10 }, scrollMarginTop: { xs: '56px', md: '64px' } }}>
       <Box
         sx={{
           display: 'flex',
