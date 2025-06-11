@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Loading from './Components/Sections/Loading';
+import Loading from './Components/Resuable/Loading';
 import Cursor from './Components/Animations/Cursor';
 import { useMediaQuery, useTheme } from '@mui/material';
 import Footer from './Components/Sections/Footer';
