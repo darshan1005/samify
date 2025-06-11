@@ -36,6 +36,8 @@ const Home = () => {
         if (el) {
           el.scrollIntoView({ behavior: 'smooth', block: 'start' });
           setLoading(false);
+          // Clear scrollTo from history state after using it
+          navigate(location.pathname, { replace: true, state: {} });
         } else {
           // Try again on the next animation frame
           requestAnimationFrame(scrollToElement);
@@ -43,8 +45,7 @@ const Home = () => {
       };
       scrollToElement();
     }
-  }, [location]);
-
+  }, [location, navigate]);
   return (
     <>
       {loading && <Loader />}
