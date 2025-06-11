@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { Box, Typography, Paper } from '@mui/material';
 import Agriculture from '../../assets/workfor/Agriculture.png';
 import Education from '../../assets/workfor/Education.png';
@@ -102,12 +104,18 @@ const WorkFor: React.FC = () => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const [flipDirection, setFlipDirection] = useState<'forward' | 'backward'>('forward');
 
+    useEffect(() => {
+        AOS.init({ duration: 900, once: true, easing: 'ease-out-cubic' });
+    }, []);
+
     return (
         <Box
             id="work-for"
+            data-aos="fade-up"
             sx={{
                 position: 'relative',
                 py: 6,
+                px:1,
                 backgroundImage: `url(${office})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
@@ -162,6 +170,8 @@ const WorkFor: React.FC = () => {
                     {businessTypes.map((item, idx) => (
                         <Box
                             key={item.title}
+                            data-aos="fade-in"
+                            data-aos-delay={100 + idx * 120}
                             sx={{
                                 flex: { xs: '0 1 48%', sm: '0 1 22%', md: '0 1 20%' },
                                 width: { xs: '48%', sm: '22%', md: '20%' },
@@ -186,7 +196,7 @@ const WorkFor: React.FC = () => {
                                 },
                             }}
                             onMouseEnter={() => { setHoveredIndex(idx); setFlipDirection('forward'); }}
-                            onMouseLeave={() => { setHoveredIndex(idx); setFlipDirection('backward'); setTimeout(() => setHoveredIndex(null), 700); }}
+                            onMouseLeave={() => { setFlipDirection('backward'); setTimeout(() => setHoveredIndex(null), 700); }}
                         >
                             <Box
                                 component="img"
@@ -221,9 +231,11 @@ const WorkFor: React.FC = () => {
                         mx: 'auto',
                     }}
                 >
-                    {workForObj.map((item) => (
+                    {workForObj.map((item, idx) => (
                         <Paper
                             key={item.title}
+                            data-aos="zoom-in"
+                            data-aos-delay={100 + idx * 80}
                             elevation={3}
                             sx={{
                                 width: 150,

@@ -51,7 +51,7 @@ const ScrollToTop = () => {
         },
       }}
     >
-      <KeyboardDoubleArrowUpIcon fontSize="small" />
+      <KeyboardDoubleArrowUpIcon fontSize="small" sx={{color: 'white'}} />
     </IconButton>
   );
 };

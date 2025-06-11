@@ -7,10 +7,12 @@ import WorkFor from "../Sections/WorkFor";
 import Testimonies from "../Sections/Testimonies";
 import FAQs from "../Sections/FAQs";
 import GetInTouch from "../Sections/GenInTouch";
+import NavHeader from "../Sections/NavHeader";
 
 const Home = () => {
   return (
     <>
+      <NavHeader />
       <Hero />
       <Services />
       <About />

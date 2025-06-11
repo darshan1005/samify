@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Box, Typography, Card, CardContent, Avatar } from '@mui/material';
-import Grid from '@mui/material/Grid';
 import CodeIcon from '@mui/icons-material/Code';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
@@ -50,7 +49,7 @@ const OurTeam: React.FC = () => {
     <Box
       id="ourteam-section"
       sx={{
-        py: { xs: 6, md: 8 },
+        py: 4,
         bgcolor: 'background.default',
         scrollMarginTop: { xs: '56px', md: '64px' },
         px: 2,
@@ -78,23 +77,44 @@ const OurTeam: React.FC = () => {
       >
         Our team is made up of domain experts, creative thinkers, and seasoned professionals.
       </Typography>
-      <Grid container spacing={2} justifyContent="center">
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: { xs: 2, sm: 3, md: 4 },
+          width: '100%',
+          mx: 'auto',
+        }}
+      >
         {teamData.map((member, idx) => (
-          <Grid item xs={12} sm={6} md={2} key={member.title}>
+          <Box
+            key={member.title}
+            data-aos="zoom-in"
+            data-aos-delay={300 + idx * 100}
+            sx={{
+              width: { xs: '100%', sm: '48%', md: '18%' },
+              minWidth: 160,
+              maxWidth: 220,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              mx: 'auto',
+            }}
+          >
             <Card
               elevation={3}
               sx={{
                 textAlign: 'center',
-                width: { xs: '160px', sm: '180px', md: '200px' },
-                height: { xs: '180px', sm: '200px', md: '220px' },
+                width: '100%',
+                height: { xs: 180, sm: 200, md: 220 },
                 display: 'flex',
                 flexDirection: 'column',
                 transition: 'transform 0.3s',
                 '&:hover': { transform: 'translateY(-8px)', boxShadow: 6 },
                 mx: 'auto',
               }}
-              data-aos="zoom-in"
-              data-aos-delay={300 + idx * 100}
             >
               <Box sx={{ pt: 2, pb: 1 }}>
                 <Avatar
@@ -134,9 +154,9 @@ const OurTeam: React.FC = () => {
                 </Typography>
               </CardContent>
             </Card>
-          </Grid>
+          </Box>
         ))}
-      </Grid>
+      </Box>
     </Box>
   );
 };

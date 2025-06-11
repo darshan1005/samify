@@ -2,12 +2,13 @@ import React from 'react';
 import { Card, CardContent, Typography, Box, Chip, Button } from '@mui/material';
 import { ArrowUpward } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 // Card flip animation styles
 const FlipCard = styled(Box)(() => ({
   perspective: '1000px',
   width: '100%',
-  height: '300px', // Fixed height for consistency
+  height: '300px',
   cursor: 'pointer',
   '&:hover .flip-inner': {
     transform: 'rotateY(180deg)'
@@ -64,15 +65,31 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   description,
   tags,
   icon,
-  features
+  features,
+  ...rest
 }) => {
+  const navigate = useNavigate();
+
+  const handleKnowMore = () => {
+    // Store card details in sessionStorage
+    sessionStorage.setItem('selectedService', JSON.stringify({
+      title,
+      description,
+      tags,
+      icon,
+      features,
+      ...rest
+    }));
+    navigate('/request');
+  };
+
   return (
     <FlipCard>
       <FlipInner className="flip-inner">
         <FlipFront elevation={4}>
           <CardContent sx={{ p: 3, height: '100%', display: 'flex', flexDirection: 'column' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, gap: 2 }}>
-              <Box component={'img'} src={icon} sx={{width:'3rem',height:'3rem',mixBlendMode: 'multiply'}} alt='card image' />
+              <Box component={'img'} src={icon} sx={{ width: '3rem', height: '3rem', mixBlendMode: 'multiply' }} alt='card image' />
               <Typography variant="h6" fontWeight="bold" gutterBottom>
                 {title}
               </Typography>
@@ -131,8 +148,9 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                   backgroundColor: 'rgba(255,255,255,0.3)',
                 }
               }}
+              onClick={handleKnowMore}
             >
-              Learn More
+              Know More
             </Button>
           </CardContent>
         </FlipBack>

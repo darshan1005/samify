@@ -1,12 +1,7 @@
-import {
-  Box,
-  Container,
-  Typography,
-  Button,
-  styled,
-  Card,
-  CardContent
-} from '@mui/material';
+import { useEffect } from 'react'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { Box, Container, Typography, Button, styled, Card, CardContent } from '@mui/material'
 
 const StyledCard = styled(Card)(() => ({
   height: '100%',
@@ -19,7 +14,7 @@ const StyledCard = styled(Card)(() => ({
     transform: 'translateY(-5px)',
     boxShadow: '0 8px 30px rgba(124, 77, 255, 0.2)',
   },
-}));
+}))
 
 const ProcessNumber = styled(Typography)(({ theme }) => ({
   fontSize: '4rem',
@@ -28,7 +23,7 @@ const ProcessNumber = styled(Typography)(({ theme }) => ({
   opacity: 0.3,
   lineHeight: 1,
   marginBottom: theme.spacing(1),
-}));
+}))
 
 const MainCard = styled(Box)(({ theme }) => ({
   background: 'linear-gradient(135deg, #7c4dff 0%, #9c7bff 100%)',
@@ -40,7 +35,7 @@ const MainCard = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-}));
+}))
 
 const ContactButton = styled(Button)(({ theme }) => ({
   borderColor: 'white',
@@ -54,38 +49,46 @@ const ContactButton = styled(Button)(({ theme }) => ({
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     borderColor: 'white',
   },
-}));
+}))
 
 const WorkingProcess = () => {
+  useEffect(() => {
+    AOS.init({ duration: 900, once: true, easing: 'ease-out-cubic' })
+  }, [])
+
   const processSteps = [
     {
       number: '1.',
       title: 'Discovery',
-      items: [
-        '1. Introduction.',
-        '2. Perceiving requirements.',
-        '3. Advising solutions.'
-      ]
+      items: ['1. Introduction.', '2. Perceiving requirements.', '3. Advising solutions.'],
     },
     {
       number: '2.',
       title: 'Planning',
-      description: 'Initially, We create a marketing plan by analyze your all business goals and challenges.'
+      description:
+        'Initially, We create a marketing plan by analyze your all business goals and challenges.',
     },
     {
       number: '3.',
       title: 'Execute',
-      description: 'We builds ROI driven digital marketing strategies for your business to get maximum results.'
+      description:
+        'We builds ROI driven digital marketing strategies for your business to get maximum results.',
     },
     {
       number: '4.',
       title: 'Deliver',
-      description: 'Now as all key strategies executed turn your casual visitors into paying customers.'
-    }
-  ];
+      description:
+        'Now as all key strategies executed turn your casual visitors into paying customers.',
+    },
+  ]
 
   return (
-    <Container id='working-process' maxWidth="lg" sx={{ py: { xs: 6, md: 10 }, scrollMarginTop: { xs: '56px', md: '64px' } }}>
+    <Container
+      id="working-process"
+      maxWidth="lg"
+      data-aos="fade-up"
+      sx={{ py: { xs: 6 }, scrollMarginTop: { xs: '56px', md: '64px' } }}
+    >
       <Box
         sx={{
           display: 'flex',
@@ -103,7 +106,7 @@ const WorkingProcess = () => {
                 fontSize: '0.9rem',
                 letterSpacing: '0.1em',
                 opacity: 0.9,
-                mb: 2
+                mb: 2,
               }}
             >
               WORKING PROCESS
@@ -115,14 +118,12 @@ const WorkingProcess = () => {
                 fontWeight: 'bold',
                 mb: 4,
                 lineHeight: 1.2,
-                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' }
+                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
               }}
             >
               Our Working Process - How We Work For Our Customers
             </Typography>
-            <ContactButton variant="outlined">
-              Contact Us
-            </ContactButton>
+            <ContactButton variant="outlined">Contact Us</ContactButton>
           </MainCard>
         </Box>
 
@@ -140,6 +141,8 @@ const WorkingProcess = () => {
           {processSteps.map((step, index) => (
             <Box
               key={index}
+              data-aos="fade-in"
+              data-aos-delay={100 + index * 120}
               sx={{
                 flex: { xs: '1 1 100%', sm: '1 1 48%' },
                 minWidth: 0,
@@ -149,16 +152,14 @@ const WorkingProcess = () => {
             >
               <StyledCard sx={{ width: '100%' }}>
                 <CardContent sx={{ p: 4, flexGrow: 1 }}>
-                  <ProcessNumber variant="h1">
-                    {step.number}
-                  </ProcessNumber>
+                  <ProcessNumber variant="h1">{step.number}</ProcessNumber>
                   <Typography
                     variant="h5"
                     component="h3"
                     sx={{
                       fontWeight: 'bold',
                       mb: 3,
-                      color: '#2c3e50'
+                      color: '#2c3e50',
                     }}
                   >
                     {step.title}
@@ -172,7 +173,7 @@ const WorkingProcess = () => {
                           sx={{
                             color: '#64748b',
                             mb: 1,
-                            lineHeight: 1.6
+                            lineHeight: 1.6,
                           }}
                         >
                           {item}
@@ -184,7 +185,7 @@ const WorkingProcess = () => {
                       variant="body1"
                       sx={{
                         color: '#64748b',
-                        lineHeight: 1.7
+                        lineHeight: 1.7,
                       }}
                     >
                       {step.description}
@@ -197,7 +198,7 @@ const WorkingProcess = () => {
         </Box>
       </Box>
     </Container>
-  );
-};
+  )
+}
 
-export default WorkingProcess;
+export default WorkingProcess

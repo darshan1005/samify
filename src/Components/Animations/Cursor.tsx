@@ -10,6 +10,7 @@ const CursorContainer = styled(Box)({
 });
 
 const PRIMARY_COLOR = '#102036';
+const ACCENT_COLOR = '#667eea'; // Added accent color for cursor border
 
 const CursorCircle = styled(Box)(({ size }: { size: number }) => ({
   width: size,
@@ -56,7 +57,7 @@ const CustomCursor: React.FC<CustomCursorProps> = ({
       const newPosition = { x: e.clientX, y: e.clientY };
       setPosition(newPosition);
       setIsVisible(true);
-      
+
       // Add to trail for followers
       setTrail((prev) => {
         const newTrail = [newPosition, ...prev.slice(0, trailLength - 1)];

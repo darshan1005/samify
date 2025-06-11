@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import TechBg2 from '../../assets/tech-bg-2.jpg'
+import { Link } from "react-router-dom";
 
 const GetInTouch = () => {
     return (
@@ -54,19 +55,21 @@ const GetInTouch = () => {
                     >
                         Grow Your Business and Build Your Website or Software With us.
                     </Typography>
-                    <Button
-                        variant="contained"
-                        size="large"
-                        sx={{
-                            backgroundColor: '#102036',
-                            color: 'white',
-                            borderRadius: 2,
-                            boxShadow: 2,
-                            whiteSpace: 'nowrap',
-                        }}
-                    >
-                        Get in touch
-                    </Button>
+                    <Link to={'/request'}>
+                        <Button
+                            variant="contained"
+                            size="large"
+                            sx={{
+                                backgroundColor: '#102036',
+                                color: 'white',
+                                borderRadius: 2,
+                                boxShadow: 2,
+                                whiteSpace: 'nowrap',
+                            }}
+                        >
+                            Get in touch
+                        </Button>
+                    </Link>
                 </Box>
             </Box>
         </Box>

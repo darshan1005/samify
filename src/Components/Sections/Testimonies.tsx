@@ -1,19 +1,28 @@
-import React from 'react';
-import { Box, Typography } from '@mui/material';
-import testimoniesData from '../../Content/Testimonies.json';
-import TestimonialCard from '../Resuable/cards/testimonials';
+import React, { useEffect } from 'react'
+import { Box, Typography } from '@mui/material'
+import testimoniesData from '../../Content/Testimonies.json'
+import TestimonialCard from '../Resuable/cards/testimonials'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 const Testimonies: React.FC = () => {
-  const testimonies = testimoniesData.Testimonies;
+  const testimonies = testimoniesData.Testimonies
+
+  useEffect(() => {
+    AOS.init({ duration: 900, once: true, easing: 'ease-out-cubic' })
+  }, [])
 
   return (
     <Box
       id="testimonial-section"
+      data-aos="fade-up"
       sx={{
-        py: { xs: 6, md: 5 },
+        py: { xs: 4, md: 5 },
+        px: { xs: 2 },
         bgcolor: 'background.default',
-        scrollMarginTop: { xs: '56px', md: '64px' }
-      }}>
+        scrollMarginTop: { xs: '56px', md: '64px' },
+      }}
+    >
       <Typography
         variant="h4"
         fontWeight="bold"
@@ -23,12 +32,7 @@ const Testimonies: React.FC = () => {
       >
         What Our Clients Say
       </Typography>
-      <Typography
-        variant="subtitle1"
-        align="center"
-        color="text.secondary"
-        sx={{ mb: 6 }}
-      >
+      <Typography variant="subtitle1" align="center" color="text.secondary" sx={{ mb: 6 }}>
         Real feedback from real people who trust SAMify.
       </Typography>
       <Box
@@ -41,14 +45,19 @@ const Testimonies: React.FC = () => {
           mx: 'auto',
         }}
       >
-        {testimonies.map((testimony) => (
-          <Box key={testimony.id} sx={{ width: { xs: '100%', sm: '48%', md: '30%' }, minWidth: 260, maxWidth: 370 }}>
+        {testimonies.map((testimony, idx) => (
+          <Box
+            key={testimony.id}
+            sx={{ width: { xs: '100%', sm: '48%', md: '30%' }, minWidth: 260, maxWidth: 370 }}
+            data-aos="fade-in"
+            data-aos-delay={100 + idx * 100}
+          >
             <TestimonialCard testimony={testimony} />
           </Box>
         ))}
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default Testimonies;
+export default Testimonies

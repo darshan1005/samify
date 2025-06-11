@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import AboutImage from '../../assets/About.png';
 import FlippingText from '../Animations/FlippingText';
 import AOS from 'aos';
@@ -22,7 +22,7 @@ const About: React.FC = () => {
           flexDirection: { xs: 'column', md: 'row' },
           alignItems: 'center',
           justifyContent: 'center',
-          gap: { xs: 4, md: 8 },
+          gap: { xs: 2, md: 8 },
         }}
       >
         {/* Image */}
@@ -92,7 +92,7 @@ const About: React.FC = () => {
               flexDirection: { xs: 'column', md: 'row' },
               alignItems: { xs: 'center', md: 'flex-start' },
               width: '100%',
-              gap: { xs: 2, md: 4 }
+              gap: { xs: 0, md: 4 }
             }}
           >
             <Box sx={{ mb: 2, flex: 1 }} data-aos="fade-up" data-aos-delay="400">
@@ -136,53 +136,30 @@ const About: React.FC = () => {
           <Box
             sx={{
               display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              alignItems:  'flex-start',
+              // flexDirection: { xs: 'column', md: 'row' },
+              alignItems: 'flex-start',
               width: '100%',
-              gap: { xs: 0, md: 4 }
+              // gap: { xs: 0, md: 4 }
             }}
           >
-          <Box sx={{ mb: 3 }} data-aos="fade-up" data-aos-delay="600">
-            <FlippingText
-              text="Slogan"
-              sx={{
-                fontSize: { xs: '1.1rem', md: '1.25rem' },
-                fontWeight: 'bold',
-                mb: 1,
-              }}
-            />
-            <Typography
-              variant="body1"
-              fontWeight="bold"
-              color='#3682ae'
-              sx={{ fontSize: { xs: '1.05rem', md: '1.15rem' } }}
-            >
-              Think Digital. Build Smarter.
-            </Typography>
-          </Box>
-
-          {/* CTA Button */}
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            sx={{
-              mt: 1,
-              px: 4,
-              py: 1.5,
-              fontWeight: 'bold',
-              borderRadius: 2,
-              transition: 'all 0.3s ease',
-              '&:hover': {
-                transform: 'translateY(-2px)',
-                boxShadow: 3,
-              }
-            }}
-            data-aos="fade-up"
-            data-aos-delay="700"
-          >
-            Get A Free Quote
-          </Button>
+            <Box sx={{ mb: 3 }} data-aos="fade-up" data-aos-delay="600">
+              <FlippingText
+                text="Slogan"
+                sx={{
+                  fontSize: { xs: '1.1rem', md: '1.25rem' },
+                  fontWeight: 'bold',
+                  mb: 1,
+                }}
+              />
+              <Typography
+                variant="body1"
+                fontWeight="bold"
+                color='#3682ae'
+                sx={{ fontSize: { xs: '1.05rem', md: '1.15rem' } }}
+              >
+                Think Digital. Build Smarter.
+              </Typography>
+            </Box>
           </Box>
         </Box>
       </Box>

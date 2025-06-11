@@ -1,31 +1,78 @@
-import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import * as React from 'react'
+import Accordion from '@mui/material/Accordion'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import Typography from '@mui/material/Typography'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import FAQS from '../../Content/FAQs.json'
-import { Box } from '@mui/material';
+import { Box } from '@mui/material'
+import { styled } from '@mui/material/styles'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from 'react'
 
-export default function AccordionUsage() {
-  const [expanded, setExpanded] = React.useState<number | false>(0);
+const StyledAccordion = styled(Accordion)(({ theme }) => ({
+  background: 'rgba(255,255,255,0.92)',
+  borderRadius: '12px',
+  margin: '6px 0',
+  boxShadow: '0 6px 12px 0 rgba(16,32,54,0.10)',
+  border: `1.5px solid ${theme.palette.divider}`,
+  transition: 'border-color 0.3s',
+  '&:before': { display: 'none' },
+  '&.Mui-expanded': {
+    margin: '16px 0',
+    borderColor: theme.palette.primary.main,
+  },
+}))
 
-  const handleChange =
-    (panel: number) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false);
-    };
+const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
+  borderRadius: '12px',
+  borderBottom: `1px solid ${theme.palette.divider}`,
+  minHeight: 64,
+  '& .MuiAccordionSummary-content': {
+    margin: 0,
+    fontWeight: 600,
+    fontSize: '1.1rem',
+    color: '#102036',
+  },
+  '& .MuiSvgIcon-root': {
+    color: theme.palette.primary.main,
+    fontSize: 28,
+  },
+}))
+
+const StyledAccordionDetails = styled(AccordionDetails)(({ theme }) => ({
+  background: 'rgba(245,247,250,0.85)',
+  borderRadius: '0 0 12px 12px',
+  fontSize: '1rem',
+  color: '#3a3a3a',
+  padding: theme.spacing(2, 3),
+  borderTop: `1px solid ${theme.palette.divider}`,
+}))
+
+const FAQs = () => {
+  const [expanded, setExpanded] = React.useState<number | false>(0)
+
+  useEffect(() => {
+    AOS.init({ duration: 900, once: true, easing: 'ease-out-cubic' })
+  }, [])
+
+  const handleChange = (panel: number) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
+    setExpanded(isExpanded ? panel : false)
+  }
 
   return (
     <Box
       id="faq-section"
+      data-aos="fade-up"
       sx={{
         width: '100%',
         maxWidth: 800,
         mx: 'auto',
         gap: 2,
         px: 2,
-        py: { xs: 6, md: 5 },
-        scrollMarginTop: { xs: '56px', md: '64px' }
+        py: { xs: 4, md: 5 },
+        scrollMarginTop: { xs: '56px', md: '64px' },
       }}
     >
       <Typography
@@ -44,23 +91,25 @@ export default function AccordionUsage() {
         FAQ's
       </Typography>
       {FAQS.FAQs.map((faq, idx) => (
-        <Accordion
+        <StyledAccordion
           key={idx}
           expanded={expanded === idx}
           onChange={handleChange(idx)}
         >
-          <AccordionSummary
+          <StyledAccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls={`panel${idx}-content`}
             id={`panel${idx}-header`}
           >
             <Typography component="span">{faq.question}</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
+          </StyledAccordionSummary>
+          <StyledAccordionDetails>
             <Typography component="span">{faq.answer}</Typography>
-          </AccordionDetails>
-        </Accordion>
+          </StyledAccordionDetails>
+        </StyledAccordion>
       ))}
     </Box>
-  );
+  )
 }
+
+export default FAQs
