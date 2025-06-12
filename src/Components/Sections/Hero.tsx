@@ -77,15 +77,17 @@ const Hero = () => {
 
     return (
         <>
-            <Box id="hero-section" sx={{ scrollMarginTop: { xs: '56px', md: '64px' } }}>
+            <Box id="hero-section" sx={{ scrollMarginTop: { xs: '56px', md: '64px' }}}>
                 {/* Hero Section */}
                 <Box
                     sx={{
-                        minHeight: { xs: '590px', md: '100vh' },
-                        bgcolor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        height: { xs: '100vh', sm: 'calc(100vh - 64px)' },
+                        p: { xs: 2, sm: 4, md: 6 },
                         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                         position: 'relative',
                         overflow: 'hidden',
+                        display: 'flex',
+                        flexDirection: 'column',
                     }}
                 >
                     {/* Animated floating objects */}
@@ -150,37 +152,79 @@ const Hero = () => {
                             zIndex: 0,
                         }}
                     />
-                    <Container maxWidth="lg" sx={{ height: '100%' }}>
+                    
+                    <Container 
+                        maxWidth="lg" 
+                        sx={{ 
+                            flex: 1,
+                            position: 'relative',
+                            display: 'flex',
+                            flexDirection: 'column',
+                        }}
+                    >
+                        {/* Main Content Area */}
                         <Box
                             sx={{
+                                flex: 1,
                                 display: 'flex',
                                 flexDirection: { xs: 'column', md: 'row' },
                                 alignItems: 'center',
-                                minHeight: 'calc(100vh - 96px)',
+                                justifyContent: 'center',
+                                pt: { 
+                                    xs: '80px',
+                                    sm: '100px', 
+                                    md: '80px', 
+                                    lg: '80px',
+                                    xl: '60px'
+                                },
+                                pb: { xs: '120px', sm: '100px', md: '120px' },
+                                width: '100%',
+                                position: 'relative',
+                                minHeight: 0,
                             }}
                         >
                             {/* Left Content */}
-                            <Box sx={{ flex: 1, zIndex: 2 }}>
+                            <Box
+                                sx={{
+                                    flex: 1,
+                                    zIndex: 2,
+                                    width: { xs: '100%', md: 'auto' },
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: { xs: 'center', md: 'flex-start' },
+                                    textAlign: { xs: 'center', md: 'left' },
+                                }}
+                            >
                                 <Fade in={true} timeout={1000}>
                                     <Box sx={{ color: 'white' }}>
                                         <Typography
                                             variant="overline"
                                             sx={{
                                                 color: 'rgba(255,255,255,0.8)',
-                                                fontSize: '1rem',
+                                                fontSize: { xs: '0.8rem', sm: '0.9rem', md: '1rem' },
                                                 letterSpacing: 2,
+                                                display: 'block',
+                                                mb: 1,
                                             }}
                                         >
                                             {carouselData[currentSlide].shortDesc}
                                         </Typography>
 
                                         {/* Animated title */}
-                                        <SlidingTextReveal
-                                            text={carouselData[currentSlide].title}
-                                            wordSx={{
-                                                fontWeight: 'bold',
-                                            }}
-                                        />
+                                        <Box sx={{ mb: 3 }}>
+                                            <SlidingTextReveal
+                                                text={carouselData[currentSlide].title}
+                                                wordSx={{
+                                                    fontWeight: 'bold',
+                                                    fontSize: { 
+                                                        xs: '2rem', 
+                                                        sm: '2.5rem', 
+                                                        md: '3rem',
+                                                        lg: '3.5rem' 
+                                                    },
+                                                }}
+                                            />
+                                        </Box>
 
                                         {/* Animated description with AOS */}
                                         <Typography
@@ -191,7 +235,8 @@ const Hero = () => {
                                                 mb: 4,
                                                 color: 'rgba(255,255,255,0.9)',
                                                 lineHeight: 1.6,
-                                                maxWidth: { xs: '100%', md: '70%' },
+                                                fontSize: { xs: '1rem', sm: '1.1rem', md: '1.25rem' },
+                                                maxWidth: { xs: '100%', md: '90%' },
                                             }}
                                         >
                                             {carouselData[currentSlide].longDesc}
@@ -205,6 +250,7 @@ const Hero = () => {
                                                 color: 'primary.main',
                                                 '&:hover': {
                                                     transform: 'translateY(-2px)',
+                                                    bgcolor: 'rgba(255,255,255,0.95)',
                                                 },
                                                 transition: 'all 0.3s ease',
                                             }}
@@ -217,17 +263,18 @@ const Hero = () => {
                             </Box>
                         </Box>
 
-                        {/* Carousel Controls */}
                         {isHeroInView && (
                             <Box
                                 sx={{
                                     position: 'absolute',
-                                    bottom: { xs: 55, md: 95 },
+                                    bottom: { xs: 20, sm: 30, md: 40, lg: 50, xl: 60 },
                                     left: '50%',
                                     transform: 'translateX(-50%)',
                                     display: 'flex',
-                                    gap: 2,
+                                    alignItems: 'center',
+                                    gap: { xs: 1.5, sm: 2, md: 2.5 },
                                     zIndex: 3,
+                                    px: 2,
                                 }}
                             >
                                 <IconButton
@@ -235,6 +282,8 @@ const Hero = () => {
                                     sx={{
                                         bgcolor: 'rgba(255,255,255,0.2)',
                                         color: 'white',
+                                        width: { xs: 40, sm: 44, md: 48 },
+                                        height: { xs: 40, sm: 44, md: 48 },
                                         '&:hover': {
                                             bgcolor: 'rgba(255,255,255,0.3)',
                                             transform: 'scale(1.1)',
@@ -242,20 +291,24 @@ const Hero = () => {
                                         transition: 'all 0.3s ease',
                                     }}
                                 >
-                                    <ChevronLeft />
+                                    <ChevronLeft fontSize={window.innerWidth < 600 ? 'medium' : 'large'} />
                                 </IconButton>
 
-                                <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                                <Box sx={{ display: 'flex', gap: { xs: 0.5, sm: 1 }, alignItems: 'center' }}>
                                     {carouselData.map((_, index) => (
                                         <Box
                                             key={index}
                                             sx={{
-                                                width: 12,
-                                                height: 12,
+                                                width: { xs: 10, sm: 12, md: 14 },
+                                                height: { xs: 10, sm: 12, md: 14 },
                                                 borderRadius: '50%',
                                                 bgcolor: index === currentSlide ? 'white' : 'rgba(255,255,255,0.4)',
                                                 cursor: 'pointer',
                                                 transition: 'all 0.3s ease',
+                                                '&:hover': {
+                                                    bgcolor: index === currentSlide ? 'white' : 'rgba(255,255,255,0.6)',
+                                                    transform: 'scale(1.1)',
+                                                },
                                             }}
                                             onClick={() => setCurrentSlide(index)}
                                         />
@@ -267,6 +320,8 @@ const Hero = () => {
                                     sx={{
                                         bgcolor: 'rgba(255,255,255,0.2)',
                                         color: 'white',
+                                        width: { xs: 40, sm: 44, md: 48 },
+                                        height: { xs: 40, sm: 44, md: 48 },
                                         '&:hover': {
                                             bgcolor: 'rgba(255,255,255,0.3)',
                                             transform: 'scale(1.1)',
@@ -274,7 +329,7 @@ const Hero = () => {
                                         transition: 'all 0.3s ease',
                                     }}
                                 >
-                                    <ChevronRight />
+                                    <ChevronRight fontSize={window.innerWidth < 600 ? 'medium' : 'large'} />
                                 </IconButton>
                             </Box>
                         )}
