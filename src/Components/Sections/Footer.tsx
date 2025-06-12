@@ -1,5 +1,6 @@
 import { Box, Container, Typography, List, ListItem, ListItemText } from '@mui/material'
 import { useLocation, useNavigate } from 'react-router-dom'
+import services from '../../Content/services.json'
 
 const quickNavs = [
     { label: 'Home', target: '/' },
@@ -13,18 +14,9 @@ const quickNavs = [
     { label: 'Request a Quote', target: '/request' },
 ]
 
-const services = [
-    'Web Design & Development',
-    'Mobile App Development',
-    'UI/UX Design',
-    'SEO & Digital Marketing',
-    'BPO & ITES',
-    'Data Entry',
-]
-
 const contactInfo = [
     { label: 'Email', value: 'info@samify.com' },
-    { label: 'Phone', value: '+1 234 567 890' },
+    { label: 'Phone', value: '+91 xxx xxx xxx' },
     { label: 'Address', value: '123 Main St, City, Country' },
 ]
 
@@ -69,7 +61,7 @@ const Footer = () => {
                     <Box
                         sx={{
                             flex: { xs: 'none', md: 1 },
-                            maxWidth: { xs: '100%', md: 300 },
+                            maxWidth: { xs: '100%', md: 500 },
                             mb: { xs: 2, md: 0 },
                         }}
                     >
@@ -162,10 +154,10 @@ const Footer = () => {
                             Services
                         </Typography>
                         <List dense sx={{ p: 0 }}>
-                            {services.map(service => (
-                                <ListItem key={service} disableGutters sx={{ py: 0.5 }}>
+                            {services.services.map(service => (
+                                <ListItem key={service.id} disableGutters sx={{ py: 0.5 }}>
                                     <ListItemText
-                                        primary={service}
+                                        primary={service.title}
                                         sx={{
                                             fontSize: '0.95rem',
                                         }}
