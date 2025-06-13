@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
-import { Typography, Button, Box, Container, IconButton, Fade } from '@mui/material'
+import { useState, useEffect, useRef } from 'react'
+import { Typography, Button, Box, Container, IconButton, Fade, useMediaQuery, useTheme } from '@mui/material'
 import { ChevronLeft, ChevronRight, ContactPhone } from '@mui/icons-material'
 import SlidingTextReveal from '../Animations/SlideInText'
+import Ballpit from '../Animations/Ballpit'
 
 // Add AOS import
 import AOS from 'aos'
@@ -17,6 +18,10 @@ const Hero = () => {
     const [currentSlide, setCurrentSlide] = useState(0)
     const [isHeroInView, setIsHeroInView] = useState(true)
     const [popupOpen, setPopupOpen] = useState(false)
+    const [autoPlayPaused, setAutoPlayPaused] = useState(false);
+    const autoPlayTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const theme = useTheme()
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
     // Carousel data
     const carouselData = [
@@ -59,20 +64,31 @@ const Hero = () => {
         AOS.init({ duration: 1000, once: true })
     }, [])
 
-    // Auto-scroll carousel every 3 seconds
+    // Auto-scroll carousel every 3 seconds, pause if user interacts
     useEffect(() => {
+        if (autoPlayPaused) return;
         const interval = setInterval(() => {
             setCurrentSlide(prev => (prev + 1) % carouselData.length)
         }, 3000)
         return () => clearInterval(interval)
-    }, [carouselData.length])
+    }, [carouselData.length, autoPlayPaused])
+
+    const pauseAutoPlay = () => {
+        setAutoPlayPaused(true);
+        if (autoPlayTimeout.current) clearTimeout(autoPlayTimeout.current);
+        autoPlayTimeout.current = setTimeout(() => {
+            setAutoPlayPaused(false);
+        }, 5000); // Pause for 5 seconds after user interaction
+    };
 
     const nextSlide = () => {
         setCurrentSlide(prev => (prev + 1) % carouselData.length)
+        pauseAutoPlay();
     }
 
     const prevSlide = () => {
         setCurrentSlide(prev => (prev - 1 + carouselData.length) % carouselData.length)
+        pauseAutoPlay();
     }
 
     return (
@@ -93,6 +109,28 @@ const Hero = () => {
                         flexDirection: 'column',
                     }}
                 >
+                    {/* Ballpit Background */}
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            inset: 0,
+                            width: '100%',
+                            height: '100%',
+                            zIndex: 0,
+                            pointerEvents: 'none',
+                        }}
+                    >
+                        <Ballpit
+                            count={isSmallScreen ? 37 : 47}
+                            gravity={1}
+                            friction={0.78}
+                            wallBounce={0.7}
+                            followCursor={false}
+                            colors={[0x667eea, 0x764ba2, 0xffffff, 0x4f8cff]}
+                            style={{ width: '100%', height: '100%' }}
+                        />
+                    </Box>
+
                     {/* Animated floating objects */}
                     <style>
                         {`
@@ -163,6 +201,7 @@ const Hero = () => {
                             position: 'relative',
                             display: 'flex',
                             flexDirection: 'column',
+                            zIndex: 2,
                         }}
                     >
                         {/* Main Content Area */}
@@ -278,6 +317,9 @@ const Hero = () => {
                                     gap: { xs: 1.5, sm: 2, md: 2.5 },
                                     zIndex: 3,
                                     px: 2,
+                                    backgroundColor: isSmallScreen ? 'rgba(0,0,0,0.4)' : undefined,
+                                    borderRadius: isSmallScreen ? '50px' : undefined,
+                                    py: isSmallScreen ? { xs: 1, sm: 1.5, md: 2 } : undefined,
                                 }}
                             >
                                 <IconButton
