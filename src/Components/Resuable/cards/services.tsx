@@ -124,11 +124,9 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               {title}
             </Typography>
             <Box sx={{ mb: 3 }}>
-              {features.map((feature, idx) => (
-                <Typography key={idx} variant="body2" sx={{ mb: 0.5, color: 'inherit' }}>
-                  {feature}
-                </Typography>
-              ))}
+              <Typography variant="body2" sx={{ color: 'inherit' }}>
+                {features.join(', ')}
+              </Typography>
             </Box>
             <Button
               variant="contained"

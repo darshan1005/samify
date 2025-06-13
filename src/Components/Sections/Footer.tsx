@@ -1,6 +1,9 @@
-import { Box, Container, Typography, List, ListItem, ListItemText } from '@mui/material'
+import { Box, Container, Typography, List, ListItem, ListItemText, IconButton } from '@mui/material'
 import { useLocation, useNavigate } from 'react-router-dom'
 import services from '../../Content/services.json'
+import XIcon from '@mui/icons-material/X'
+import FacebookIcon from '@mui/icons-material/Facebook'
+import LinkedInIcon from '@mui/icons-material/LinkedIn'
 
 const quickNavs = [
     { label: 'Home', target: '/' },
@@ -165,17 +168,30 @@ const Footer = () => {
                             textAlign: { xs: 'center', md: 'left' },
                         }}
                     >
-                        <Typography
-                            variant="h4"
-                            sx={{
-                                fontWeight: 700,
-                                mb: 2,
-                                color: 'white',
-                                fontSize: { xs: '1.8rem', md: '2.2rem' },
-                            }}
-                        >
-                            Samify
-                        </Typography>
+                        <Box sx={{display:'flex', alignItems: 'baseline', gap:2}}>
+                            <Typography
+                                variant="h4"
+                                sx={{
+                                    fontWeight: 700,
+                                    mb: 2,
+                                    color: 'white',
+                                    fontSize: { xs: '1.8rem', md: '2.2rem' },
+                                }}
+                            >
+                                Samify
+                            </Typography>
+                            <Box sx={{ display: 'flex', gap: 1 }}>
+                                <IconButton size="small" sx={{ color: "#fff6", '&:hover': { color: 'primary.light' } }}>
+                                    <FacebookIcon fontSize="medium" />
+                                </IconButton>
+                                <IconButton size="small" sx={{ color: "#fff6", '&:hover': { color: 'primary.light' } }}>
+                                    <XIcon fontSize="medium" />
+                                </IconButton>
+                                <IconButton size="small" sx={{ color: "#fff6", '&:hover': { color: 'primary.light' } }}>
+                                    <LinkedInIcon fontSize="medium" />
+                                </IconButton>
+                            </Box>
+                        </Box>
                         <Typography
                             variant="body1"
                             sx={{
@@ -202,7 +218,7 @@ const Footer = () => {
                     <Box
                         sx={{
                             gridArea: 'nav',
-                            textAlign: { xs: 'center',sm: 'left' },
+                            textAlign: { xs: 'center', sm: 'left' },
                         }}
                     >
                         <Typography
@@ -249,7 +265,7 @@ const Footer = () => {
                     <Box
                         sx={{
                             gridArea: 'services',
-                            textAlign: { xs: 'center',sm:'left', md: 'left' },
+                            textAlign: { xs: 'center', sm: 'left', md: 'left' },
                         }}
                     >
                         <Typography
@@ -284,7 +300,7 @@ const Footer = () => {
                     <Box
                         sx={{
                             gridArea: 'contact',
-                            textAlign: { xs: 'center',sm:'left', md: 'left' },
+                            textAlign: { xs: 'center', sm: 'left', md: 'left' },
                         }}
                     >
                         <Typography
