@@ -77,14 +77,20 @@ const OurTeam: React.FC = () => {
       >
         Our team is made up of domain experts, creative thinkers, and seasoned professionals.
       </Typography>
+      
+      {/* Grid Container */}
       <Box
         sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: { xs: 2, sm: 3, md: 4 },
-          width: '100%',
+          display: 'grid',
+          gridTemplateColumns: {
+            xs: '1fr',
+            sm: 'repeat(3, 1fr)',
+            md: 'repeat(5, 1fr)',
+          },
+          gap: { xs: 1.5, sm: 2, md: 2.5 },
+          maxWidth: '1200px',
           mx: 'auto',
+          justifyItems: 'center',
         }}
       >
         {teamData.map((member, idx) => (
@@ -93,14 +99,8 @@ const OurTeam: React.FC = () => {
             data-aos="zoom-in"
             data-aos-delay={300 + idx * 100}
             sx={{
-              width: { xs: '100%', sm: '48%', md: '18%' },
-              minWidth: 160,
-              maxWidth: 220,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              mx: 'auto',
+              width: '100%',
+              maxWidth: { xs: '280px', sm: '220px', md: '200px' },
             }}
           >
             <Card
@@ -111,9 +111,11 @@ const OurTeam: React.FC = () => {
                 height: { xs: 180, sm: 200, md: 220 },
                 display: 'flex',
                 flexDirection: 'column',
-                transition: 'transform 0.3s',
-                '&:hover': { transform: 'translateY(-8px)', boxShadow: 6 },
-                mx: 'auto',
+                transition: 'transform 0.3s, box-shadow 0.3s',
+                '&:hover': { 
+                  transform: 'translateY(-8px)', 
+                  boxShadow: 6 
+                },
               }}
             >
               <Box sx={{ pt: 2, pb: 1 }}>

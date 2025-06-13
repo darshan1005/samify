@@ -77,7 +77,10 @@ const Hero = () => {
 
     return (
         <>
-            <Box id="hero-section" sx={{ scrollMarginTop: { xs: '56px', md: '64px' }}}>
+            <Box
+                id="hero-section"
+                sx={{ scrollMarginTop: { xs: '56px', md: '64px' } }}
+            >
                 {/* Hero Section */}
                 <Box
                     sx={{
@@ -152,10 +155,10 @@ const Hero = () => {
                             zIndex: 0,
                         }}
                     />
-                    
-                    <Container 
-                        maxWidth="lg" 
-                        sx={{ 
+
+                    <Container
+                        maxWidth="lg"
+                        sx={{
                             flex: 1,
                             position: 'relative',
                             display: 'flex',
@@ -170,10 +173,10 @@ const Hero = () => {
                                 flexDirection: { xs: 'column', md: 'row' },
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                pt: { 
+                                pt: {
                                     xs: '80px',
-                                    sm: '100px', 
-                                    md: '80px', 
+                                    sm: '100px',
+                                    md: '80px',
                                     lg: '80px',
                                     xl: '60px'
                                 },
@@ -216,11 +219,11 @@ const Hero = () => {
                                                 text={carouselData[currentSlide].title}
                                                 wordSx={{
                                                     fontWeight: 'bold',
-                                                    fontSize: { 
-                                                        xs: '2rem', 
-                                                        sm: '2.5rem', 
+                                                    fontSize: {
+                                                        xs: '2rem',
+                                                        sm: '2.5rem',
                                                         md: '3rem',
-                                                        lg: '3.5rem' 
+                                                        lg: '3.5rem'
                                                     },
                                                 }}
                                             />

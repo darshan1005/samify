@@ -16,7 +16,7 @@ const quickNavs = [
 
 const contactInfo = [
     { label: 'Email', value: 'info@samify.com' },
-    { label: 'Phone', value: '+91 xxx xxx xxx' },
+    { label: 'Phone', value: '+91 XXX XXX XXX' },
     { label: 'Address', value: '123 Main St, City, Country' },
 ]
 
@@ -46,23 +46,123 @@ const Footer = () => {
     };
 
     return (
-        <Box id="footer" sx={{ bgcolor: '#102036', color: 'white', py: 6 }}>
+        <Box
+            id="footer"
+            sx={{
+                position: 'relative',
+                bgcolor: '#102036',
+                color: 'white',
+                py: 6
+            }}>
+            {/* Animated floating objects */}
+            <style>
+                {`
+                    @keyframes float1 {
+                        0% { transform: translateY(0) scale(1);}
+                        50% { transform: translateY(-40px) scale(1.1);}
+                        100% { transform: translateY(0) scale(1);}
+                    }
+                    @keyframes float2 {
+                        0% { transform: translateY(0) scale(1);}
+                        50% { transform: translateY(30px) scale(0.95);}
+                        100% { transform: translateY(0) scale(1);}
+                    }
+                    @keyframes float3 {
+                        0% { transform: translateY(0) scale(1);}
+                        50% { transform: translateY(-25px) scale(1.05);}
+                        100% { transform: translateY(0) scale(1);}
+                    }
+                    `}
+            </style>
+            <Box
+                sx={{
+                    position: 'absolute',
+                    top: 60,
+                    left: 40,
+                    width: 70,
+                    height: 70,
+                    bgcolor: 'rgba(255,255,255,0.13)',
+                    borderRadius: '50%',
+                    filter: 'blur(1px)',
+                    animation: 'float1 6s ease-in-out infinite',
+                    zIndex: 0,
+                }}
+            />
+            <Box
+                sx={{
+                    position: 'absolute',
+                    top: 200,
+                    right: 80,
+                    width: 100,
+                    height: 100,
+                    bgcolor: 'rgba(255,255,255,0.09)',
+                    borderRadius: '50%',
+                    filter: 'blur(2px)',
+                    animation: 'float2 8s ease-in-out infinite',
+                    zIndex: 0,
+                }}
+            />
+            <Box
+                sx={{
+                    position: 'absolute',
+                    top: 250,
+                    right: '50%',
+                    width: 200,
+                    height: 200,
+                    bgcolor: 'rgba(255,255,255,0.09)',
+                    borderRadius: '50%',
+                    filter: 'blur(2px)',
+                    animation: 'float2 8s ease-in-out infinite',
+                    zIndex: 0,
+                }}
+            />
+            <Box
+                sx={{
+                    position: 'absolute',
+                    bottom: 80,
+                    left: 120,
+                    width: 50,
+                    height: 50,
+                    bgcolor: 'rgba(255,255,255,0.18)',
+                    borderRadius: '50%',
+                    filter: 'blur(1.5px)',
+                    animation: 'float3 7s ease-in-out infinite',
+                    zIndex: 0,
+                }}
+            />
             <Container maxWidth="lg">
+                {/* Main Footer Grid */}
                 <Box
                     sx={{
-                        display: 'flex',
-                        flexDirection: { xs: 'column', md: 'row' },
-                        gap: { xs: 4, md: 6 },
-                        alignItems: { xs: 'center', md: 'flex-start' },
-                        textAlign: { xs: 'center', md: 'left' },
+                        display: 'grid',
+                        gridTemplateColumns: {
+                            xs: '1fr',
+                            sm: 'repeat(2, 1fr)',
+                            md: 'repeat(4, 1fr)',
+                        },
+                        gridTemplateAreas: {
+                            xs: `
+                                "brand"
+                                "nav"
+                                "services"
+                                "contact"
+                            `,
+                            sm: `
+                                "brand brand"
+                                "nav services"
+                                "contact contact"
+                            `,
+                            md: `"brand nav services contact"`,
+                        },
+                        gap: { xs: 3, sm: 4, md: 5 },
+                        alignItems: 'start',
                     }}
                 >
                     {/* Logo & Brand Section */}
                     <Box
                         sx={{
-                            flex: { xs: 'none', md: 1 },
-                            maxWidth: { xs: '100%', md: 500 },
-                            mb: { xs: 2, md: 0 },
+                            gridArea: 'brand',
+                            textAlign: { xs: 'center', md: 'left' },
                         }}
                     >
                         <Typography
@@ -101,8 +201,8 @@ const Footer = () => {
                     {/* Quick Nav */}
                     <Box
                         sx={{
-                            flex: { xs: 'none', md: 0.8 },
-                            minWidth: { xs: '100%', sm: 'auto' },
+                            gridArea: 'nav',
+                            textAlign: { xs: 'center',sm: 'left' },
                         }}
                     >
                         <Typography
@@ -116,18 +216,28 @@ const Footer = () => {
                         >
                             Quick Nav
                         </Typography>
-                        <List>
+                        <List sx={{ p: 0 }}>
                             {quickNavs.map(nav => (
-                                <ListItem key={nav.label} disableGutters sx={{ py: 0.5 }}>
+                                <ListItem
+                                    key={nav.label}
+                                    disableGutters
+                                    sx={{ py: 0.5 }}
+                                >
                                     <ListItemText
                                         onClick={() => scrollToSectionOrNavigate(nav.target)}
                                         primary={nav.label}
                                         sx={{
                                             fontSize: '0.95rem',
+                                            cursor: 'pointer',
+                                            transition: 'color 0.2s ease',
                                             '&:hover': {
-                                                cursor: 'pointer',
+                                                color: 'primary.light',
                                                 textDecoration: 'underline',
                                             },
+                                            '& .MuiListItemText-primary': {
+                                                fontSize: '0.95rem',
+                                                color: 'grey.300',
+                                            }
                                         }}
                                     />
                                 </ListItem>
@@ -138,8 +248,8 @@ const Footer = () => {
                     {/* Services */}
                     <Box
                         sx={{
-                            flex: { xs: 'none', md: 1.2 },
-                            minWidth: { xs: '100%', sm: 'auto' },
+                            gridArea: 'services',
+                            textAlign: { xs: 'center',sm:'left', md: 'left' },
                         }}
                     >
                         <Typography
@@ -159,7 +269,10 @@ const Footer = () => {
                                     <ListItemText
                                         primary={service.title}
                                         sx={{
-                                            fontSize: '0.95rem',
+                                            '& .MuiListItemText-primary': {
+                                                fontSize: '0.95rem',
+                                                color: 'grey.300',
+                                            }
                                         }}
                                     />
                                 </ListItem>
@@ -170,8 +283,8 @@ const Footer = () => {
                     {/* Contact Info */}
                     <Box
                         sx={{
-                            flex: { xs: 'none', md: 1 },
-                            minWidth: { xs: '100%', sm: 'auto' },
+                            gridArea: 'contact',
+                            textAlign: { xs: 'center',sm:'left', md: 'left' },
                         }}
                     >
                         <Typography
@@ -192,10 +305,12 @@ const Footer = () => {
                                         primary={info.label}
                                         secondary={info.value}
                                         sx={{
-                                            color: 'white',
-                                            fontWeight: 500,
-                                            fontSize: '0.9rem',
-                                            mb: 0.5,
+                                            '& .MuiListItemText-primary': {
+                                                color: 'white',
+                                                fontWeight: 500,
+                                                fontSize: '0.9rem',
+                                                mb: 0.5,
+                                            }
                                         }}
                                         secondaryTypographyProps={{
                                             color: 'grey.300',

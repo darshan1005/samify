@@ -16,7 +16,7 @@ interface ContactFormProps {
   showTitle?: boolean
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = true}) => {
+const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = true }) => {
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -84,15 +84,25 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
       sx={{
         maxWidth: 520,
         mx: 'auto',
-        p: 3,
-        bgcolor: 'background.paper',
-        borderRadius: 3,
-        boxShadow: 2,
+        p: { xs: 2, sm: 3 },
+        bgcolor: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+        borderRadius: 5,
+        boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+        border: '1px solid #e3e6ee',
+        backdropFilter: 'blur(4px)',
+        position: 'relative',
       }}
     >
       {showTitle && (
-        <Typography variant="h5" fontWeight={600} mb={2} align="center">
-          Contact Us
+        <Typography
+          variant="h4"
+          fontWeight={700}
+          mb={3}
+          align="center"
+          color="primary.main"
+          letterSpacing={1.5}
+        >
+          Get in Touch
         </Typography>
       )}
       <TextField
@@ -104,6 +114,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
         helperText={errors.name}
         fullWidth
         margin="normal"
+        InputProps={{
+          sx: {
+            borderRadius: 3,
+            bgcolor: '#fff',
+            boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
+            '&:focus-within': { boxShadow: '0 2px 8px rgba(0,0,0,0.08)' },
+          },
+        }}
       />
       <TextField
         label="Email"
@@ -114,6 +132,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
         helperText={errors.email}
         fullWidth
         margin="normal"
+        InputProps={{
+          sx: {
+            borderRadius: 3,
+            bgcolor: '#fff',
+            boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
+            '&:focus-within': { boxShadow: '0 2px 8px rgba(0,0,0,0.08)' },
+          },
+        }}
       />
       <TextField
         label="Phone Number"
@@ -124,8 +150,25 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
         helperText={errors.phone}
         fullWidth
         margin="normal"
+        InputProps={{
+          sx: {
+            borderRadius: 3,
+            bgcolor: '#fff',
+            boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
+            '&:focus-within': { boxShadow: '0 2px 8px rgba(0,0,0,0.08)' },
+          },
+        }}
       />
-      <FormControl fullWidth margin="normal" error={!!errors.service}>
+      <FormControl
+        fullWidth
+        margin="normal"
+        error={!!errors.service}
+        sx={{
+          borderRadius: 3,
+          bgcolor: '#fff',
+          boxShadow: '0 1px 4px rgba(0,0,0,0.03)'
+        }}
+      >
         <InputLabel>Service</InputLabel>
         <Select
           name="service"
@@ -133,6 +176,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
           label="Service"
           onChange={handleSelectChange}
           disabled={serviceDisabled}
+          sx={{ borderRadius: 3 }}
         >
           {serviceOptions.map(option => (
             <MenuItem key={option} value={option}>
@@ -157,23 +201,58 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
         margin="normal"
         multiline
         minRows={3}
+        InputProps={{
+          sx: {
+            borderRadius: 3,
+            bgcolor: '#fff',
+            boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
+            '&:focus-within': { boxShadow: '0 2px 8px rgba(0,0,0,0.08)' },
+          },
+        }}
       />
-      <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, mt: 2 }}>
         <Button
           type="submit"
           variant="contained"
           color="primary"
           fullWidth
-          sx={{ mt: 2, borderRadius: 2 }}
+          sx={{
+            borderRadius: 3,
+            fontWeight: 600,
+            fontSize: '1rem',
+            boxShadow: '0 2px 8px rgba(25, 118, 210, 0.10)',
+            transition: 'all 0.2s',
+            '&:hover': {
+              bgcolor: 'primary.dark',
+              transform: 'translateY(-2px) scale(1.03)',
+              boxShadow: '0 4px 16px rgba(25, 118, 210, 0.18)',
+            },
+          }}
         >
           Send
         </Button>
         <Button
-          variant="contained"
+          variant="outlined"
           color="primary"
           fullWidth
-          sx={{ mt: 2, borderRadius: 2 }}
-          onClick={() =>
+          sx={{
+            borderRadius: 3,
+            fontWeight: 600,
+            fontSize: '1rem',
+            bgcolor: '#fff',
+            border: '2px solid',
+            borderColor: 'primary.main',
+            transition: 'all 0.2s',
+            '&:hover': {
+              bgcolor: 'primary.light',
+              borderColor: 'primary.dark',
+              transform: 'translateY(-2px) scale(1.03)',
+            },
+          }}
+          onClick={() => {
+            sessionStorage.removeItem('selectedService')
+            setServiceDisabled(false)
+            setSubmitted(false)
             setForm({
               name: '',
               email: '',
@@ -181,15 +260,40 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
               message: '',
               service: '',
             })
-          }
+          }}
         >
           Clear
         </Button>
       </Box>
       {submitted && (
-        <Typography color="success.main" align="center" mt={2}>
-          Thank you! Your message has been sent.
-        </Typography>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 3 }}>
+          <Box
+            sx={{
+              width: 60,
+              height: 60,
+              borderRadius: '50%',
+              bgcolor: 'success.light',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              mb: 1,
+            }}
+          >
+            <svg width="32" height="32" fill="none" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="12" fill="#4caf50" />
+              <path
+                d="M7 13l3 3 7-7"
+                stroke="#fff"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </Box>
+          <Typography color="success.main" align="center" fontWeight={600}>
+            Thank you! Your message has been sent.
+          </Typography>
+        </Box>
       )}
     </Box>
   )

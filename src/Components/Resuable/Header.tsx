@@ -17,7 +17,7 @@ const Header: React.FC<NavHeaderProps> = ({
   onClick,
   showHome = true,
   showBtn = true,
-  label = 'Button'
+  label = 'Button',
 }) => {
   const navigate = useNavigate()
 
@@ -53,7 +53,10 @@ const Header: React.FC<NavHeaderProps> = ({
       }}
     >
       {/* Logo on left */}
-      <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={handleLogoClick}>
+      <Box
+        sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+        onClick={handleLogoClick}
+      >
         <Box
           component="img"
           src={Logo}
@@ -62,7 +65,13 @@ const Header: React.FC<NavHeaderProps> = ({
         />
       </Box>
       {/* Nav buttons on right */}
-      <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: 1
+        }}>
         {showHome && (
           <IconButton
             size="small"

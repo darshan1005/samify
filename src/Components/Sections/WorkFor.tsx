@@ -115,7 +115,7 @@ const WorkFor: React.FC = () => {
             sx={{
                 position: 'relative',
                 py: 6,
-                px:1,
+                px: 1,
                 backgroundImage: `url(${office})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
@@ -146,37 +146,41 @@ const WorkFor: React.FC = () => {
                     </Typography>
                 </Box>
 
+                {/* Business Types Grid */}
+                <style>{`
+                  @keyframes flip360fwd {
+                    0% { transform: rotateY(0deg); }
+                    100% { transform: rotateY(360deg); }
+                  }
+                  @keyframes flip360bwd {
+                    0% { transform: rotateY(360deg); }
+                    100% { transform: rotateY(0deg); }
+                  }
+                `}</style>
+                
                 <Box
                     sx={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        justifyContent: 'center',
-                        gap: { xs: 2, sm: 3, md: 4 },
-                        width: '100%',
+                        display: 'grid',
+                        gridTemplateColumns: {
+                            xs: 'repeat(2, 1fr)',
+                            sm: 'repeat(4, 1fr)',
+                        },
+                        gap: { xs: 2, sm: 2.5, md: 3 },
+                        maxWidth: '800px',
+                        mx: 'auto',
                         mb: 6,
+                        justifyItems: 'center',
+                        p: 2,
                     }}
                 >
-                    {/* Business Types Tiles */}
-                    <style>{`
-                      @keyframes flip360fwd {
-                        0% { transform: rotateY(0deg); }
-                        100% { transform: rotateY(360deg); }
-                      }
-                      @keyframes flip360bwd {
-                        0% { transform: rotateY(360deg); }
-                        100% { transform: rotateY(0deg); }
-                      }
-                    `}</style>
                     {businessTypes.map((item, idx) => (
                         <Box
                             key={item.title}
                             data-aos="fade-in"
                             data-aos-delay={100 + idx * 120}
                             sx={{
-                                flex: { xs: '0 1 48%', sm: '0 1 22%', md: '0 1 20%' },
-                                width: { xs: '48%', sm: '22%', md: '20%' },
-                                minWidth: 140,
-                                maxWidth: 200,
+                                width: '100%',
+                                maxWidth: '180px',
                                 bgcolor: 'background.paper',
                                 borderRadius: 3,
                                 boxShadow: '0 2px 12px 0 rgba(16,32,54,0.07)',
@@ -185,7 +189,6 @@ const WorkFor: React.FC = () => {
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 p: 2.5,
-                                m: 1,
                                 textAlign: 'center',
                                 position: 'relative',
                                 overflow: 'hidden',
@@ -221,14 +224,22 @@ const WorkFor: React.FC = () => {
                         </Box>
                     ))}
                 </Box>
+
+                {/* Industries Grid */}
                 <Box
                     sx={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        justifyContent: 'center',
-                        gap: { xs: 2, sm: 3, md: 4 },
-                        width: '90%',
+                        display: 'grid',
+                        gridTemplateColumns: {
+                            xs: 'repeat(2, 1fr)',
+                            sm: 'repeat(4, 1fr)',
+                            md: 'repeat(5, 1fr)',
+                            lg: 'repeat(6, 1fr)',
+                            xl: 'repeat(7, 1fr)',
+                        },
+                        gap: { xs: 1, sm: 1.5, md: 2 },
+                        maxWidth: '1200px',
                         mx: 'auto',
+                        justifyItems: 'center',
                     }}
                 >
                     {workForObj.map((item, idx) => (
@@ -238,7 +249,8 @@ const WorkFor: React.FC = () => {
                             data-aos-delay={100 + idx * 80}
                             elevation={3}
                             sx={{
-                                width: 150,
+                                width: '100%',
+                                maxWidth: '150px',
                                 minHeight: 170,
                                 borderRadius: 3,
                                 boxShadow: '0 2px 12px 0 rgba(16,32,54,0.07)',
@@ -283,4 +295,3 @@ const WorkFor: React.FC = () => {
 };
 
 export default WorkFor;
-

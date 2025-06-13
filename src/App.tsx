@@ -3,13 +3,13 @@ import Loading from './Components/Resuable/Loading';
 import Cursor from './Components/Animations/Cursor';
 import { useMediaQuery, useTheme } from '@mui/material';
 import Footer from './Components/Sections/Footer';
-import PrivacyPolicy from './Components/Pages/Privacypolicy';
-import Request from './Components/Pages/Request';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ScrollToTop from './Components/Animations/ScrollTop';
 import Scroll from './Helper/scroll';
 
 const Home = React.lazy(() => import("./Components/Pages/Home"));
+const PrivacyPolicy = React.lazy(() => import("./Components/Pages/Privacypolicy"));
+const Request = React.lazy(() => import("./Components/Pages/Request"));
 
 const App = () => {
 
@@ -39,13 +39,15 @@ const App = () => {
     <Router>
       {!isMobile && <Cursor />}
       <Scroll />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
-        <Route path="/request" element={<Request />} />
-      </Routes>
-      <Footer />
-      <ScrollToTop />
+      <React.Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+          <Route path="/request" element={<Request />} />
+        </Routes>
+        <Footer />
+        <ScrollToTop />
+      </React.Suspense>
     </Router>
   )
 }
