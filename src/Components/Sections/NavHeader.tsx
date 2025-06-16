@@ -18,7 +18,7 @@ import XIcon from '@mui/icons-material/X'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import { useNavigate } from 'react-router-dom'
-import Logo from '../../assets/samify-nobg.png'
+import Logo from '../../assets/samify-nobg.webp'
 
 const navItems = [
   { label: 'Home', target: '/' },

@@ -2,7 +2,7 @@ import React, { type JSX } from 'react'
 import { Box, Button, IconButton } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home'
-import Logo from '../../assets/samify-nobg.png'
+import Logo from '../../assets/samify-nobg.webp'
 
 interface NavHeaderProps {
   onClick: () => void

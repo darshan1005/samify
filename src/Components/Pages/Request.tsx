@@ -29,7 +29,7 @@ const allSteps = [
             margin: 0,
             paddingLeft: 2,
             listStyleType: 'none',
-            color: 'text.secondary'
+            color: 'text.secondary',
           }}
         >
           <Typography component={'li'}>Introduction</Typography>
@@ -56,7 +56,7 @@ const allSteps = [
 const Request = () => {
   return (
     <Box>
-      <Header onClick={() => { }} showBtn={false} />
+      <Header onClick={() => {}} showBtn={false} />
       <Box
         sx={{
           display: 'flex',
@@ -70,7 +70,7 @@ const Request = () => {
         <Box>
           <ContactForm serviceOptions={serviceOptions} />
         </Box>
-        <Paper elevation={3} sx={{ p: 3, borderRadius: 3 }}>
+        <Paper elevation={3} sx={{ p: 3, borderRadius: 3 / 2 }}>
           <Typography variant="h5" fontWeight={700} mb={3} color="primary.main" align="center">
             Our Request & Service Process
           </Typography>

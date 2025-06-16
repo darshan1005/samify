@@ -2,25 +2,25 @@ import React, { useState, useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Box, Typography, Paper } from '@mui/material';
-import Agriculture from '../../assets/workfor/Agriculture.png';
-import Education from '../../assets/workfor/Education.png';
-import Healthcare from '../../assets/workfor/Healthcare.png';
-import Manufacturing from '../../assets/workfor/Manufacturing.png';
-import RealEstate from '../../assets/workfor/Real Estate.png';
-import Legal from '../../assets/workfor/Legal.png';
-import Insurance from '../../assets/workfor/Insurance.png';
-import Textile from '../../assets/workfor/Textile.png';
-import Tourism from '../../assets/workfor/Tourism.png';
-import Trade from '../../assets/workfor/Trade.png';
-import Technology from '../../assets/workfor/Technology.png';
-import Food from '../../assets/workfor/Food Industry.png';
-import ECommerce from '../../assets/workfor/E-Commerce.png';
-import Government from '../../assets/workfor/Government.png';
-import office from '../../assets/office.jpg';
-import SMB from '../../assets/workfor/Small-Medium-Business.png'
-import Startup from '../../assets/workfor/Start-Up-Business.png'
-import Agencies from '../../assets/workfor/Agencies.png'
-import Enterprise from '../../assets/workfor/Enterprise.png'
+import Agriculture from '../../assets/workfor/Agriculture.webp';
+import Education from '../../assets/workfor/Education.webp';
+import Healthcare from '../../assets/workfor/Healthcare.webp';
+import Manufacturing from '../../assets/workfor/Manufacturing.webp';
+import RealEstate from '../../assets/workfor/Real Estate.webp';
+import Legal from '../../assets/workfor/Legal.webp';
+import Insurance from '../../assets/workfor/Insurance.webp';
+import Textile from '../../assets/workfor/Textile.webp';
+import Tourism from '../../assets/workfor/Tourism.webp';
+import Trade from '../../assets/workfor/Trade.webp';
+import Technology from '../../assets/workfor/Technology.webp';
+import Food from '../../assets/workfor/Food Industry.webp';
+import ECommerce from '../../assets/workfor/E-Commerce.webp';
+import Government from '../../assets/workfor/Government.webp';
+import office from '../../assets/office.webp';
+import SMB from '../../assets/workfor/Small-Medium-Business.webp'
+import Startup from '../../assets/workfor/Start-Up-Business.webp'
+import Agencies from '../../assets/workfor/Agencies.webp'
+import Enterprise from '../../assets/workfor/Enterprise.webp'
 
 const businessTypes = [
     {
@@ -157,7 +157,7 @@ const WorkFor: React.FC = () => {
                     100% { transform: rotateY(0deg); }
                   }
                 `}</style>
-                
+
                 <Box
                     sx={{
                         display: 'grid',

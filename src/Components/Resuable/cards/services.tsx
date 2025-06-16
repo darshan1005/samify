@@ -89,7 +89,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         <FlipFront elevation={4}>
           <CardContent sx={{ p: 3, height: '100%', display: 'flex', flexDirection: 'column' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, gap: 2 }}>
-              <Box component={'img'} src={icon} sx={{ width: '3rem', height: '3rem', mixBlendMode: 'multiply' }} alt='card image' />
+              <Box component={'img'} src={icon} sx={{ width: '3rem', height: '3rem' }} alt='card image' />
               <Typography variant="h6" fontWeight="bold" gutterBottom>
                 {title}
               </Typography>

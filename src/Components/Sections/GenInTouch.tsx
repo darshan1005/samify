@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import TechBg2 from '../../assets/tech-bg-2.jpg'
+import TechBg2 from '../../assets/tech-bg.webp'
 import { Link } from "react-router-dom";
 
 const GetInTouch = () => {

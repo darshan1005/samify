@@ -11,6 +11,14 @@ const Home = React.lazy(() => import("./Components/Pages/Home"));
 const PrivacyPolicy = React.lazy(() => import("./Components/Pages/Privacypolicy"));
 const Request = React.lazy(() => import("./Components/Pages/Request"));
 
+const loadingMessages = [
+  'Casting imagination into reality...',
+  'Almost done, preparing your experience...',
+  'Just a moment, we are getting things ready...',
+  'Loading the magic, please be patient...',
+  'Final touches, hang tight!'
+];
+
 const App = () => {
 
   const theme = useTheme();
@@ -32,14 +40,14 @@ const App = () => {
 
   if (!isDomReady) {
     return (
-      <Loading />
+      <Loading content={loadingMessages} />
     )
   }
   return (
     <Router>
       {!isMobile && <Cursor />}
       <Scroll />
-      <React.Suspense fallback={<Loading />}>
+      <React.Suspense fallback={<Loading content={loadingMessages} />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />

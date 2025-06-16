@@ -10,6 +10,7 @@ import {
   Select,
 } from '@mui/material'
 import type { SelectChangeEvent } from '@mui/material/Select'
+import PopupHOC from './Popup'
 
 interface ContactFormProps {
   serviceOptions: string[]
@@ -27,6 +28,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [submitted, setSubmitted] = useState(false)
   const [serviceDisabled, setServiceDisabled] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const selectedService = sessionStorage.getItem('selectedService')
@@ -65,15 +67,30 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
     if (!form.service) newErrors.service = 'Please select a service'
     return newErrors
   }
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const validation = validate()
     setErrors(validation)
     if (Object.keys(validation).length === 0) {
-      setSubmitted(true)
-      sessionStorage.removeItem('selectedService')
-      // Here you would send the form data to your backend or email service
+      setLoading(true)
+      try {
+        // Simulate API call with a delay
+        await new Promise(resolve => setTimeout(resolve, 1500))
+        setSubmitted(true)
+        sessionStorage.removeItem('selectedService')
+        setServiceDisabled(false)
+        setForm({
+          name: '',
+          email: '',
+          phone: '',
+          message: '',
+          service: '',
+        })
+      } catch (error) {
+        console.error('Error submitting form:', error)
+      } finally {
+        setLoading(false)
+      }
     }
   }
 
@@ -86,7 +103,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
         mx: 'auto',
         p: { xs: 2, sm: 3 },
         bgcolor: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-        borderRadius: 5,
+        borderRadius: 5 / 2,
         boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
         border: '1px solid #e3e6ee',
         backdropFilter: 'blur(4px)',
@@ -116,7 +133,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
         margin="normal"
         InputProps={{
           sx: {
-            borderRadius: 3,
+            borderRadius: 3 / 2,
             bgcolor: '#fff',
             boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
             '&:focus-within': { boxShadow: '0 2px 8px rgba(0,0,0,0.08)' },
@@ -134,7 +151,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
         margin="normal"
         InputProps={{
           sx: {
-            borderRadius: 3,
+            borderRadius: 3 / 2,
             bgcolor: '#fff',
             boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
             '&:focus-within': { boxShadow: '0 2px 8px rgba(0,0,0,0.08)' },
@@ -164,7 +181,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
         margin="normal"
         error={!!errors.service}
         sx={{
-          borderRadius: 3,
+          borderRadius: 3 / 2,
           bgcolor: '#fff',
           boxShadow: '0 1px 4px rgba(0,0,0,0.03)'
         }}
@@ -176,7 +193,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
           label="Service"
           onChange={handleSelectChange}
           disabled={serviceDisabled}
-          sx={{ borderRadius: 3 }}
+          sx={{ borderRadius: 3 / 2 }}
         >
           {serviceOptions.map(option => (
             <MenuItem key={option} value={option}>
@@ -203,21 +220,21 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
         minRows={3}
         InputProps={{
           sx: {
-            borderRadius: 3,
+            borderRadius: 3 / 2,
             bgcolor: '#fff',
             boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
             '&:focus-within': { boxShadow: '0 2px 8px rgba(0,0,0,0.08)' },
           },
         }}
       />
-      <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, mt: 2 }}>
-        <Button
+      <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, mt: 2 }}>        <Button
           type="submit"
           variant="contained"
           color="primary"
           fullWidth
+          disabled={loading}
           sx={{
-            borderRadius: 3,
+            borderRadius: 3 / 2,
             fontWeight: 600,
             fontSize: '1rem',
             boxShadow: '0 2px 8px rgba(25, 118, 210, 0.10)',
@@ -229,14 +246,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
             },
           }}
         >
-          Send
+          {loading ? 'Sending...' : 'Send'}
         </Button>
         <Button
           variant="outlined"
           color="primary"
           fullWidth
           sx={{
-            borderRadius: 3,
+            borderRadius: 2,
             fontWeight: 600,
             fontSize: '1rem',
             bgcolor: '#fff',
@@ -264,39 +281,40 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
         >
           Clear
         </Button>
-      </Box>
-      {submitted && (
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 3 }}>
-          <Box
-            sx={{
-              width: 60,
-              height: 60,
-              borderRadius: '50%',
-              bgcolor: 'success.light',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              mb: 1,
-            }}
-          >
-            <svg width="32" height="32" fill="none" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="12" fill="#4caf50" />
-              <path
-                d="M7 13l3 3 7-7"
-                stroke="#fff"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+      </Box>      {submitted && (
+        <PopupHOC open={submitted} onClose={() => setSubmitted(false)}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 3 }}>
+            <Box
+              sx={{
+                width: 60,
+                height: 60,
+                borderRadius: '50%',
+                bgcolor: 'success.light',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                mb: 1,
+              }}
+            >
+              <svg width="32" height="32" fill="none" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="12" fill="#4caf50" />
+                <path
+                  d="M7 13l3 3 7-7"
+                  stroke="#fff"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Box>
+            <Typography color="success.main" align="center" fontWeight={600}>
+              Thank you! Your request has been sent. For further assistance reach out to our mail <Typography color='primary' component={'span'}>contact@samify.com</Typography>
+            </Typography>
           </Box>
-          <Typography color="success.main" align="center" fontWeight={600}>
-            Thank you! Your message has been sent.
-          </Typography>
-        </Box>
+        </PopupHOC>
       )}
-    </Box>
+    </Box >
   )
 }
 
-export default ContactForm
+export default ContactForm;

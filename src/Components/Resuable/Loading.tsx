@@ -2,18 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import { Spiral } from 'ldrs/react'
 import 'ldrs/react/Spiral.css'
-import Logo from '../../assets/samify-nobg.png';
+import Logo from '../../assets/samify-nobg.webp';
 
-const loadingMessages = [
-  'Casting imagination into reality...',
-  'Almost done, preparing your experience...',
-  'Just a moment, we are getting things ready...',
-  'Loading the magic, please be patient...',
-  'Final touches, hang tight!'
-];
+interface LoadingProps {
+  content?: string[] | [] | string;
+};
 
-const Loading: React.FC = () => {
+const Loading: React.FC<LoadingProps> = ({ content }) => {
   const [messageIndex, setMessageIndex] = useState(0);
+  const loadingMessages = Array.isArray(content) ? content : [content];
 
   useEffect(() => {
     const interval = setInterval(() => {

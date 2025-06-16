@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
-import AboutImage from '../../assets/About.png';
+import AboutImage from '../../assets/About.webp';
 import FlippingText from '../Animations/FlippingText';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
