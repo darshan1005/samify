@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ServiceCard from '../Resuable/cards/services';
-import services from '../../Content/Services.json';
+import services from '../../Content/services.json';
 
 // Responsive container for cards
 const ServicesGrid = styled(Box)(({ theme }) => ({
