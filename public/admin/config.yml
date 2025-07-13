@@ -15,7 +15,7 @@ collections:
     files:
       - label: 'AllFAQs'
         name: 'AllFAQs'
-        file: 'src/content/FAQs.json'
+        file: 'src/Content/FAQs.json'
         format: 'json'
         fields:
           - label: 'FAQs'
@@ -36,7 +36,7 @@ collections:
     files: 
       - label: 'ServicesData'
         name: 'ServicesData'
-        file: 'src/content/services.json'
+        file: 'src/Content/services.json'
         format: 'json'
         fields:
           - label: 'services'
