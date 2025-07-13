@@ -10,6 +10,8 @@ public_folder: '/uploads'
 collections:
   - name: 'faqs'
     label: 'FAQs'
+    access:
+      roles: [admin, editor]
     files:
       - label: 'AllFAQs'
         name: 'AllFAQs'
@@ -29,6 +31,8 @@ collections:
                 widget: 'text'
   - name: 'services'
     label: 'Services'
+    access:
+      roles: [admin, editor]
     files: 
       - label: 'ServicesData'
         name: 'ServicesData'
@@ -73,6 +77,8 @@ collections:
                 widget: 'boolean'
   - name: 'testimonies'
     label: 'Testimonies'
+    access:
+      roles: [admin, editor]
     files:
       - label: 'AllTestimonies'
         name: 'AllTestimonies'
@@ -101,6 +107,8 @@ collections:
                 widget: 'text'
   - name: 'videos'
     label: 'Videos'
+    access:
+      roles: [admin, editor]
     files:
       - label: 'AllVideos'
         name: 'AllVideos'
