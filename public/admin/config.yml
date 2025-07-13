@@ -97,3 +97,41 @@ collections:
               - label: 'Text'
                 name: 'text'
                 widget: 'text'
+  - name: 'videos'
+    label: 'Videos'
+    files:
+      - label: 'AllVideos'
+        name: 'AllVideos'
+        file: 'src/Content/Videos.json'
+        format: 'json'
+        fields:
+          - label: 'Videos'
+            name: 'videos'
+            widget: 'list'
+            label_singular: 'Video'
+            fields:
+              - label: 'ID'
+                name: 'id'
+                widget: 'string'
+              - label: 'Title'
+                name: 'title'
+                widget: 'string'
+              - label: 'Description'
+                name: 'description'
+                widget: 'text'
+              - label: 'Video File'
+                name: 'videoFile'
+                widget: 'file'
+                media_library:
+                  config:
+                    multiple: false
+                    public_folder: '/uploads'
+                    media_folder: 'public/uploads'
+              - label: 'Thumbnail'
+                name: 'thumbnail'
+                widget: 'image'
+              - label: 'Tags'
+                name: 'tags'
+                widget: 'list'
+                field:
+                  { label: 'Tag', name: 'tag', widget: 'string' }

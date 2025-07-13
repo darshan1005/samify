@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react'
 import { Typography, Button, Box, Container, IconButton, Fade, useMediaQuery, useTheme } from '@mui/material'
 import { ChevronLeft, ChevronRight, ContactPhone } from '@mui/icons-material'
 import SlidingTextReveal from '../Animations/SlideInText'
-import Ballpit from '../Animations/Ballpit'
 
 // Add AOS import
 import AOS from 'aos'
@@ -100,7 +99,8 @@ const Hero = () => {
                 {/* Hero Section */}
                 <Box
                     sx={{
-                        height: { xs: '100vh', sm: 'calc(100vh - 64px)' },
+                        minHeight: { xs: '80vh', sm: '70vh', md: '60vh', lg: '60vh', xl: '100vh' },
+                        height: 'auto',
                         p: { xs: 2, sm: 4, md: 6 },
                         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                         position: 'relative',
@@ -109,27 +109,7 @@ const Hero = () => {
                         flexDirection: 'column',
                     }}
                 >
-                    {/* Ballpit Background */}
-                    <Box
-                        sx={{
-                            position: 'absolute',
-                            inset: 0,
-                            width: '100%',
-                            height: '100%',
-                            zIndex: 0,
-                            pointerEvents: 'none',
-                        }}
-                    >
-                        <Ballpit
-                            count={isSmallScreen ? 37 : 47}
-                            gravity={1}
-                            friction={0.78}
-                            wallBounce={0.7}
-                            followCursor={false}
-                            colors={[0x667eea, 0x764ba2, 0xffffff, 0x4f8cff]}
-                            style={{ width: '100%', height: '100%' }}
-                        />
-                    </Box>
+                    {/* Removed Ballpit Background for performance */}
 
                     {/* Animated floating objects */}
                     <style>
@@ -317,7 +297,7 @@ const Hero = () => {
                                     gap: { xs: 1.5, sm: 2, md: 2.5 },
                                     zIndex: 3,
                                     px: 2,
-                                    backgroundColor: isSmallScreen ? 'rgba(0,0,0,0.4)' : undefined,
+                                    backgroundColor: isSmallScreen ? 'rgba(0,0,0,0.2)' : undefined,
                                     borderRadius: isSmallScreen ? '50px' : undefined,
                                     py: isSmallScreen ? { xs: 1, sm: 1.5, md: 2 } : undefined,
                                 }}
