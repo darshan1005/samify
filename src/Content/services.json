@@ -1,5 +1,5 @@
 {
-  "services": [
+  "Services": [
     {
       "priority": 1,
       "isActive": true,
@@ -152,23 +152,6 @@
         "Data Processing & Mining"
       ],
       "category": "outsourcing"
-    }
-  ],
-  "Services": [
-    {
-      "priority": 1,
-      "isActive": true,
-      "title": "Service 1",
-      "tags": [
-        "Service 1 tag"
-      ],
-      "icon": "/uploads/Digitalmarketing.png",
-      "id": "1",
-      "description": "Service 1 description",
-      "features": [
-        "Service 1 feature"
-      ],
-      "category": "Service 1"
     }
   ]
 }
