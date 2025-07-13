@@ -1,3 +1,5 @@
+local_backend: true
+
 backend:
   name: git-gateway
   branch: main
@@ -104,26 +106,26 @@ collections:
                 name: 'text'
                 widget: 'text'
   - name: 'videos'
-   label: 'Videos'
-   access:
-     roles: [admin, editor]
-   files:
-     - label: 'AllVideos'
-       name: 'AllVideos'
-       file: 'src/Content/Videos.json'
-       format: 'json'
-       fields:
-         - label: 'Videos'
-           name: 'Videos'
-           widget: 'list'
-           label_singular: 'Video'
-           fields:
-             - label: 'ID'
-               name: 'id'
-               widget: 'string'
-             - label: 'Title'
-               name: 'title'
-               widget: 'string'
-             - label: 'Link'
-               name: 'link'
-               widget: 'string'
+    label: 'Videos'
+    access:
+      roles: [admin, editor]
+    files:
+      - label: 'AllVideos'
+        name: 'AllVideos'
+        file: 'src/Content/Videos.json'
+        format: 'json'
+        fields:
+          - label: 'Videos'
+            name: 'Videos'
+            widget: 'list'
+            label_singular: 'Video'
+            fields:
+              - label: 'ID'
+                name: 'id'
+                widget: 'string'
+              - label: 'Title'
+                name: 'title'
+                widget: 'string'
+              - label: 'Link'
+                name: 'link'
+                widget: 'string'
