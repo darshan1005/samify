@@ -1,12 +1,21 @@
-import React from 'react';
 import ReactPlayer from 'react-player';
 import { Box, Typography, Container, Paper } from '@mui/material';
 import videosData from '../../Content/Videos.json';
 
-const VideoPreview: React.FC = () => (
-  <Box component="section" className="video-preview-section" py={6}>
+const VideoPreview = () => (
+  <Box component="section" className="video-preview-section" py={6} width={'100%'}>
     <Container maxWidth="md">
-      <Typography variant="h4" component="h2" gutterBottom align="center">
+      <Typography variant="h4"
+        fontWeight="bold"
+        align="center"
+        gutterBottom
+        sx={{
+          fontSize: { xs: '2rem', md: '2.5rem' },
+          background: 'linear-gradient(45deg, #667eea, #102036)',
+          backgroundClip: 'text',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}>
         Watch Our Videos
       </Typography>
       <Box
