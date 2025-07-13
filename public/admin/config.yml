@@ -39,8 +39,8 @@ collections:
         file: 'src/Content/services.json'
         format: 'json'
         fields:
-          - label: 'services'
-            name: 'services'
+          - label: 'Services'
+            name: 'Services'
             widget: 'list'
             label_singular: 'Service'
             fields:
@@ -116,7 +116,7 @@ collections:
         format: 'json'
         fields:
           - label: 'Videos'
-            name: 'videos'
+            name: 'Videos'
             widget: 'list'
             label_singular: 'Video'
             fields:
