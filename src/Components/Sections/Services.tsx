@@ -30,7 +30,7 @@ const HeroSection = styled(Box)(({ theme }) => ({
 
 const Services: React.FC = () => {
     // Filter active services and sort by priority
-    const activeServices = services.services
+    const activeServices = services.Services
         .filter(service => service.isActive)
         .sort((a, b) => (a.priority || 0) - (b.priority || 0));
 

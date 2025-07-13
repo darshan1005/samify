@@ -280,7 +280,7 @@ const Footer = () => {
                             Services
                         </Typography>
                         <List dense sx={{ p: 0 }}>
-                            {services.services.map(service => (
+                            {services.Services.map(service => (
                                 <ListItem key={service.id} disableGutters sx={{ py: 0.5 }}>
                                     <ListItemText
                                         primary={service.title}

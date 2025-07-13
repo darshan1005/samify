@@ -11,6 +11,7 @@ import NavHeader from "../Sections/NavHeader";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loader from "../Resuable/Loading";
+import VideoPreview from "../Sections/Media";
 
 const Home = () => {
   const location = useLocation();
@@ -58,6 +59,7 @@ const Home = () => {
       <WorkFor />
       <Testimonies />
       <FAQs />
+      <VideoPreview />
       <GetInTouch />
     </>
   );

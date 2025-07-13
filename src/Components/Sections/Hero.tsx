@@ -11,7 +11,7 @@ import ContactForm from '../Resuable/ContactFrom'
 import servicesData from '../../Content/services.json'
 
 type Service = { id: string; title: string }
-const serviceOptions = (servicesData.services as Service[]).map(s => s.title)
+const serviceOptions = (servicesData.Services as Service[]).map(s => s.title)
 
 const Hero = () => {
     const [currentSlide, setCurrentSlide] = useState(0)
