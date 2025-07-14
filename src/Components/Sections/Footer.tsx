@@ -12,7 +12,6 @@ const quickNavs = [
     { label: 'Portfolio', target: 'ourteam-section' },
     { label: 'Testimonials', target: 'testimonial-section' },
     { label: 'Q&A', target: 'faq-section' },
-    { label: 'Contact', target: 'getintouch-section' },
     { label: 'Privacy Policy', target: '/privacypolicy' },
     { label: 'Request a Quote', target: '/request' },
 ]
