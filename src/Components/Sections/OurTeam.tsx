@@ -60,7 +60,7 @@ const OurTeam: React.FC = () => {
         align="center"
         gutterBottom
         sx={{
-          fontSize: { xs: '2rem', md: '2.5rem' },
+          fontSize: { xs: 'rem', md: '2.5rem' },
           background: 'linear-gradient(45deg, #667eea, #102036)',
           backgroundClip: 'text',
           WebkitBackgroundClip: 'text',

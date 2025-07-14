@@ -44,16 +44,103 @@ const About: React.FC = () => {
           gap: { xs: 2, md: 8 },
         }}
       >
-        {/* Image */}
+        {/* Content */}
         <Box
           sx={{
-            width: { xs: '100%', md: '65%' },
+            width: { xs: '100%', md: '50%' },
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            textAlign: 'left',
+            px: { xs: 2, md: 4 },
+          }}
+        >
+          {/* Main Title with FlippingText */}
+          <FlippingText
+            text={aboutData.mainTitle}
+            sx={{
+              fontSize: { xs: '2.2rem', md: '3.5rem' },
+              background: 'linear-gradient(45deg, #667eea, #102036)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 800,
+              mb: 2,
+            }}
+          />
+
+          {/* Main Description */}
+          <Typography
+            variant="subtitle1"
+            color="text.secondary"
+            sx={{ mb: 3, fontSize: { xs: '1.08rem', md: '1.22rem' }, fontWeight: 500 }}
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            {aboutData.mainDescription}
+          </Typography>
+
+          {/* Mission and Vision */}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: { xs: 'center', md: 'flex-start' },
+              width: '100%',
+            }}
+          >
+            <Box sx={{ mb: 2, flex: 1 }} data-aos="fade-up" data-aos-delay="400">
+              <FlippingText
+                text={aboutData.mission.title}
+                sx={{
+                  fontSize: { xs: '1.18rem', md: '1.35rem' },
+                  fontWeight: 700,
+                  mb: 1,
+                }}
+              />
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{ fontSize: { xs: '1.01rem', md: '1.13rem' }, fontWeight: 500 }}
+              >
+                {aboutData.mission.description}
+              </Typography>
+            </Box>
+            <Box sx={{ mb: 2, flex: 1 }} data-aos="fade-up" data-aos-delay="500">
+              <FlippingText
+                text={aboutData.vision.title}
+                sx={{
+                  fontSize: { xs: '1.18rem', md: '1.35rem' },
+                  fontWeight: 700,
+                  mb: 1,
+                }}
+              />
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{ fontSize: { xs: '1.01rem', md: '1.13rem' }, fontWeight: 500 }}
+              >
+                {aboutData.vision.description}
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+
+        {/* Image and Slogan */}
+        <Box
+          sx={{
+            width: { xs: '100%', md: '50%' },
             maxWidth: 420,
             overflow: 'hidden',
             mx: { xs: 'auto', md: 0 },
+            mt: { xs: 3, md: 0 },
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
           data-aos="fade-right"
-          data-aos-delay="200"
+          data-aos-delay="600"
         >
           <Box
             component="img"
@@ -66,119 +153,21 @@ const About: React.FC = () => {
               objectFit: 'contain',
             }}
           />
-        </Box>
-
-        {/* Content */}
-        <Box
-          sx={{
-            width: { xs: '100%', md: '45%' },
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            textAlign: 'left',
-            px: { xs: 2, md: 4 },
-          }}
-        >
-          {/* Main Title with FlippingText */}
-          <FlippingText
-            text={aboutData.mainTitle}
-            sx={{
-              fontSize: { xs: '2rem', md: '3rem' },
-              background: 'linear-gradient(45deg, #667eea, #102036)',
-              backgroundClip: 'text',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              fontWeight: 'bold',
-              mb: 2,
-            }}
-          />
-
-          {/* Main Description */}
-          <Typography
-            variant="subtitle1"
-            color="text.secondary"
-            sx={{ mb: 3, fontSize: { xs: '1rem', md: '1.15rem' } }}
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
-            {aboutData.mainDescription}
-          </Typography>
-
-          {/* Mission and Vision */}
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              alignItems: { xs: 'center', md: 'flex-start' },
-              width: '100%',
-              gap: { xs: 0, md: 4 }
-            }}
-          >
-
-            <Box sx={{ mb: 2, flex: 1 }} data-aos="fade-up" data-aos-delay="400">
-              <FlippingText
-                text={aboutData.mission.title}
-                sx={{
-                  fontSize: { xs: '1.1rem', md: '1.25rem' },
-                  fontWeight: 'bold',
-                  mb: 1,
-                }}
-              />
-              <Typography
-                variant="body1"
-                color="text.secondary"
-                sx={{ fontSize: { xs: '0.95rem', md: '1.05rem' } }}
-              >
-                {aboutData.mission.description}
-              </Typography>
-            </Box>
-
-
-            <Box sx={{ mb: 2, flex: 1 }} data-aos="fade-up" data-aos-delay="500">
-              <FlippingText
-                text={aboutData.vision.title}
-                sx={{
-                  fontSize: { xs: '1.1rem', md: '1.25rem' },
-                  fontWeight: 'bold',
-                  mb: 1,
-                }}
-              />
-              <Typography
-                variant="body1"
-                color="text.secondary"
-                sx={{ fontSize: { xs: '0.95rem', md: '1.05rem' } }}
-              >
-                {aboutData.vision.description}
-              </Typography>
-            </Box>
-          </Box>
-
-          {/* Slogan */}
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'flex-start',
-              width: '100%',
-            }}
-          >
-            <Box sx={{ mb: 3 }} data-aos="fade-up" data-aos-delay="600">
-              <FlippingText
-                text={aboutData.slogan.title}
-                sx={{
-                  fontSize: { xs: '1.1rem', md: '1.25rem' },
-                  fontWeight: 'bold',
-                  mb: 1,
-                }}
-              />
-              <Typography
-                variant="body1"
-                fontWeight="bold"
-                color='#3682ae'
-                sx={{ fontSize: { xs: '1.05rem', md: '1.15rem' } }}
-              >
-                {aboutData.slogan.description}
-              </Typography>
-            </Box>
+          {/* Slogan under image */}
+          <Box sx={{ width: '100%', mt: { xs: 2, md: 4 }, textAlign: 'center' }}>
+            <Typography
+              fontWeight={700}
+              sx={{
+                fontSize: { xs: '1.5rem', md: '2rem' },
+                background: 'linear-gradient(90deg, #3682ae 0%, #e9f2ffff 100%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                mt: 1,
+              }}
+            >
+              {aboutData.slogan.description}
+            </Typography>
           </Box>
         </Box>
       </Box>
