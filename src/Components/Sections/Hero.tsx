@@ -9,6 +9,7 @@ import 'aos/dist/aos.css'
 import PopupHOC from '../Resuable/Popup'
 import ContactForm from '../Resuable/ContactFrom'
 import servicesData from '../../Content/services.json'
+import carouselDataJson from '../../Content/CarouselData.json'
 
 type Service = { id: string; title: string }
 const serviceOptions = (servicesData.Services as Service[]).map(s => s.title)
@@ -22,27 +23,24 @@ const Hero = () => {
     const theme = useTheme()
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
-    // Carousel data
-    const carouselData = [
-        {
-            shortDesc: 'Premium Solutions',
-            title: 'Transform Your Business Today',
-            longDesc:
-                'We provide cutting-edge solutions that drive growth and innovation. Our expert team delivers exceptional results tailored to your unique business needs.',
-        },
-        {
-            shortDesc: 'Expertised Services',
-            title: 'Innovation Meets Excellence',
-            longDesc:
-                'Experience the perfect blend of creativity and technology. We help businesses reach new heights with our comprehensive suite of professional services.',
-        },
-        {
-            shortDesc: 'Trusted Partners',
-            title: 'Your Success Is Our Mission',
-            longDesc:
-                'Join thousands of satisfied clients who have transformed their businesses with our proven strategies and dedicated support team.',
-        },
-    ]
+
+
+    // Carousel data from CMS (JSON)
+    type CarouselItem = {
+        shortDesc: string;
+        title: string;
+        longDesc: string;
+    }
+    const [carouselData, setCarouselData] = useState<CarouselItem[]>([])
+
+    useEffect(() => {
+        // Fetch carousel data from imported JSON (CMS managed)
+        if (carouselDataJson && Array.isArray(carouselDataJson.CarouselData)) {
+            setCarouselData(carouselDataJson.CarouselData)
+        } else {
+            setCarouselData([])
+        }
+    }, [])
 
     useEffect(() => {
         const handleScroll = () => {
@@ -99,7 +97,7 @@ const Hero = () => {
                 {/* Hero Section */}
                 <Box
                     sx={{
-                        minHeight: { xs: '80vh', sm: '70vh', md: '60vh', lg: '100vh'},
+                        minHeight: { xs: '80vh', sm: '70vh', md: '60vh', lg: '100vh' },
                         height: 'auto',
                         p: { xs: 2, sm: 4, md: 6 },
                         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -109,8 +107,6 @@ const Hero = () => {
                         flexDirection: 'column',
                     }}
                 >
-                    {/* Removed Ballpit Background for performance */}
-
                     {/* Animated floating objects */}
                     <style>
                         {`
@@ -219,50 +215,55 @@ const Hero = () => {
                             >
                                 <Fade in={true} timeout={1000}>
                                     <Box sx={{ color: 'white' }}>
-                                        <Typography
-                                            variant="overline"
-                                            sx={{
-                                                color: 'rgba(255,255,255,0.8)',
-                                                fontSize: { xs: '0.8rem', sm: '0.9rem', md: '1rem' },
-                                                letterSpacing: 2,
-                                                display: 'block',
-                                                mb: 1,
-                                            }}
-                                        >
-                                            {carouselData[currentSlide].shortDesc}
-                                        </Typography>
 
-                                        {/* Animated title */}
-                                        <Box sx={{ mb: 3 }}>
-                                            <SlidingTextReveal
-                                                text={carouselData[currentSlide].title}
-                                                wordSx={{
-                                                    fontWeight: 'bold',
-                                                    fontSize: {
-                                                        xs: '2rem',
-                                                        sm: '2.5rem',
-                                                        md: '3rem',
-                                                        lg: '3.5rem'
-                                                    },
-                                                }}
-                                            />
-                                        </Box>
+                                        {carouselData[currentSlide] && (
+                                            <>
+                                                <Typography
+                                                    variant="overline"
+                                                    sx={{
+                                                        color: 'rgba(255,255,255,0.8)',
+                                                        fontSize: { xs: '0.8rem', sm: '0.9rem', md: '1rem' },
+                                                        letterSpacing: 2,
+                                                        display: 'block',
+                                                        mb: 1,
+                                                    }}
+                                                >
+                                                    {carouselData[currentSlide].shortDesc}
+                                                </Typography>
 
-                                        {/* Animated description with AOS */}
-                                        <Typography
-                                            variant="h6"
-                                            data-aos="fade-in"
-                                            key={currentSlide}
-                                            sx={{
-                                                mb: 4,
-                                                color: 'rgba(255,255,255,0.9)',
-                                                lineHeight: 1.6,
-                                                fontSize: { xs: '1rem', sm: '1.1rem', md: '1.25rem' },
-                                                maxWidth: { xs: '100%', md: '90%' },
-                                            }}
-                                        >
-                                            {carouselData[currentSlide].longDesc}
-                                        </Typography>
+                                                {/* Animated title */}
+                                                <Box sx={{ mb: 3 }}>
+                                                    <SlidingTextReveal
+                                                        text={carouselData[currentSlide].title}
+                                                        wordSx={{
+                                                            fontWeight: 'bold',
+                                                            fontSize: {
+                                                                xs: '2rem',
+                                                                sm: '2.5rem',
+                                                                md: '3rem',
+                                                                lg: '3.5rem'
+                                                            },
+                                                        }}
+                                                    />
+                                                </Box>
+
+                                                {/* Animated description with AOS */}
+                                                <Typography
+                                                    variant="h6"
+                                                    data-aos="fade-in"
+                                                    key={currentSlide}
+                                                    sx={{
+                                                        mb: 4,
+                                                        color: 'rgba(255,255,255,0.9)',
+                                                        lineHeight: 1.6,
+                                                        fontSize: { xs: '1rem', sm: '1.1rem', md: '1.25rem' },
+                                                        maxWidth: { xs: '100%', md: '90%' },
+                                                    }}
+                                                >
+                                                    {carouselData[currentSlide].longDesc}
+                                                </Typography>
+                                            </>
+                                        )}
 
                                         <Button
                                             variant="contained"

@@ -1,0 +1,18 @@
+{
+  "About": {
+    "mainTitle": "About Us",
+    "mainDescription": "SAMify is a dynamic IT and digital solutions provider, delivering smart, scalable, and user-centric services for businesses worldwide. With a team of tech-savvy professionals and a passion for innovation, we help businesses accelerate their digital transformation journey through tailored software, marketing, and support solutions.",
+    "mission": {
+      "title": "Mission",
+      "description": "To empower businesses with intelligent technology and exceptional service that drive real, measurable results."
+    },
+    "vision": {
+      "title": "Vision",
+      "description": "To become a global leader in IT and digital services by continuously innovating and delivering value-driven solutions."
+    },
+    "slogan": {
+      "title": "Slogan",
+      "description": "Think Digital. Build Smarter."
+    }
+  }
+}

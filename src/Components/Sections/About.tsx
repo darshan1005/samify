@@ -1,17 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import AboutImage from '../../assets/About.webp';
 import FlippingText from '../Animations/FlippingText';
+import aboutDataJson from '../../Content/About.json';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const About: React.FC = () => {
+
+  const [aboutData, setAboutData] = useState({
+    mainTitle: '',
+    mainDescription: '',
+    mission: { title: '', description: '' },
+    vision: { title: '', description: '' },
+    slogan: { title: '', description: '' }
+  });
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
       once: true,
       easing: 'ease-out-cubic',
     });
+    if (aboutDataJson && aboutDataJson.About) {
+      setAboutData({
+        mainTitle: aboutDataJson.About.mainTitle,
+        mainDescription: aboutDataJson.About.mainDescription,
+        mission: aboutDataJson.About.mission,
+        vision: aboutDataJson.About.vision,
+        slogan: aboutDataJson.About.slogan
+      });
+    }
   }, []);
 
   return (
@@ -62,7 +81,7 @@ const About: React.FC = () => {
         >
           {/* Main Title with FlippingText */}
           <FlippingText
-            text="About Us"
+            text={aboutData.mainTitle}
             sx={{
               fontSize: { xs: '2rem', md: '3rem' },
               background: 'linear-gradient(45deg, #667eea, #102036)',
@@ -82,7 +101,7 @@ const About: React.FC = () => {
             data-aos="fade-up"
             data-aos-delay="300"
           >
-            SAMify is a dynamic IT and digital solutions provider, delivering smart, scalable, and user-centric services for businesses worldwide. With a team of tech-savvy professionals and a passion for innovation, we help businesses accelerate their digital transformation journey through tailored software, marketing, and support solutions.
+            {aboutData.mainDescription}
           </Typography>
 
           {/* Mission and Vision */}
@@ -95,9 +114,10 @@ const About: React.FC = () => {
               gap: { xs: 0, md: 4 }
             }}
           >
+
             <Box sx={{ mb: 2, flex: 1 }} data-aos="fade-up" data-aos-delay="400">
               <FlippingText
-                text="Mission"
+                text={aboutData.mission.title}
                 sx={{
                   fontSize: { xs: '1.1rem', md: '1.25rem' },
                   fontWeight: 'bold',
@@ -109,13 +129,14 @@ const About: React.FC = () => {
                 color="text.secondary"
                 sx={{ fontSize: { xs: '0.95rem', md: '1.05rem' } }}
               >
-                To empower businesses with intelligent technology and exceptional service that drive real, measurable results.
+                {aboutData.mission.description}
               </Typography>
             </Box>
 
+
             <Box sx={{ mb: 2, flex: 1 }} data-aos="fade-up" data-aos-delay="500">
               <FlippingText
-                text="Vision"
+                text={aboutData.vision.title}
                 sx={{
                   fontSize: { xs: '1.1rem', md: '1.25rem' },
                   fontWeight: 'bold',
@@ -127,7 +148,7 @@ const About: React.FC = () => {
                 color="text.secondary"
                 sx={{ fontSize: { xs: '0.95rem', md: '1.05rem' } }}
               >
-                To become a global leader in IT and digital services by continuously innovating and delivering value-driven solutions.
+                {aboutData.vision.description}
               </Typography>
             </Box>
           </Box>
@@ -136,15 +157,13 @@ const About: React.FC = () => {
           <Box
             sx={{
               display: 'flex',
-              // flexDirection: { xs: 'column', md: 'row' },
               alignItems: 'flex-start',
               width: '100%',
-              // gap: { xs: 0, md: 4 }
             }}
           >
             <Box sx={{ mb: 3 }} data-aos="fade-up" data-aos-delay="600">
               <FlippingText
-                text="Slogan"
+                text={aboutData.slogan.title}
                 sx={{
                   fontSize: { xs: '1.1rem', md: '1.25rem' },
                   fontWeight: 'bold',
@@ -157,7 +176,7 @@ const About: React.FC = () => {
                 color='#3682ae'
                 sx={{ fontSize: { xs: '1.05rem', md: '1.15rem' } }}
               >
-                Think Digital. Build Smarter.
+                {aboutData.slogan.description}
               </Typography>
             </Box>
           </Box>

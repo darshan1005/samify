@@ -90,8 +90,6 @@ const Header: React.FC<NavHeaderProps> = ({
               bgcolor: 'black',
               color: 'white',
               fontWeight: 'bold',
-              px: 3,
-              ml: 1,
               '&:hover': { bgcolor: '#333' },
             }}
           >
