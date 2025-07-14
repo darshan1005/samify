@@ -165,10 +165,10 @@ const Footer = () => {
                     <Box
                         sx={{
                             gridArea: 'brand',
-                            textAlign: { xs: 'center', md: 'left' },
+                            textAlign: 'left',
                         }}
                     >
-                        <Box sx={{display:'flex', alignItems: 'baseline', gap:2}}>
+                        <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 2 }}>
                             <Typography
                                 variant="h4"
                                 sx={{

@@ -17,6 +17,8 @@ import { Menu as MenuIcon, Email, Phone, LocationOn } from '@mui/icons-material'
 import XIcon from '@mui/icons-material/X'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom'
 import Logo from '../../assets/samify-nobg.webp'
 
@@ -33,6 +35,7 @@ const navItems = [
 const NavHeader = () => {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [activeNav, setActiveNav] = useState<string | null>('Home')
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const navigate = useNavigate()
@@ -66,19 +69,26 @@ const NavHeader = () => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+      <Box sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        px: 2,
+        pt: 1,
+      }}>
       <Box
         component={'img'}
         src={Logo}
         alt="Company Logo"
         sx={{
-          px: 2,
-          pt: 1,
-          width: 140,
+          width: 110,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'start',
         }}
       />
+      <IconButton onClick={handleDrawerToggle}><CloseIcon /></IconButton>
+      </Box>
       <List>
         {navItems.map(item => (
           <ListItem key={item.label} onClick={() => scrollToSection(item.target)}>
@@ -145,12 +155,12 @@ const NavHeader = () => {
           left: 0,
           right: 0,
           top: isMobile ? 0 : isScrolled ? 0 : 75,
-          bgcolor: 'rgba(255, 255, 255, 1)',
+          bgcolor: isScrolled ? '#fff9' : 'rgba(255, 255, 255, 1)',
           backdropFilter: isScrolled ? 'blur(10px)' : 'none',
           boxShadow: isScrolled ? 3 : 1,
           transition: 'all 0.3s ease',
           color: 'text.primary',
-          borderRadius: { xs: 0, md: isScrolled ? 0 : 2 },
+          borderRadius: { xs: '0px 0px 6px 6px', md: isScrolled ? '0px 0px 12px 12px' : 2 },
           zIndex: 1201,
         }}
       >
@@ -171,40 +181,44 @@ const NavHeader = () => {
               {navItems.map(item => (
                 <Button
                   key={item.label}
-                  onClick={() => scrollToSection(item.target)}
+                  onClick={() => {
+                    setActiveNav(item.label)
+                    scrollToSection(item.target)
+                  }}
                   sx={{
-                    color: 'text.primary',
+                    color: activeNav === item.label ? 'primary.main' : 'text.primary',
                     position: 'relative',
                     background: 'none',
                     boxShadow: 'none',
-                    '&::before, &::after': {
+                    '&::before': {
                       content: '""',
                       position: 'absolute',
                       left: 0,
                       right: 0,
-                      height: '3px',
-                      width: '0%',
                       bottom: 0,
-                      borderRadius: 2,
-                      transition: 'width 0.4s cubic-bezier(.4,0,.2,1)',
+                      height: activeNav === item.label ? '0px' : '2px',
+                      backgroundColor: theme => theme.palette.primary.main,
+                      transform: activeNav === item.label ? 'scaleX(1)' : 'scaleX(0)',
+                      transition: 'transform 0.3s ease',
+                      transformOrigin: 'center',
                     },
-                    '&::before': {
-                      bgcolor: 'primary.main',
-                      zIndex: 1,
+                    '&:hover::before': {
+                      transform: 'scaleX(1)',
                     },
                     '&::after': {
-                      bgcolor: 'primary.light',
-                      zIndex: 2,
+                      content: '""',
+                      position: 'absolute',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      bottom: 0,
+                      width: 0,
+                      height: 0,
+                      borderLeft: activeNav === item.label ? '6px solid transparent' : 'none',
+                      borderRight: activeNav === item.label ? '6px solid transparent' : 'none',
+                      borderTop: activeNav === item.label ? `6px solid ${theme.palette.primary.main}` : 'none',
                     },
                     '&:hover': {
                       color: 'primary.main',
-                      background: 'none',
-                    },
-                    '&:hover::before': {
-                      width: '100%',
-                    },
-                    '&:hover::after': {
-                      width: '100%',
                     },
                   }}
                 >
@@ -214,7 +228,7 @@ const NavHeader = () => {
             </Box>
           ) : (
             <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerToggle}>
-              <MenuIcon />
+              {mobileOpen ? <MenuOpenIcon /> : <MenuIcon />}
             </IconButton>
           )}
         </Toolbar>
