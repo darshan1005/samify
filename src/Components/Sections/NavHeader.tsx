@@ -32,27 +32,43 @@ const navItems = [
   { label: 'Contact', target: 'getintouch-section' },
 ]
 
+
+const getDefaultNav = () => 'Home';
+
 const NavHeader = () => {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const [activeNav, setActiveNav] = useState<string | null>('Home')
+  const [activeNav, setActiveNav] = useState<string>(() => {
+    return sessionStorage.getItem('activeNav') || getDefaultNav();
+  });
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const navigate = useNavigate()
 
-  const scrollToSection = (id: string) => {
-    if (id === '/') {
-      navigate('/')
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-      }, 100)
-      return
-    }
-    const el = document.getElementById(id)
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
+const dispatchActiveNavChange = () => {
+  window.dispatchEvent(new Event('activeNavChanged'));
+};
+
+const scrollToSection = (id: string) => {
+  if (id === '/') {
+    setActiveNav(getDefaultNav());
+    sessionStorage.setItem('activeNav', getDefaultNav());
+    dispatchActiveNavChange();
+    navigate('/')
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
+    return
   }
+  const navLabel = id === 'Home' ? getDefaultNav() : navItems.find(item => item.target === id)?.label || getDefaultNav();
+  setActiveNav(navLabel);
+  sessionStorage.setItem('activeNav', navLabel);
+  dispatchActiveNavChange();
+  const el = document.getElementById(id)
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,6 +78,21 @@ const NavHeader = () => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Sync activeNav with sessionStorage on mount and listen for custom event
+  useEffect(() => {
+    const syncActiveNav = () => {
+      const stored = sessionStorage.getItem('activeNav');
+      if (stored && stored !== activeNav) {
+        setActiveNav(stored);
+      }
+    };
+    syncActiveNav();
+    window.addEventListener('activeNavChanged', syncActiveNav);
+    return () => {
+      window.removeEventListener('activeNavChanged', syncActiveNav);
+    };
+  }, [activeNav]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
@@ -119,15 +150,15 @@ const NavHeader = () => {
           <Box sx={{ display: 'flex', gap: 3 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
               <Email fontSize="small" color="primary" />
-              <Typography variant="body2">info@samify.com</Typography>
+              <Typography variant="body2">hello@samify.in</Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
               <Phone fontSize="small" color="primary" />
-              <Typography variant="body2">+91 000 000 0000</Typography>
+              <Typography variant="body2">+91 630 430 0354</Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
               <LocationOn fontSize="small" color="primary" />
-              <Typography variant="body2">Hyderbad, 510001</Typography>
+              <Typography variant="body2">vishakapatnam - 530041, India</Typography>
             </Box>
           </Box>
           <Box sx={{ display: 'flex', gap: 1 }}>
@@ -182,8 +213,9 @@ const NavHeader = () => {
                 <Button
                   key={item.label}
                   onClick={() => {
-                    setActiveNav(item.label)
-                    scrollToSection(item.target)
+                    setActiveNav(item.label);
+                    sessionStorage.setItem('activeNav', item.label);
+                    scrollToSection(item.target);
                   }}
                   sx={{
                     color: activeNav === item.label ? 'primary.main' : 'text.primary',

@@ -11,6 +11,10 @@ const ScrollToTop = () => {
         setIsVisible(true);
       } else {
         setIsVisible(false);
+        if (window.scrollY === 0) {
+        sessionStorage.setItem('activeNav', 'Home');
+        window.dispatchEvent(new Event('activeNavChanged'));
+        }
       }
     };
 
@@ -26,6 +30,8 @@ const ScrollToTop = () => {
       top: 0,
       behavior: "smooth",
     });
+    sessionStorage.setItem('activeNav', 'Home');
+    window.dispatchEvent(new Event('activeNavChanged'));
   };
 
   return (
@@ -51,7 +57,7 @@ const ScrollToTop = () => {
         },
       }}
     >
-      <KeyboardDoubleArrowUpIcon fontSize="small" sx={{color: 'white'}} />
+      <KeyboardDoubleArrowUpIcon fontSize="small" sx={{ color: 'white' }} />
     </IconButton>
   );
 };

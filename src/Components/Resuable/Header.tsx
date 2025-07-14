@@ -29,10 +29,14 @@ const Header: React.FC<NavHeaderProps> = ({
     navigate('/', {
       state: { scrollToSelection: false },
     })
+    sessionStorage.setItem('activeNav', 'Home');
+    window.dispatchEvent(new Event('activeNavChanged'));
   }
 
   const handleLogoClick = () => {
     navigate('/', { state: { scrollToSelection: false } })
+    sessionStorage.setItem('activeNav', 'Home');
+    window.dispatchEvent(new Event('activeNavChanged'));
   }
 
   return (

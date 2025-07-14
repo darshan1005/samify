@@ -17,9 +17,9 @@ const quickNavs = [
 ]
 
 const contactInfo = [
-    { label: 'Email', value: 'info@samify.com' },
-    { label: 'Phone', value: '+91 XXX XXX XXX' },
-    { label: 'Address', value: '123 Main St, City, Country' },
+    { label: 'Email', value: 'hello@samify.in' },
+    { label: 'Phone', value: '+91 630 430 0354' },
+    { label: 'Address', value: 'D.no:2-98/13/1,Midhilapuri vuda colony, Madhurawada, vishakapatnam - 530041, India' },
 ]
 
 const Footer = () => {
