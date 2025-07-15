@@ -4,21 +4,28 @@ import { IconButton } from "@mui/material";
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0); // 0 to 1
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 300) {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+      setScrollProgress(progress);
+      if (scrollTop > 300) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
-        if (window.scrollY === 0) {
-        sessionStorage.setItem('activeNav', 'Home');
-        window.dispatchEvent(new Event('activeNavChanged'));
+        if (scrollTop === 0) {
+          sessionStorage.setItem('activeNav', 'Home');
+          window.dispatchEvent(new Event('activeNavChanged'));
         }
       }
     };
 
     window.addEventListener("scroll", handleScroll);
+    // Set initial progress
+    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -33,6 +40,13 @@ const ScrollToTop = () => {
     sessionStorage.setItem('activeNav', 'Home');
     window.dispatchEvent(new Event('activeNavChanged'));
   };
+
+  // Circular progress parameters
+  const size = 48;
+  const strokeWidth = 4;
+  const radius = (size - strokeWidth) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference * (1 - scrollProgress);
 
   return (
     <IconButton
@@ -57,9 +71,31 @@ const ScrollToTop = () => {
         },
       }}
     >
-      <KeyboardDoubleArrowUpIcon fontSize="small" sx={{ color: 'white' }} />
+      {/* Circular progress background */}
+      <svg width={size} height={size} style={{ position: 'absolute', pointerEvents: 'none' }}>
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke="#e0e0e0"
+          strokeWidth={strokeWidth}
+        />
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke="#1976d2"
+          strokeWidth={strokeWidth}
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+          strokeLinecap="round"
+          style={{ transition: 'stroke-dashoffset 0.2s linear' }}
+        />
+      </svg>
+      <KeyboardDoubleArrowUpIcon fontSize="small" sx={{ color: 'white', position: 'relative', zIndex: 1 }} />
     </IconButton>
   );
 };
-
 export default ScrollToTop;
