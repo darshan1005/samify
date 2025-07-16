@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import emailjs from '@emailjs/browser'
 import {
   Box,
   TextField,
@@ -67,29 +68,41 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
     if (!form.service) newErrors.service = 'Please select a service'
     return newErrors
   }
+
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const validation = validate()
-    setErrors(validation)
+    e.preventDefault();
+    const validation = validate();
+    setErrors(validation);
     if (Object.keys(validation).length === 0) {
-      setLoading(true)
+      setLoading(true);
+      const serviceId = '';
+      const templateId = '';
+      const publicKey = '';
+
+      const templateParams = {
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        message: form.message,
+        service: form.service,
+      };
+
       try {
-        // Simulate API call with a delay
-        await new Promise(resolve => setTimeout(resolve, 1500))
-        setSubmitted(true)
-        sessionStorage.removeItem('selectedService')
-        setServiceDisabled(false)
+        await emailjs.send(serviceId, templateId, templateParams, publicKey);
+        setSubmitted(true);
+        sessionStorage.removeItem('selectedService');
+        setServiceDisabled(false);
         setForm({
           name: '',
           email: '',
           phone: '',
           message: '',
           service: '',
-        })
+        });
       } catch (error) {
-        console.error('Error submitting form:', error)
+        console.error('Error submitting form:', error);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     }
   }

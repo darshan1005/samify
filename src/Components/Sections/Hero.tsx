@@ -23,9 +23,6 @@ const Hero = () => {
     const theme = useTheme()
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
-
-
-    // Carousel data from CMS (JSON)
     type CarouselItem = {
         shortDesc: string;
         title: string;
@@ -34,7 +31,6 @@ const Hero = () => {
     const [carouselData, setCarouselData] = useState<CarouselItem[]>([])
 
     useEffect(() => {
-        // Fetch carousel data from imported JSON (CMS managed)
         if (carouselDataJson && Array.isArray(carouselDataJson.CarouselData)) {
             setCarouselData(carouselDataJson.CarouselData)
         } else {
@@ -61,12 +57,12 @@ const Hero = () => {
         AOS.init({ duration: 1000, once: true })
     }, [])
 
-    // Auto-scroll carousel every 3 seconds, pause if user interacts
+    // Auto-scroll carousel every 10 seconds, pause if user interacts
     useEffect(() => {
         if (autoPlayPaused) return;
         const interval = setInterval(() => {
             setCurrentSlide(prev => (prev + 1) % carouselData.length)
-        }, 3000)
+        }, 10000)
         return () => clearInterval(interval)
     }, [carouselData.length, autoPlayPaused])
 
