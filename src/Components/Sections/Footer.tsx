@@ -18,7 +18,6 @@ const quickNavs = [
 
 const contactInfo = [
     { label: 'Email', value: 'hello@samify.in' },
-    { label: 'Phone', value: '+91 630 430 0354' },
     { label: 'Address', value: 'D.no:2-98/13/1,Midhilapuri vuda colony, Madhurawada, vishakapatnam - 530041, India' },
 ]
 
@@ -54,24 +53,25 @@ const Footer = () => {
                 position: 'relative',
                 bgcolor: '#102036',
                 color: 'white',
-                py: 6
+                py: 6,
+                overflow: 'hidden',
             }}>
             {/* Animated floating objects */}
             <style>
                 {`
                     @keyframes float1 {
                         0% { transform: translateY(0) scale(1);}
-                        50% { transform: translateY(-40px) scale(1.1);}
+                        50% { transform: translateY(-20px) scale(1.05);} /* Reduced movement */
                         100% { transform: translateY(0) scale(1);}
                     }
                     @keyframes float2 {
                         0% { transform: translateY(0) scale(1);}
-                        50% { transform: translateY(30px) scale(0.95);}
+                        50% { transform: translateY(15px) scale(0.98);} /* Reduced movement */
                         100% { transform: translateY(0) scale(1);}
                     }
                     @keyframes float3 {
                         0% { transform: translateY(0) scale(1);}
-                        50% { transform: translateY(-25px) scale(1.05);}
+                        50% { transform: translateY(-12px) scale(1.03);} /* Reduced movement */
                         100% { transform: translateY(0) scale(1);}
                     }
                     `}
@@ -79,7 +79,7 @@ const Footer = () => {
             <Box
                 sx={{
                     position: 'absolute',
-                    top: 60,
+                    top: 80,
                     left: 40,
                     width: 70,
                     height: 70,
@@ -93,7 +93,7 @@ const Footer = () => {
             <Box
                 sx={{
                     position: 'absolute',
-                    top: 200,
+                    top: 120,
                     right: 80,
                     width: 100,
                     height: 100,
@@ -107,21 +107,7 @@ const Footer = () => {
             <Box
                 sx={{
                     position: 'absolute',
-                    top: 250,
-                    right: '50%',
-                    width: 200,
-                    height: 200,
-                    bgcolor: 'rgba(255,255,255,0.09)',
-                    borderRadius: '50%',
-                    filter: 'blur(2px)',
-                    animation: 'float2 8s ease-in-out infinite',
-                    zIndex: 0,
-                }}
-            />
-            <Box
-                sx={{
-                    position: 'absolute',
-                    bottom: 80,
+                    top: 150, // Moved up from bottom: 80
                     left: 120,
                     width: 50,
                     height: 50,
@@ -132,7 +118,7 @@ const Footer = () => {
                     zIndex: 0,
                 }}
             />
-            <Container maxWidth="lg">
+            <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
                 {/* Main Footer Grid */}
                 <Box
                     sx={{

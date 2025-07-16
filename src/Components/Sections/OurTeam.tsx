@@ -13,26 +13,31 @@ const teamData = [
     icon: <CodeIcon color="primary" sx={{ fontSize: 32 }} />,
     title: 'Developers',
     description: 'Full Stack, Flutter, Node.js, PHP',
+    paleColor: 'rgba(25,118,210,0.10)', // primary
   },
   {
     icon: <DesignServicesIcon color="secondary" sx={{ fontSize: 32 }} />,
     title: 'Designers',
     description: 'UI/UX professionals using Figma, XD',
+    paleColor: 'rgba(156,39,176,0.10)', // secondary
   },
   {
     icon: <TrendingUpIcon color="success" sx={{ fontSize: 32 }} />,
     title: 'Marketers',
     description: 'SEO, Social, Paid Ads, Analytics',
+    paleColor: 'rgba(46,125,50,0.10)', // success
   },
   {
     icon: <SupportAgentIcon color="info" sx={{ fontSize: 32 }} />,
     title: 'BPO Specialists',
     description: 'Trained in accuracy, CRM & client handling',
+    paleColor: 'rgba(2,136,209,0.10)', // info
   },
   {
     icon: <EmojiObjectsIcon color="warning" sx={{ fontSize: 32 }} />,
     title: 'Leadership',
     description: 'Strategic minds with years of industry experience',
+    paleColor: 'rgba(251,192,45,0.15)', // warning
   },
 ];
 
@@ -112,9 +117,11 @@ const OurTeam: React.FC = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 transition: 'transform 0.3s, box-shadow 0.3s',
+                bgcolor: member.paleColor,
                 '&:hover': { 
                   transform: 'translateY(-8px)', 
-                  boxShadow: 6 
+                  boxShadow: 6,
+                  bgcolor: member.paleColor.replace(/0\.1[05]/, '0.22'), // slightly darker on hover
                 },
               }}
             >

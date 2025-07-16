@@ -13,7 +13,7 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material'
-import { Menu as MenuIcon, Email, Phone, LocationOn } from '@mui/icons-material'
+import { Menu as MenuIcon, Email } from '@mui/icons-material'
 import XIcon from '@mui/icons-material/X'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
@@ -147,18 +147,10 @@ const scrollToSection = (id: string) => {
             px: 6,
           }}
         >
-          <Box sx={{ display: 'flex', gap: 3 }}>
+          <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
               <Email fontSize="small" color="primary" />
               <Typography variant="body2">hello@samify.in</Typography>
-            </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              <Phone fontSize="small" color="primary" />
-              <Typography variant="body2">+91 630 430 0354</Typography>
-            </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              <LocationOn fontSize="small" color="primary" />
-              <Typography variant="body2">vishakapatnam - 530041, India</Typography>
             </Box>
           </Box>
           <Box sx={{ display: 'flex', gap: 1 }}>

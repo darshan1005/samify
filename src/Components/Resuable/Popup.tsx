@@ -29,7 +29,7 @@ const PopupHOC: React.FC<CustomPopupProps> = ({
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          height: '100vh',
+          height: '100dvh',
           backgroundColor: 'rgba(0, 0, 0, 0.5)',
           p: 2,
         }}
@@ -41,7 +41,7 @@ const PopupHOC: React.FC<CustomPopupProps> = ({
             bgcolor: 'background.paper',
             width,
             height,
-            maxHeight: '90vh',
+            maxHeight: '90dvh',
             overflowY: 'auto',
             borderRadius: 2,
             boxShadow: 6,

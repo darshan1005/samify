@@ -72,7 +72,7 @@ const Request = () => {
         </Box>
         <Paper elevation={3} sx={{ p: 3, borderRadius: 3 / 2 }}>
           <Typography variant="h5" fontWeight={700} mb={3} color="primary.main" align="center">
-            Our Request & Service Process
+            Request & Service Process
           </Typography>
           <Box>
             {allSteps.map((step, idx) => (

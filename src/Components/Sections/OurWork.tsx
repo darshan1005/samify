@@ -125,7 +125,7 @@ const WorkingProcess = () => {
               Our Working Process - How We Work For Our Customers
             </Typography>
             <Link to="/request" style={{ textDecoration: 'none' }}>
-              <ContactButton variant="outlined">Contact Us</ContactButton>
+              <ContactButton variant="outlined" onClick={() => sessionStorage.removeItem('selectedService')}>Contact Us</ContactButton>
             </Link>
           </MainCard>
         </Box>

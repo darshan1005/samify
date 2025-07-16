@@ -93,10 +93,10 @@ const Hero = () => {
                 {/* Hero Section */}
                 <Box
                     sx={{
-                        minHeight: { xs: '80vh', sm: '70vh', md: '60vh', lg: '100vh' },
+                        minHeight: { xs: '80dvh', sm: '70dvh', md: '60dvh', lg: '100dvh' },
                         height: 'auto',
                         p: { xs: 2, sm: 4, md: 6 },
-                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        background: 'linear-gradient(180deg, #667eea 0%, #102036 100%)',
                         position: 'relative',
                         overflow: 'hidden',
                         display: 'flex',
@@ -273,7 +273,7 @@ const Hero = () => {
                                                 },
                                                 transition: 'all 0.3s ease',
                                             }}
-                                            onClick={() => setPopupOpen(true)}
+                                            onClick={() => { sessionStorage.removeItem('selectedService'); setPopupOpen(true);}}
                                         >
                                             Get In Touch
                                         </Button>

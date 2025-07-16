@@ -71,7 +71,6 @@ const About: React.FC = () => {
 
           {/* Main Description */}
           <Typography
-            variant="subtitle1"
             color="text.secondary"
             sx={{ mb: 3, fontSize: { xs: '1.08rem', md: '1.22rem' }, fontWeight: 500 }}
             data-aos="fade-up"

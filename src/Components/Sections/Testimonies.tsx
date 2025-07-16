@@ -15,10 +15,9 @@ const Testimonies: React.FC = () => {
   return (
     <Box
       id="testimonial-section"
-      data-aos="fade-up"
       sx={{
-        py: { xs: 4, md: 5 },
-        px: { xs: 2 },
+        py: 4,
+        px: 2,
         bgcolor: 'background.default',
         scrollMarginTop: { xs: '56px', md: '64px' },
       }}

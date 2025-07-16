@@ -64,14 +64,13 @@ const FAQs = () => {
   return (
     <Box
       id="faq-section"
-      data-aos="fade-up"
       sx={{
         width: '100%',
         maxWidth: 800,
         mx: 'auto',
         gap: 2,
         px: 2,
-        py: { xs: 4, md: 5 },
+        py: 4,
         scrollMarginTop: { xs: '56px', md: '64px' },
       }}
     >
@@ -95,6 +94,7 @@ const FAQs = () => {
           key={idx}
           expanded={expanded === idx}
           onChange={handleChange(idx)}
+          data-aos="fade-up"
         >
           <StyledAccordionSummary
             expandIcon={<ExpandMoreIcon />}
