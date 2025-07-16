@@ -56,7 +56,7 @@ const allSteps = [
 const Request = () => {
   return (
     <Box>
-      <Header onClick={() => {}} showBtn={false} />
+      <Header onClick={() => { }} showBtn={false} />
       <Box
         sx={{
           display: 'flex',
