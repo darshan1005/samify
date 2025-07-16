@@ -62,7 +62,7 @@ const Hero = () => {
         if (autoPlayPaused) return;
         const interval = setInterval(() => {
             setCurrentSlide(prev => (prev + 1) % carouselData.length)
-        }, 10000)
+        }, 7000)
         return () => clearInterval(interval)
     }, [carouselData.length, autoPlayPaused])
 
