@@ -111,7 +111,7 @@ const WorkFor: React.FC = () => {
     return (
         <Box
             id="work-for"
-            data-aos="fade-up"
+            data-aos="fade-in"
             sx={{
                 position: 'relative',
                 py: 6,

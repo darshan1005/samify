@@ -89,25 +89,26 @@ const FAQs = () => {
       >
         FAQ's
       </Typography>
-      {FAQS.FAQs.map((faq, idx) => (
-        <StyledAccordion
-          key={idx}
-          expanded={expanded === idx}
-          onChange={handleChange(idx)}
-          data-aos="fade-up"
-        >
-          <StyledAccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls={`panel${idx}-content`}
-            id={`panel${idx}-header`}
+      <Box data-aos="fade-up">
+        {FAQS.FAQs.map((faq, idx) => (
+          <StyledAccordion
+            key={idx}
+            expanded={expanded === idx}
+            onChange={handleChange(idx)}
           >
-            <Typography component="span">{faq.question}</Typography>
-          </StyledAccordionSummary>
-          <StyledAccordionDetails>
-            <Typography component="span">{faq.answer}</Typography>
-          </StyledAccordionDetails>
-        </StyledAccordion>
-      ))}
+            <StyledAccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls={`panel${idx}-content`}
+              id={`panel${idx}-header`}
+            >
+              <Typography component="span">{faq.question}</Typography>
+            </StyledAccordionSummary>
+            <StyledAccordionDetails>
+              <Typography component="span">{faq.answer}</Typography>
+            </StyledAccordionDetails>
+          </StyledAccordion>
+        ))}
+      </Box>
     </Box>
   )
 }

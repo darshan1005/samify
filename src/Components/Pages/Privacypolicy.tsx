@@ -215,7 +215,7 @@ const PrivacyPolicy = () => {
           information or this Privacy Policy, please contact our Privacy Officer at:
         </Typography>
         <Typography component={'p'} gutterBottom sx={{ fontSize: { xs: '1rem', md: '1.1rem' } }}>
-          Email: info@samify.com
+          Email: hello@samify.in
         </Typography>
         <Typography component={'p'} gutterBottom sx={{ fontSize: { xs: '1rem', md: '1.1rem' } }}>
           We take complaints seriously and will respond promptly upon receiving written notice of
