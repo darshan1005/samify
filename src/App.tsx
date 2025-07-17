@@ -18,7 +18,7 @@ const loadingMessages = [
   'Final touches, hang tight!'
 ];
 
-// ScrollToTopOnRouteChange: scrolls to top on every route change (SPA best practice)
+// scrolls to top on every route change
 function ScrollToTopOnRouteChange() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -29,7 +29,7 @@ function ScrollToTopOnRouteChange() {
 
 const App = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const lgScreen = useMediaQuery(theme.breakpoints.up('lg'));
   const [isDomReady, setIsDomReady] = useState(false);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const App = () => {
   }
   return (
     <Router>
-      {!isMobile && <Cursor />}
+      {lgScreen && <Cursor />}
       <ScrollToTopOnRouteChange />
       <React.Suspense fallback={<Loading content={loadingMessages} />}>
         <Routes>

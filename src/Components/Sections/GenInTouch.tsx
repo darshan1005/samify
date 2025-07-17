@@ -11,7 +11,7 @@ const GetInTouch = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 position: 'relative',
-                py: { xs: 6, md: 5 },
+                p: 2,
                 backgroundImage: `url(${TechBg2})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
@@ -37,7 +37,7 @@ const GetInTouch = () => {
             <Box sx={{ position: 'relative', zIndex: 1 }}>
                 <Box sx={{
                     display: 'flex',
-                    justifyContent: 'center',
+                    justifyContent: 'space-around',
                     alignItems: 'center',
                     flexDirection: { xs: 'column', sm: 'row' },
                     gap: { xs: 3, sm: 4 },
@@ -47,8 +47,7 @@ const GetInTouch = () => {
                         sx={{
                             color: 'white',
                             fontWeight: 600,
-                            fontSize: { xs: '2rem', sm: '2.5rem' },
-                            mb: 0,
+                            fontSize: { xs: '1.65rem', sm: '2.5rem' },
                             textAlign: { xs: 'center', sm: 'left' },
                             lineHeight: 1.2
                         }}

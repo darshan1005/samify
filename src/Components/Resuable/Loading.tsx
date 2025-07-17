@@ -17,7 +17,7 @@ const Loading: React.FC<LoadingProps> = ({ content }) => {
       setMessageIndex((prev) => (prev + 1) % loadingMessages.length);
     }, 2200);
     return () => clearInterval(interval);
-  }, []);
+  });
 
   return (
     <Box
