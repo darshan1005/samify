@@ -19,7 +19,6 @@ const GetInTouch = () => {
                 overflow: 'hidden',
                 mt: 4,
                 minHeight: { xs: 180, sm: 220, md: 140 },
-                scrollMarginTop: { xs: '56px', md: '64px' }
             }}
         >
             {/* Overlay */}

@@ -34,7 +34,12 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <Box id="about-section" sx={{ bgcolor: 'background.default', py: { xs: 0, md: 5 }, scrollMarginTop: { xs: '56px', md: '64px' } }}>
+    <Box 
+    id="about-section" 
+    sx={{ 
+      bgcolor: 'background.default', 
+      py: { xs: 0, md: 5 },
+       }}>
       <Box
         sx={{
           display: 'flex',

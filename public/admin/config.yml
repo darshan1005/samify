@@ -203,3 +203,30 @@ collections:
                   - label: 'Description'
                     name: 'description'
                     widget: 'string'
+  - name: 'socialMedia'
+    label: 'Social Media Links'
+    access:
+      roles: [admin, editor]
+    files:
+      - label: 'SocialMediaLinks'
+        name: 'SocialMediaLinks'
+        file: 'src/Content/SocialMedia.json'
+        format: 'json'
+        fields:
+          - label: 'Social Media'
+            name: 'SocialMedias'
+            widget: 'list'
+            label_singular: 'Social Media Link'
+            fields:
+              - label: 'ID'
+                name: 'id'
+                widget: 'number'
+              - label: 'Title'
+                name: 'title'
+                widget: 'string'
+              - label: 'URL'
+                name: 'url'
+                widget: 'string'
+              - label: 'Icon'
+                name: 'icon'
+                widget: 'image'

@@ -15,7 +15,6 @@ const ACCENT_COLOR = '#667eea'; // Added accent color for cursor border
 const CursorCircle = styled(Box)(({ size }: { size: number }) => ({
   width: size,
   height: size,
-  border: `2px solid ${PRIMARY_COLOR}`,
   borderRadius: '50%',
   backgroundColor: `${PRIMARY_COLOR}20`, // 20% opacity
   boxShadow: '0 2px 8px 0 rgba(16,32,54,0.15)',
@@ -24,9 +23,8 @@ const CursorCircle = styled(Box)(({ size }: { size: number }) => ({
 const CursorTrail = styled(Box)(({ size, opacity }: { size: number; opacity: number }) => ({
   width: size,
   height: size,
-  border: `2px solid ${PRIMARY_COLOR}`,
   borderRadius: '50%',
-  backgroundColor: `${PRIMARY_COLOR}10`, // 10% opacity
+  backgroundColor: `${PRIMARY_COLOR}10`,
   opacity: opacity,
   transition: 'opacity 0.1s ease-out',
 }));
@@ -42,8 +40,8 @@ interface CustomCursorProps {
 const CustomCursor: React.FC<CustomCursorProps> = ({
   useImage = false,
   imageUrl = '',
-  size = 20,
-  trailLength = 8,
+  size = 25,
+  trailLength = 7,
   disabled = false,
 }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });

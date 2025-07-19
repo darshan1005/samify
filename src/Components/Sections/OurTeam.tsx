@@ -56,7 +56,6 @@ const OurTeam: React.FC = () => {
       sx={{
         py: 4,
         bgcolor: 'background.default',
-        scrollMarginTop: { xs: '56px', md: '64px' },
         px: 2,
       }}>
       <Typography
@@ -86,16 +85,13 @@ const OurTeam: React.FC = () => {
       {/* Grid Container */}
       <Box
         sx={{
-          display: 'grid',
-          gridTemplateColumns: {
-            xs: '1fr',
-            sm: 'repeat(3, 1fr)',
-            md: 'repeat(5, 1fr)',
-          },
-          gap: { xs: 1.5, sm: 2, md: 2.5 },
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap:  2,
           maxWidth: '1200px',
           mx: 'auto',
-          justifyItems: 'center',
+          justifyContent: 'center',
+          alignItems: 'stretch',
         }}
       >
         {teamData.map((member, idx) => (

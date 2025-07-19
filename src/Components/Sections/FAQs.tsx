@@ -71,7 +71,6 @@ const FAQs = () => {
         gap: 2,
         px: 2,
         py: 4,
-        scrollMarginTop: { xs: '56px', md: '64px' },
       }}
     >
       <Typography

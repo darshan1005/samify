@@ -1,9 +1,7 @@
 import { Box, Container, Typography, List, ListItem, ListItemText, IconButton } from '@mui/material'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import services from '../../Content/services.json'
-import XIcon from '@mui/icons-material/X'
-import FacebookIcon from '@mui/icons-material/Facebook'
-import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import SocialMedia from '../../Content/SocialMedia.json'
 
 const quickNavs = [
     { label: 'Home', target: '/' },
@@ -34,15 +32,17 @@ const Footer = () => {
         } else {
             // Section navigation
             if (location.pathname !== '/') {
-                // Go to home, then scroll after navigation
-                navigate('/', { state: { scrollTo: target } });
+                sessionStorage.setItem('scrollToSection', target)
+                navigate('/')
             } else {
-                // Already on home, just scroll
-                const el = document.getElementById(target);
+                const el = document.getElementById(target)
                 if (el) {
-                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const yOffset = -80; // adjust based on header height
+                    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
                 }
             }
+
         }
     };
 
@@ -107,7 +107,7 @@ const Footer = () => {
             <Box
                 sx={{
                     position: 'absolute',
-                    top: 150, // Moved up from bottom: 80
+                    top: 150,
                     left: 120,
                     width: 50,
                     height: 50,
@@ -153,12 +153,11 @@ const Footer = () => {
                             textAlign: 'left',
                         }}
                     >
-                        <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 2 }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center',justifyContent:'center', gap: 2 }}>
                             <Typography
                                 variant="h4"
                                 sx={{
                                     fontWeight: 700,
-                                    mb: 2,
                                     color: 'white',
                                     fontSize: { xs: '1.8rem', md: '2.2rem' },
                                 }}
@@ -166,15 +165,22 @@ const Footer = () => {
                                 Samify
                             </Typography>
                             <Box sx={{ display: 'flex', gap: 1 }}>
-                                <IconButton size="small" sx={{ color: "#fff6", '&:hover': { color: 'primary.light' } }}>
-                                    <FacebookIcon fontSize="medium" />
-                                </IconButton>
-                                <IconButton size="small" sx={{ color: "#fff6", '&:hover': { color: 'primary.light' } }}>
-                                    <XIcon fontSize="medium" />
-                                </IconButton>
-                                <IconButton size="small" sx={{ color: "#fff6", '&:hover': { color: 'primary.light' } }}>
-                                    <LinkedInIcon fontSize="medium" />
-                                </IconButton>
+                                {SocialMedia.SocialMedias.map((social) => (
+                                    <Link key={social.id} to={social.url} target="_blank" rel="noopener noreferrer">
+                                        <IconButton size="small" color="primary" sx={{ bgcolor: 'white' }}>
+                                            <Box
+                                                component={'img'}
+                                                src={social.icon}
+                                                alt={social.title}
+                                                sx={{
+                                                    height: 20,
+                                                    width: 20,
+                                                    aspectRatio: 1,
+                                                    objectFit: 'contain'
+                                                }} />
+                                        </IconButton>
+                                    </Link>
+                                ))}
                             </Box>
                         </Box>
                         <Typography
@@ -225,7 +231,13 @@ const Footer = () => {
                                     sx={{ py: 0.5 }}
                                 >
                                     <ListItemText
-                                        onClick={() => scrollToSectionOrNavigate(nav.target)}
+                                        onClick={() => {
+                                            scrollToSectionOrNavigate(nav.target);
+                                            if (nav.target === '/request') {
+                                                sessionStorage.setItem('multipleServices', 'true');
+                                                sessionStorage.removeItem('selectedService');
+                                            }
+                                        }}
                                         primary={nav.label}
                                         sx={{
                                             fontSize: '0.95rem',
@@ -313,9 +325,11 @@ const Footer = () => {
                                                 mb: 0.5,
                                             }
                                         }}
-                                        secondaryTypographyProps={{
-                                            color: 'grey.300',
-                                            fontSize: '0.95rem',
+                                        slotProps={{
+                                            secondary: {
+                                                color: 'grey.300',
+                                                fontSize: '0.95rem',
+                                            },
                                         }}
                                     />
                                 </ListItem>

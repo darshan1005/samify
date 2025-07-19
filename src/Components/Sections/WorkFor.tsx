@@ -121,7 +121,6 @@ const WorkFor: React.FC = () => {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 overflow: 'hidden',
-                scrollMarginTop: { xs: '56px', md: '64px' }
             }}
         >
             {/* Overlay */}

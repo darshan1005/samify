@@ -1,6 +1,7 @@
-import React from 'react';
-import { Box, Typography, Container } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Typography, Container, Button, Switch, FormControlLabel } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 import ServiceCard from '../Resuable/cards/services';
 import services from '../../Content/services.json';
 
@@ -29,28 +30,53 @@ const HeroSection = styled(Box)(({ theme }) => ({
 }));
 
 const Services: React.FC = () => {
+    const navigate = useNavigate();
+    const [multiSelectMode, setMultiSelectMode] = useState(false);
+    const [selectedService, setSelectedServices] = useState<string[]>([]);
+    const [loading, setLoading] = useState(false);
+
     // Filter active services and sort by priority
     const activeServices = services.Services
         .filter(service => service.isActive)
         .sort((a, b) => (a.priority || 0) - (b.priority || 0));
 
+    const handleToggleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMultiSelectMode(event.target.checked);
+        setSelectedServices([]); // Clear selections when mode changes
+    };
+
+    const handleServiceSelect = (serviceTitle: string) => {
+        if (multiSelectMode) {
+            setSelectedServices(prev => 
+                prev.includes(serviceTitle)
+                    ? prev.filter(title => title !== serviceTitle)
+                    : [...prev, serviceTitle]
+            );
+        }
+    };
+
+    const handleRequestClick = () => {
+        if (multiSelectMode && selectedService.length > 0) {
+            // Store selected services in sessionStorage
+            sessionStorage.setItem('selectedService', JSON.stringify(selectedService));
+            navigate('/request');
+            setLoading(true);
+        }
+    };
+
     return (
         <Box
             id="services-section"
-            component="section"
             sx={{
-                py: { xs: 6, md: 10 },
+                py: { xs: 4, sm: 6, md: 8 },
                 bgcolor: 'background.default',
                 position: 'relative',
                 overflow: 'hidden',
-                scrollMarginTop: { xs: '56px', md: '64px' }
             }}
         >
             <Container maxWidth="lg">
                 <HeroSection>
                     <Typography
-                        variant="h3"
-                        component="h2"
                         fontWeight="bold"
                         gutterBottom
                         sx={{
@@ -76,12 +102,48 @@ const Services: React.FC = () => {
                         your business grow, innovate, and succeed.
                     </Typography>
                 </HeroSection>
+                
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 2, mb: 1 }}>
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={multiSelectMode}
+                                onChange={handleToggleChange}
+                                color="primary"
+                            />
+                        }
+                        label="Multiple Selection"
+                    />
+                    {multiSelectMode && <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleRequestClick}
+                        disabled={selectedService.length === 0}
+                        sx={{
+                            borderRadius: 2,
+                            fontWeight: 600,
+                            textTransform: 'none',
+                            boxShadow: '0 2px 8px rgba(25, 118, 210, 0.10)',
+                            transition: 'all 0.2s',
+                            '&:hover': {
+                                bgcolor: 'primary.dark',
+                                transform: 'translateY(-2px)',
+                                boxShadow: '0 4px 16px rgba(25, 118, 210, 0.18)',
+                            },
+                        }}
+                    >
+                        {loading ? 'Requesting' : 'Request'} ({selectedService.length})
+                    </Button>}
+                </Box>
 
                 <ServicesGrid>
                     {activeServices.map((service) => (
                         <ServiceCard
                             key={service.id}
                             {...service}
+                            requestMore={multiSelectMode}
+                            isSelected={selectedService.includes(service.title)}
+                            onServiceSelect={handleServiceSelect}
                         />
                     ))}
                 </ServicesGrid>

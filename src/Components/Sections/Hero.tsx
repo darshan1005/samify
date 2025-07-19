@@ -86,22 +86,22 @@ const Hero = () => {
 
     return (
         <>
-            <Box
-                id="hero-section"
-                sx={{ scrollMarginTop: { xs: '56px', md: '64px' } }}
-            >
+            <Box id="hero-section">
                 {/* Hero Section */}
                 <Box
                     sx={{
-                        minHeight: { xs: '80dvh', sm: '70dvh', md: '60dvh', lg: '100dvh' },
-                        height: 'auto',
+                        height: { xs: '85svh', sm: '70svh', md: '85svh', lg: '95svh' },
                         p: { xs: 2, sm: 4, md: 6 },
                         background: 'linear-gradient(180deg, #667eea 0%, #102036 100%)',
                         position: 'relative',
                         overflow: 'hidden',
                         display: 'flex',
                         flexDirection: 'column',
+                        '@media (orientation: portrait)': {
+                            height: 'auto',
+                        }
                     }}
+
                 >
                     {/* Animated floating objects */}
                     <style>
@@ -273,7 +273,7 @@ const Hero = () => {
                                                 },
                                                 transition: 'all 0.3s ease',
                                             }}
-                                            onClick={() => { sessionStorage.removeItem('selectedService'); setPopupOpen(true);}}
+                                            onClick={() => { sessionStorage.removeItem('selectedService'); sessionStorage.setItem('multipleServices', 'true'); setPopupOpen(true); }}
                                         >
                                             Get In Touch
                                         </Button>
@@ -281,12 +281,14 @@ const Hero = () => {
                                 </Fade>
                             </Box>
                         </Box>
+                    </Container>
 
+                    <Box>
                         {isHeroInView && (
                             <Box
                                 sx={{
                                     position: 'absolute',
-                                    bottom: { xs: 20, sm: 30, md: 40, lg: 50, xl: 60 },
+                                    bottom: { xs: 20, sm: 30, md: 60 },
                                     left: '50%',
                                     transform: 'translateX(-50%)',
                                     display: 'flex',
@@ -355,7 +357,7 @@ const Hero = () => {
                                 </IconButton>
                             </Box>
                         )}
-                    </Container>
+                    </Box>
 
                     {/* Background Decoration */}
                     <Box

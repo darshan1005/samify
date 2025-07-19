@@ -16,10 +16,9 @@ const Testimonies: React.FC = () => {
     <Box
       id="testimonial-section"
       sx={{
-        py: 4,
+        py: 6,
         px: 2,
         bgcolor: 'background.default',
-        scrollMarginTop: { xs: '56px', md: '64px' },
       }}
     >
       <Typography

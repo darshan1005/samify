@@ -17,6 +17,25 @@ import { useEffect } from "react";
 const Home = () => {
   const [loading, setLoading] = useState(true);
 
+   useEffect(() => {
+    const sectionId = sessionStorage.getItem('scrollToSection');
+
+    if (sectionId) {
+      const scrollToElement = () => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          sessionStorage.removeItem('scrollToSection');
+        } else {
+          // Retry if not yet rendered
+          setTimeout(scrollToElement, 100);
+        }
+      };
+
+      scrollToElement();
+    }
+  }, []);
+
   useEffect(() => {
     const handleReady = () => setLoading(false);
     if (document.readyState === 'complete' || document.readyState === 'interactive') {

@@ -88,7 +88,9 @@ const WorkingProcess = () => {
       id="working-process"
       maxWidth="lg"
       data-aos="fade-up"
-      sx={{ py: { xs: 6 }, scrollMarginTop: { xs: '56px', md: '64px' } }}
+      sx={{ 
+        py: { xs: 4 },
+      }}
     >
       <Box
         sx={{
@@ -117,15 +119,15 @@ const WorkingProcess = () => {
               component="h1"
               sx={{
                 fontWeight: 'bold',
-                mb: 4,
+                mb: { xs: 3, md: 4 },
                 lineHeight: 1.2,
-                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+                fontSize: { xs: '2rem', sm: '2.55rem', md: '2.75rem' },
               }}
             >
               Our Working Process - How We Work For Our Customers
             </Typography>
             <Link to="/request" style={{ textDecoration: 'none' }}>
-              <ContactButton variant="outlined" onClick={() => sessionStorage.removeItem('selectedService')}>Contact Us</ContactButton>
+              <ContactButton variant="outlined" onClick={() => {sessionStorage.removeItem('selectedService'); sessionStorage.setItem('multipleServices', 'true')}}>Contact Us</ContactButton>
             </Link>
           </MainCard>
         </Box>
