@@ -2,103 +2,10 @@ import React, { useState, useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Box, Typography, Paper } from '@mui/material';
-import Agriculture from '../../assets/workfor/Agriculture.webp';
-import Education from '../../assets/workfor/Education.webp';
-import Healthcare from '../../assets/workfor/Healthcare.webp';
-import Manufacturing from '../../assets/workfor/Manufacturing.webp';
-import RealEstate from '../../assets/workfor/Real Estate.webp';
-import Legal from '../../assets/workfor/Legal.webp';
-import Insurance from '../../assets/workfor/Insurance.webp';
-import Textile from '../../assets/workfor/Textile.webp';
-import Tourism from '../../assets/workfor/Tourism.webp';
-import Trade from '../../assets/workfor/Trade.webp';
-import Technology from '../../assets/workfor/Technology.webp';
-import Food from '../../assets/workfor/Food Industry.webp';
-import ECommerce from '../../assets/workfor/E-Commerce.webp';
-import Government from '../../assets/workfor/Government.webp';
 import office from '../../assets/office.webp';
-import SMB from '../../assets/workfor/Small-Medium-Business.webp'
-import Startup from '../../assets/workfor/Start-Up-Business.webp'
-import Agencies from '../../assets/workfor/Agencies.webp'
-import Enterprise from '../../assets/workfor/Enterprise.webp'
 
-const businessTypes = [
-    {
-        title: 'Small & Medium Business',
-        image: SMB,
-    },
-    {
-        title: 'Start-Up Business',
-        image: Startup,
-    },
-    {
-        title: 'Agencies',
-        image: Agencies,
-    },
-    {
-        title: 'Enterprise',
-        image: Enterprise,
-    }
-]
-
-const workForObj = [
-    {
-        title: 'Agriculture',
-        image: Agriculture,
-    },
-    {
-        title: 'Education',
-        image: Education,
-    },
-    {
-        title: 'Healthcare',
-        image: Healthcare,
-    },
-    {
-        title: 'Manufacturing',
-        image: Manufacturing,
-    },
-    {
-        title: 'Real Estate',
-        image: RealEstate,
-    },
-    {
-        title: 'Legal',
-        image: Legal,
-    },
-    {
-        title: 'Insurance',
-        image: Insurance,
-    },
-    {
-        title: 'Textile',
-        image: Textile,
-    },
-    {
-        title: 'Tourism',
-        image: Tourism,
-    },
-    {
-        title: 'Trade',
-        image: Trade,
-    },
-    {
-        title: 'Technology',
-        image: Technology,
-    },
-    {
-        title: 'Food Industry',
-        image: Food,
-    },
-    {
-        title: 'E-Commerce',
-        image: ECommerce,
-    },
-    {
-        title: 'Government',
-        image: Government,
-    }
-]
+import BussinessType from '../../Content/BusinessTypes.json'
+import WorkForObj from '../../Content/WorkFor.json';
 
 const WorkFor: React.FC = () => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -172,7 +79,7 @@ const WorkFor: React.FC = () => {
                         p: 2,
                     }}
                 >
-                    {businessTypes.map((item, idx) => (
+                    {BussinessType.BusinessTypes.map((item, idx) => (
                         <Box
                             key={item.title}
                             data-aos="fade-in"
@@ -241,7 +148,7 @@ const WorkFor: React.FC = () => {
                         justifyItems: 'center',
                     }}
                 >
-                    {workForObj.map((item, idx) => (
+                    {WorkForObj.WorkFor.map((item, idx) => (
                         <Paper
                             key={item.title}
                             data-aos="zoom-in"

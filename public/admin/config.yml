@@ -230,3 +230,51 @@ collections:
               - label: 'Icon'
                 name: 'icon'
                 widget: 'image'
+  - name: 'workFor'
+    label: 'Work For Section'
+    access:
+      roles: [admin, editor]
+    files:
+      - label: 'WorkForData'
+        name: 'WorkForData'
+        file: 'src/Content/WorkFor.json'
+        format: 'json'
+        fields:
+          - label: 'Work For'
+            name: 'WorkFor'
+            widget: 'list'
+            label_singular: 'Work For Item'
+            fields:
+              - label: 'ID'
+                name: 'id'
+                widget: 'number'
+              - label: 'Title'
+                name: 'title'
+                widget: 'string'
+              - label: 'Image'
+                name: 'image'
+                widget: 'image'
+  - name: 'BussinessTypes'
+    label: 'Business Types'
+    access:
+      roles: [admin, editor]
+    files:
+      - label: 'BusinessTypesData'
+        name: 'BusinessTypesData'
+        file: 'src/Content/BusinessTypes.json'
+        format: 'json'
+        fields:
+          - label: 'Business Types'
+            name: 'BusinessTypes'
+            widget: 'list'
+            label_singular: 'Business Type'
+            fields:
+              - label: 'ID'
+                name: 'id'
+                widget: 'number'
+              - label: 'Title'
+                name: 'title'
+                widget: 'string'
+              - label: 'Image'
+                name: 'image'
+                widget: 'image'
