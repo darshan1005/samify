@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Typography, Container, Button, Switch, FormControlLabel } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
-import ServiceCard from '../Resuable/cards/servicesCards';
+import ServiceCard from '../Resuable/cards/ServicesCards';
 import services from '../../Content/ServicesList.json';
 
 // Responsive container for cards
