@@ -104,9 +104,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
         await emailjs.send(serviceId, templateId, templateParams, publicKey)
         setSubmitted(true)
         sessionStorage.removeItem('selectedService')
-        sessionStorage.removeItem('multipleServices')
         setServiceDisabled(false)
-        setIsMultipleServices(false)
         setForm({
           name: '',
           email: '',
@@ -125,9 +123,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
 
   const handleClear = () => {
     sessionStorage.removeItem('selectedService')
-    sessionStorage.removeItem('multipleServices')
     setServiceDisabled(false)
-    setIsMultipleServices(false)
     setSubmitted(false)
     setForm({
       name: '',
@@ -152,7 +148,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
         borderRadius: 2.5,
         boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
         border: '1px solid #e3e6ee',
-        backdropFilter: 'blur(4px)',
         position: 'relative',
       }}
     >
@@ -160,7 +155,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
         <Typography
           variant="h4"
           fontWeight={700}
-          mb={3}
+          mb={1}
           align="center"
           color="primary.main"
           letterSpacing={1.5}
@@ -168,127 +163,131 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
           Get in Touch
         </Typography>
       )}
+        {/* Name */}
+        <TextField
+          id="contact-name"
+          label="Name"
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          error={!!errors.name}
+          helperText={errors.name}
+          fullWidth
+          required
+          margin="normal"
+        />
 
-      {/* Name */}
-      <TextField
-        id="contact-name"
-        label="Name"
-        name="name"
-        value={form.name}
-        onChange={handleChange}
-        error={!!errors.name}
-        helperText={errors.name}
-        fullWidth
-        margin="normal"
-      />
+        {/* Email */}
+        <TextField
+          id="contact-email"
+          label="Email"
+          name="email"
+          type="email"
+          value={form.email}
+          onChange={handleChange}
+          error={!!errors.email}
+          helperText={errors.email}
+          fullWidth
+          required
+          margin="normal"
+        />
 
-      {/* Email */}
-      <TextField
-        id="contact-email"
-        label="Email"
-        name="email"
-        type="email"
-        value={form.email}
-        onChange={handleChange}
-        error={!!errors.email}
-        helperText={errors.email}
-        fullWidth
-        margin="normal"
-      />
+        {/* Phone */}
+        <TextField
+          id="contact-phone"
+          label="Phone Number"
+          name="phone"
+          type="tel"
+          value={form.phone}
+          onChange={handleChange}
+          error={!!errors.phone}
+          helperText={errors.phone}
+          fullWidth
+          required
+          margin="normal"
+        />
 
-      {/* Phone */}
-      <TextField
-        id="contact-phone"
-        label="Phone Number"
-        name="phone"
-        type="tel"
-        value={form.phone}
-        onChange={handleChange}
-        error={!!errors.phone}
-        helperText={errors.phone}
-        fullWidth
-        margin="normal"
-      />
-      
-      {/* Services Autocomplete */}
-      <FormControl fullWidth margin="normal">
-        {isMultipleServices ? (
-          <Autocomplete
-            id="services-autocomplete"
-            multiple
-            disableCloseOnSelect
-            options={serviceOptions}
-            value={form.services}
-            onChange={(_, value) => {
-              setForm(prev => ({ ...prev, services: value }))
-            }}
-            renderTags={(value: string[], getTagProps) =>
-              value.map((option, index) => (
-                <Chip
-                  label={option}
-                  {...getTagProps({ index })}
-                  variant="outlined"
-                  color="primary"
-                  key={option}
+        {/* Services Autocomplete */}
+        <FormControl fullWidth margin="normal">
+          {isMultipleServices ? (
+            <Autocomplete
+              id="services-autocomplete"
+              multiple
+              disableCloseOnSelect
+              options={serviceOptions}
+              value={form.services}
+              onChange={(_, value) => {
+                setForm(prev => ({ ...prev, services: value }))
+              }}
+              renderTags={(value: string[], getTagProps) =>
+                value.map((option, index) => (
+                  <Chip
+                    label={option}
+                    {...getTagProps({ index })}
+                    variant="outlined"
+                    color="primary"
+                    key={option}
+                  />
+                ))
+              }
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Services"
+                  name="services"
+                  error={!!errors.services}
+                  helperText={errors.service || 'Multiple services can be selected'}
+                  fullWidth
                 />
-              ))
-            }
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Services"
-                name="services"
-                error={!!errors.services}
-                helperText={errors.services}
-              />
-            )}
-          />
-        ) : (
-          <TextField
-            select
-            id="service-select"
-            label="Service"
-            name="service"
-            value={form.service}
-            onChange={handleSelectChange}
-            disabled={serviceDisabled}
-            error={!!errors.service}
-            helperText={errors.service}
-            fullWidth
-          >
-            {serviceOptions.map((option) => (
-              <MenuItem key={option} value={option}>
-                {option}
-              </MenuItem>
-            ))}
-          </TextField>
-        )}
-      </FormControl>
+              )}
+            />
+          ) : (
+            <TextField
+              select
+              id="service-select"
+              label="Service"
+              name="service"
+              value={form.service}
+              onChange={handleSelectChange}
+              disabled={serviceDisabled}
+              error={!!errors.service}
+              helperText={errors.service}
+              fullWidth
+              required
+            >
+              {serviceOptions.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </TextField>
+          )}
+        </FormControl>
 
-      {/* Message */}
-      <TextField
-        id="contact-message"
-        label="Message"
-        name="message"
-        value={form.message}
-        onChange={handleChange}
-        error={!!errors.message}
-        helperText={errors.message}
-        fullWidth
-        margin="normal"
-        multiline
-        minRows={3}
-      />
+        {/* Message */}
+        <TextField
+          id="contact-message"
+          label="Message"
+          name="message"
+          value={form.message}
+          onChange={handleChange}
+          error={!!errors.message}
+          helperText={errors.message}
+          fullWidth
+          margin="normal"
+          multiline
+          minRows={3}
+        />
 
-      {/* Buttons */}
-      <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, mt: 2 }}>
-        <Button type="submit" variant="contained" fullWidth disabled={loading}>
-          {loading ? 'Sending...' : 'Send'}
-        </Button>
-        <Button variant="outlined" onClick={handleClear} fullWidth>
-          Clear
-        </Button>
-      </Box>
+        {/* Buttons */}
+        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2, mt: 2 }}>
+          <Button type="submit" variant="contained" fullWidth disabled={loading}>
+            {loading ? 'Sending...' : 'Send'}
+          </Button>
+          <Button variant="outlined" onClick={handleClear} fullWidth>
+            Clear
+          </Button>
+        </Box>
 
       {/* Submission Popup */}
       {submitted && (
@@ -320,7 +319,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
             <Typography color="success.main" align="center" fontWeight={600}>
               Thank you! Your request has been sent. For further assistance, reach out to our mail{' '}
               <Typography color="primary" component={'span'}>
-                contact@samify.com
+                hello@samify.in
               </Typography>
             </Typography>
           </Box>

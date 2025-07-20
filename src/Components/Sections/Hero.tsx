@@ -273,7 +273,11 @@ const Hero = () => {
                                                 },
                                                 transition: 'all 0.3s ease',
                                             }}
-                                            onClick={() => { sessionStorage.removeItem('selectedService'); sessionStorage.setItem('multipleServices', 'true'); setPopupOpen(true); }}
+                                            onClick={() => {
+                                                sessionStorage.removeItem('selectedService');
+                                                sessionStorage.setItem('multipleServices', 'true');
+                                                setPopupOpen(true);
+                                            }}
                                         >
                                             Get In Touch
                                         </Button>
@@ -391,7 +395,6 @@ const Hero = () => {
                     open={popupOpen}
                     onClose={() => setPopupOpen(false)}
                     width={600}
-                    title="Lets Begin a project"
                     centerTitle
                 >
                     <ContactForm serviceOptions={serviceOptions} showTitle={false} />

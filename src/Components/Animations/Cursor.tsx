@@ -40,7 +40,7 @@ interface CustomCursorProps {
 const CustomCursor: React.FC<CustomCursorProps> = ({
   useImage = false,
   imageUrl = '',
-  size = 25,
+  size = 22,
   trailLength = 7,
   disabled = false,
 }) => {

@@ -133,7 +133,7 @@ const Services: React.FC = () => {
                             },
                         }}
                     >
-                        {loading ? 'Requesting' : 'Request'} ({selectedService.length})
+                        {loading ? 'Requesting' : `Request (${selectedService.length})`}
                     </Button>}
                 </Box>
 
