@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Box, Typography } from '@mui/material'
 import testimoniesData from '../../Content/Testimonies.json'
-import TestimonialCard from '../Resuable/cards/testimonials'
+import TestimonialCard from '../Resuable/cards/TestimonialsCards'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 

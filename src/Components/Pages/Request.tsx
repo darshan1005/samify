@@ -1,6 +1,6 @@
 import { Box, Typography, Paper, Divider } from '@mui/material'
 import ContactForm from '../Resuable/ContactFrom'
-import servicesData from '../../Content/services.json'
+import servicesData from '../../Content/ServicesList.json'
 import Header from '../Resuable/Header'
 
 type Service = { id: string; title: string }

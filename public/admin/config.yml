@@ -36,7 +36,7 @@ collections:
     files: 
       - label: 'ServicesData'
         name: 'ServicesData'
-        file: 'src/Content/services.json'
+        file: 'src/Content/ServicesList.json'
         format: 'json'
         fields:
           - label: 'Services'

@@ -1,6 +1,6 @@
 import { Box, Container, Typography, List, ListItem, ListItemText, IconButton } from '@mui/material'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import services from '../../Content/services.json'
+import services from '../../Content/ServicesList.json'
 import SocialMedia from '../../Content/SocialMedia.json'
 
 const quickNavs = [

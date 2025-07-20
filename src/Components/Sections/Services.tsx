@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Box, Typography, Container, Button, Switch, FormControlLabel } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
-import ServiceCard from '../Resuable/cards/services';
-import services from '../../Content/services.json';
+import ServiceCard from '../Resuable/cards/servicesCards';
+import services from '../../Content/ServicesList.json';
 
 // Responsive container for cards
 const ServicesGrid = styled(Box)(({ theme }) => ({
@@ -60,6 +60,7 @@ const Services: React.FC = () => {
             // Store selected services in sessionStorage
             sessionStorage.setItem('selectedService', JSON.stringify(selectedService));
             navigate('/request');
+            sessionStorage.setItem('multipleServices', 'true');
             setLoading(true);
         }
     };

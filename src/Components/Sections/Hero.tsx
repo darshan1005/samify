@@ -8,7 +8,7 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import PopupHOC from '../Resuable/Popup'
 import ContactForm from '../Resuable/ContactFrom'
-import servicesData from '../../Content/services.json'
+import servicesData from '../../Content/ServicesList.json'
 import carouselDataJson from '../../Content/CarouselData.json'
 
 type Service = { id: string; title: string }
