@@ -1,8 +1,5 @@
 # SAMify <sub>[live](https://samifyit.netlify.app/)</sub>
 
-![samify](public\samify-logo.svg)
-<picture></picture>
-
 >**SAMify** is a modern, full-featured digital solutions platform built with React, TypeScript, and Vite. We help businesses grow by providing a wide range of web, mobile, and digital services, all with a focus on quality, performance, and user experience.
 
 ## 🌟 Key Features
