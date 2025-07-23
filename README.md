@@ -1,6 +1,9 @@
-# SAMify
+# SAMify <sub>[live](https://samifyit.netlify.app/)</sub>
 
-**SAMify** is a modern, full-featured digital solutions platform built with React, TypeScript, and Vite. We help businesses grow by providing a wide range of web, mobile, and digital services, all with a focus on quality, performance, and user experience.
+![samify](public\samify-logo.svg)
+<picture></picture>
+
+>**SAMify** is a modern, full-featured digital solutions platform built with React, TypeScript, and Vite. We help businesses grow by providing a wide range of web, mobile, and digital services, all with a focus on quality, performance, and user experience.
 
 ## 🌟 Key Features
 
@@ -23,11 +26,52 @@
 - AOS for scroll animations
 - Modern CSS and design best practices
 
+## 📁 Project Folder Structure
+
+```
+public/                 # Static files served directly (images, icons, admin configs)
+src/                    # Source code and assets
+├── assets/             # Static assets used in the app (images, backgrounds, etc.)
+├── Components/         # React components organized by category
+│   ├── Animations/     # Animation components (e.g., Ballpit, SlideInText)
+│   ├── Pages/          # Page-level components representing routes/views
+│   ├── Reusable/       # Reusable UI components (forms, headers, cards, loaders)
+│   └── Sections/       # Page sections (About, FAQs, Hero, Services, Team, etc.)
+├── Content/            # JSON content data used throughout the app
+├── App.tsx             # Main app component
+├── main.tsx            # Entry point for React app
+└── vite-env.d.ts       # Vite environment typings
+```
+
+- **public/**: Contains static assets served as-is, including images, icons, and admin configuration files.
+- **src/assets/**: Holds images and other static resources imported in the source code.
+- **src/Components/**: Organized React components for modularity and maintainability.
+- **src/Content/**: JSON files with content data to separate content from code.
+└── vite-env.d.ts       # Vite environment typings
+## 📁 Project Folder Structure
+
+
 ## 🛠️ How to Use
 
 1. Clone the repo and install dependencies
 2. Run `npm run dev` to start the development server
 3. Explore the codebase for reusable, well-structured components
+
+---
+
+## 📚 Documentation
+
+This repository contains the full source code and assets for the SAMify digital solutions platform. It is built with React, TypeScript, and Vite, following modern best practices for performance and maintainability.
+
+- To get started, clone the repository and install dependencies using your preferred package manager.
+- Use `npm run dev` to start the development server with hot module replacement.
+- The source code is organized under the `src/` directory, with components, assets, and content separated for clarity.
+- Static files like images and admin configurations are located in the `public/` directory.
+- The project uses Material UI for UI components and custom animations for enhanced user experience.
+- ESLint configurations are provided to maintain code quality and consistency.
+- Theme colors and design tokens are documented in this README for easy reference.
+
+For detailed information on individual components or features, refer to the source code and comments within the `src/Components/` directory.
 
 ---
 
