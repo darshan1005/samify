@@ -90,7 +90,7 @@ const Hero = () => {
                 {/* Hero Section */}
                 <Box
                     sx={{
-                        height: { xs: '85svh', sm: '70svh', md: '85svh', lg: '95svh' },
+                        height: { xs: '85dvh', sm: '85dvh', md: '90dvh', lg: '95dvh' },
                         p: { xs: 2, sm: 4, md: 6 },
                         background: 'linear-gradient(180deg, #667eea 0%, #102036 100%)',
                         position: 'relative',
