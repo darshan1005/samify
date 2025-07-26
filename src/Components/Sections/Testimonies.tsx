@@ -18,7 +18,6 @@ const Testimonies: React.FC = () => {
       sx={{
         py: 6,
         px: 2,
-        bgcolor: 'background.default',
       }}
     >
       <Typography

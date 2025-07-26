@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 import Hero from "../Sections/Hero";
 import Services from "../Sections/Services";
 import About from "../Sections/About";
@@ -15,7 +15,6 @@ import VideoPreview from "../Sections/Media";
 import { useEffect } from "react";
 
 const Home = () => {
-  const [loading, setLoading] = useState(true);
 
    useEffect(() => {
     const sectionId = sessionStorage.getItem('scrollToSection');
@@ -36,24 +35,8 @@ const Home = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const handleReady = () => setLoading(false);
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      handleReady();
-    } else {
-      document.addEventListener('DOMContentLoaded', handleReady);
-    }
-    return () => {
-      document.removeEventListener('DOMContentLoaded', handleReady);
-    };
-  }, []);
-
-  if (loading) {
-    return <Loader />;
-  }
-
   return (
-    <>
+    <React.Suspense fallback={<Loader />}>
       <NavHeader />
       <Hero />
       <Services />
@@ -65,7 +48,7 @@ const Home = () => {
       <FAQs />
       <VideoPreview />
       <GetInTouch />
-    </>
+    </React.Suspense>
   );
 };
 

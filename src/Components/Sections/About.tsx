@@ -39,6 +39,7 @@ const About: React.FC = () => {
     sx={{ 
       bgcolor: 'background.default', 
       py: { xs: 0, md: 5 },
+      scrollMarginTop: '54px',
        }}>
       <Box
         sx={{

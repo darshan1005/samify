@@ -23,10 +23,7 @@ const ServicesGrid = styled(Box)(({ theme }) => ({
 // Hero section styling
 const HeroSection = styled(Box)(({ theme }) => ({
     textAlign: 'center',
-    marginBottom: theme.spacing(6),
-    [theme.breakpoints.up('md')]: {
-        marginBottom: theme.spacing(8),
-    },
+    marginBottom: theme.spacing(2)
 }));
 
 const Services: React.FC = () => {
