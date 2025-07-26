@@ -11,7 +11,6 @@ import GetInTouch from "../Sections/GenInTouch";
 import NavHeader from "../Sections/NavHeader";
 import Loader from "../Resuable/Loading";
 import VideoPreview from "../Sections/Media";
-
 import { useEffect } from "react";
 
 const Home = () => {

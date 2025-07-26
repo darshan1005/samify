@@ -67,7 +67,6 @@ const Services: React.FC = () => {
             id="services-section"
             sx={{
                 py: { xs: 4, sm: 6, md: 8 },
-                bgcolor: 'background.default',
                 position: 'relative',
                 overflow: 'hidden',
             }}

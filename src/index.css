@@ -4,5 +4,6 @@ html, body, #root {
   padding: 0;
   scroll-behavior: smooth;
   box-sizing: border-box;
+  font-family: "Gill Sans", sans-serif;
 }
 
