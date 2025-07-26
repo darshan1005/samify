@@ -34,6 +34,8 @@ const Footer = () => {
             if (location.pathname !== '/') {
                 sessionStorage.setItem('scrollToSection', target)
                 navigate('/')
+            }
+            else {
                 const el = document.getElementById(target)
                 if (el) {
                     const yOffset = 50;
