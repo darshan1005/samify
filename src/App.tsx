@@ -3,7 +3,7 @@ import Loading from './Components/Resuable/Loading';
 import Cursor from './Components/Animations/Cursor';
 import { useMediaQuery, useTheme } from '@mui/material';
 import Footer from './Components/Sections/Footer';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import ScrollToTopButton from './Components/Animations/ScrollTop';
 
 const Home = React.lazy(() => import("./Components/Pages/Home"));
@@ -14,6 +14,15 @@ const App = () => {
   const theme = useTheme();
   const lgScreen = useMediaQuery(theme.breakpoints.up('lg'));
   const [isDomReady, setIsDomReady] = useState(false);
+
+  // scrolls to top on every route change
+  function ScrollToTopOnRouteChange() {
+    const { pathname } = useLocation();
+    useEffect(() => {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }, [pathname]);
+    return null;
+  }
 
   useEffect(() => {
     const handleReady = () => setIsDomReady(true);
@@ -33,7 +42,7 @@ const App = () => {
   return (
     <Router>
       {lgScreen && <Cursor />}
-      {/* <ScrollToTopOnRouteChange /> */}
+      <ScrollToTopOnRouteChange />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/privacypolicy" element={
