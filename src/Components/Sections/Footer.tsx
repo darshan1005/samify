@@ -23,7 +23,7 @@ const quickNavs = [
 ];
 
 const contactInfo = [
-    { label: 'Email', value: 'hello@samify.in' },
+    { label: 'Email', value: 'hello@samify.co.in' },
     { label: 'Address', value: 'D.no:2-98/13/1,Midhilapuri vuda colony, Madhurawada, vishakapatnam - 530041, India' },
 ];
 

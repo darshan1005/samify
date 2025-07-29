@@ -319,7 +319,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
             <Typography color="success.main" align="center" fontWeight={600}>
               Thank you! Your request has been sent. For further assistance, reach out to our mail{' '}
               <Typography color="primary" component={'span'}>
-                hello@samify.in
+                hello@samify.co.in
               </Typography>
             </Typography>
           </Box>

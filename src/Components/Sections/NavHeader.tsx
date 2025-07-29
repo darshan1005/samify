@@ -197,7 +197,7 @@ const NavHeader = () => {
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <Email fontSize="small" color="primary" />
             <Typography variant="body2">
-              hello@samify.in
+              hello@samify.co.in
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 1 }}>
