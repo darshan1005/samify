@@ -11,6 +11,7 @@ import {
 } from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
 import PopupHOC from './Popup'
+import { generateShortId } from '../../Helper/unique'
 
 interface ContactFormProps {
   serviceOptions: string[]
@@ -87,17 +88,19 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
 
     if (Object.keys(validation).length === 0) {
       setLoading(true)
-      const serviceId = ''
-      const templateId = ''
-      const publicKey = ''
+      // read from environment variables
+      const serviceId = 'service_z2iinha'
+      const templateId = 'template_by386q9'
+      const publicKey = 'LYPn13_gE1M3_YjiJ'
 
       const templateParams = {
+        uniqueId: generateShortId(form.name, form.phone),
         name: form.name,
         email: form.email,
         phone: form.phone,
         message: form.message,
-        service: isMultipleServices ? form.services.join(', ') : form.service,
-        services: isMultipleServices ? form.services.join(', ') : form.service,
+        requestedFor: isMultipleServices ? form.services.join(', ') : form.service,
+        serviceEmail: 'hello@samify.co.in'
       }
 
       try {
