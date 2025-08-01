@@ -1,28 +1,28 @@
 {
-    "SocialMedias": [
-        {
-            "id": 1,
-            "title": "Facebook",
-            "url": "https://www.facebook.com/samifyapp",
-            "icon": "/uploads/facebook.png"
-        },
-        {
-            "id": 2,
-            "title": "Twitter",
-            "url": "https://twitter.com/samifyapp",
-            "icon": "/uploads/twitter.png"
-        },
-        {
-            "id": 3,
-            "title": "LinkedIn",
-            "url": "https://www.linkedin.com/company/samifyapp",
-            "icon": "/uploads/linkedIn.png"
-        },
-        {
-            "id": 4,
-            "title": "YouTube",
-            "url": "https://www.youtube.com/channel/UCsXy7b1Z5k8z4c9f3a5b1gQ",
-            "icon": "/uploads/youtube.png"
-        }
-    ]
+  "SocialMedias": [
+    {
+      "id": 1,
+      "title": "Facebook",
+      "url": "https://www.facebook.com/samifyapp",
+      "icon": "/uploads/facebook.png"
+    },
+    {
+      "id": 2,
+      "title": "Twitter",
+      "url": "https://twitter.com/samifyapp",
+      "icon": "/uploads/twitter.png"
+    },
+    {
+      "id": 3,
+      "title": "LinkedIn",
+      "url": "https://www.linkedin.com/company/samifyapp",
+      "icon": "/uploads/linkedin.png"
+    },
+    {
+      "id": 4,
+      "title": "YouTube",
+      "url": "https://www.youtube.com/channel/UCsXy7b1Z5k8z4c9f3a5b1gQ",
+      "icon": "/uploads/youtube.png"
+    }
+  ]
 }
