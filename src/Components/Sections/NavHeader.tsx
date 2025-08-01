@@ -190,15 +190,32 @@ const NavHeader = () => {
           <Link to='/request' style={{ textDecoration: 'none', color: 'inherit' }}>Get a Quote</Link>
         </Typography>
 
-        <Stack direction="row" spacing={1} justifyContent="center">
+        <Stack direction="row" spacing={1} pb={2} justifyContent="center">
           {SocialMedia.SocialMedias.map((social) => (
             <Link key={social.id} to={social.url} target="_blank" rel="noopener noreferrer">
-              <IconButton size="small" color="primary">
-                <Box component="img" src={social.icon} alt={social.title} sx={{ width: 20, height: 20, objectFit: 'contain' }} />
+              <IconButton
+                sx={{
+                  background: `${social.color}1A`, // ~10% opacity (1A in hex)
+                  '&:hover': {
+                    background: `${social.color}33`, // ~20% opacity on hover
+                  },
+                }}
+              >
+                <Box
+                  component="img"
+                  src={social.icon}
+                  alt={social.title}
+                  sx={{
+                    width: 20,
+                    height: 20,
+                    objectFit: 'contain',
+                  }}
+                />
               </IconButton>
             </Link>
           ))}
         </Stack>
+
       </Stack>
     </Stack>
   )
@@ -208,7 +225,7 @@ const NavHeader = () => {
       {/* Header Contact & Social */}
       <Box
         sx={{
-          py: 2,
+          py: 1.7,
           display: { xs: 'none', md: 'block' },
           borderBottom: '1px solid #eee',
           backgroundColor: '#fff',
@@ -248,23 +265,30 @@ const NavHeader = () => {
 
           {/* Right Section: Social Icons */}
           <Stack direction="row" spacing={1}>
-            {SocialMedia.SocialMedias.map((social) => (
-              <Link key={social.id} to={social.url} target="_blank" rel="noopener noreferrer">
-                <IconButton size="small" color="primary" sx={{ transition: '0.2s', '&:hover': { backgroundColor: 'primary.light' } }}>
-                  <Box
-                    component="img"
-                    src={social.icon}
-                    alt={social.title}
-                    sx={{
-                      height: 20,
-                      width: 20,
-                      objectFit: 'contain',
-                    }}
-                  />
-                </IconButton>
-              </Link>
-            ))}
-          </Stack>
+          {SocialMedia.SocialMedias.map((social) => (
+            <Link key={social.id} to={social.url} target="_blank" rel="noopener noreferrer">
+              <IconButton
+                sx={{
+                  background: `${social.color}1A`, // ~10% opacity (1A in hex)
+                  '&:hover': {
+                    background: `${social.color}33`, // ~20% opacity on hover
+                  },
+                }}
+              >
+                <Box
+                  component="img"
+                  src={social.icon}
+                  alt={social.title}
+                  sx={{
+                    width: 20,
+                    height: 20,
+                    objectFit: 'contain',
+                  }}
+                />
+              </IconButton>
+            </Link>
+          ))}
+        </Stack>
         </Box>
       </Box>
 

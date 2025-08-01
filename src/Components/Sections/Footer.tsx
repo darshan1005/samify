@@ -152,15 +152,15 @@ const Footer = () => {
                             <Typography variant="h4" sx={{ fontWeight: 700, fontSize: { xs: '1.8rem', md: '2.2rem' } }}>
                                 Samify
                             </Typography>
-                            <Box sx={{ display: 'flex', gap: 1 }}>
+                            <Box sx={{ display: 'flex', gap: 2 }}>
                                 {SocialMedia.SocialMedias.map((social) => (
                                     <RouterLink key={social.id} to={social.url} target="_blank" rel="noopener noreferrer">
-                                        <IconButton size="small" color="primary" sx={{ bgcolor: '#ffffff', '&:hover': { bgcolor: '#ffffff9a'} }}>
+                                        <IconButton size="small" sx={{padding: 0}}>
                                             <Box
                                                 component={'img'}
                                                 src={social.icon}
                                                 alt={social.title}
-                                                sx={{ height: 20, width: 20, objectFit: 'contain' }}
+                                                sx={{ height: 25, width: 25 }}
                                             />
                                         </IconButton>
                                     </RouterLink>
