@@ -191,7 +191,7 @@ const Hero = () => {
                                     lg: '80px',
                                     xl: '60px'
                                 },
-                                pb: { xs: '120px', sm: '100px', md: '120px' },
+                                pb: { xs: '110px', sm: '100px', md: '120px' },
                                 width: '100%',
                                 position: 'relative',
                                 minHeight: 0,
@@ -211,7 +211,6 @@ const Hero = () => {
                             >
                                 <Fade in={true} timeout={1000}>
                                     <Box sx={{ color: 'white' }}>
-
                                         {carouselData[currentSlide] && (
                                             <>
                                                 <Typography
@@ -310,8 +309,8 @@ const Hero = () => {
                                     sx={{
                                         bgcolor: 'rgba(255,255,255,0.2)',
                                         color: 'white',
-                                        width: { xs: 40, sm: 44, md: 48 },
-                                        height: { xs: 40, sm: 44, md: 48 },
+                                        width: { xs: 36, sm: 44, md: 48 },
+                                        height: { xs: 36, sm: 44, md: 48 },
                                         '&:hover': {
                                             bgcolor: 'rgba(255,255,255,0.3)',
                                             transform: 'scale(1.1)',
@@ -348,8 +347,8 @@ const Hero = () => {
                                     sx={{
                                         bgcolor: 'rgba(255,255,255,0.2)',
                                         color: 'white',
-                                        width: { xs: 40, sm: 44, md: 48 },
-                                        height: { xs: 40, sm: 44, md: 48 },
+                                        width: { xs: 36, sm: 44, md: 48 },
+                                        height: { xs: 36, sm: 44, md: 48 },
                                         '&:hover': {
                                             bgcolor: 'rgba(255,255,255,0.3)',
                                             transform: 'scale(1.1)',
