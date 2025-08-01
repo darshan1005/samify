@@ -96,12 +96,11 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
       const templateParams = {
         uniqueId: generateShortId(form.name, form.phone),
         from_name: form.name,
-        from_email: form.email,
+        from_email: 'hello@samify.co.in',
         from_phone: form.phone,
         from_message: form.message,
         from_requestedFor: isMultipleServices ? form.services.join(', ') : form.service,
         reply_to: form.email,
-        to_name: 'Samify',
         to_email: 'hello@samify.co.in',
       }
 
