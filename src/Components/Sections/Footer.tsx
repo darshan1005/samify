@@ -17,9 +17,7 @@ const quickNavs = [
     { label: 'Services', target: 'services-section' },
     { label: 'Portfolio', target: 'ourteam-section' },
     { label: 'Testimonials', target: 'testimonial-section' },
-    { label: 'Q&A', target: 'faq-section' },
-    { label: 'Privacy Policy', target: '/privacypolicy' },
-    { label: 'Request a Quote', target: '/request' },
+    { label: 'Q&A', target: 'faq-section' }
 ];
 
 const contactInfo = [
@@ -40,10 +38,6 @@ const Footer = () => {
             }, 100);
 
             // Set quote-related session values if needed
-            if (target === '/request') {
-                sessionStorage.setItem('multipleServices', 'true');
-                sessionStorage.removeItem('selectedService');
-            }
 
         } else {
             // Section scroll logic
@@ -161,7 +155,7 @@ const Footer = () => {
                             <Box sx={{ display: 'flex', gap: 1 }}>
                                 {SocialMedia.SocialMedias.map((social) => (
                                     <RouterLink key={social.id} to={social.url} target="_blank" rel="noopener noreferrer">
-                                        <IconButton size="small" color="primary" sx={{ bgcolor: 'white' }}>
+                                        <IconButton size="small" color="primary" sx={{ bgcolor: '#ffffff', '&:hover': { bgcolor: '#ffffff9a'} }}>
                                             <Box
                                                 component={'img'}
                                                 src={social.icon}

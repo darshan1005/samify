@@ -12,6 +12,8 @@ import {
   ListItemText,
   useTheme,
   useMediaQuery,
+  Stack,
+  Divider,
 } from '@mui/material'
 import { Menu as MenuIcon, Email } from '@mui/icons-material'
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
@@ -146,35 +148,59 @@ const NavHeader = () => {
   }
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Box sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+    <Stack
+      onClick={handleDrawerToggle}
+      sx={{
+        textAlign: 'center',
+        height: '100vh',
         px: 2,
         pt: 1,
-      }}>
-        <Box
-          component={'img'}
-          src={Logo}
-          alt="Company Logo"
-          sx={{
-            width: 110,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'start',
-          }}
-        />
-        <IconButton onClick={handleDrawerToggle}><CloseIcon /></IconButton>
-      </Box>
-      <List>
-        {navItems.map(item => (
-          <ListItem key={item.label} onClick={() => scrollToSection(item.target)}>
-            <ListItemText primary={item.label} sx={{ textAlign: 'left' }} />
-          </ListItem>
-        ))}
-      </List>
-    </Box>
+        justifyContent: 'space-between',
+      }}
+      direction="column"
+    >
+      {/* Top Section */}
+      <Stack spacing={2}>
+        <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Box
+            component="img"
+            src={Logo}
+            alt="Company Logo"
+            sx={{ width: 110 }}
+          />
+          <IconButton onClick={handleDrawerToggle}>
+            <CloseIcon />
+          </IconButton>
+        </Stack>
+
+        <List sx={{ padding: 0 }}>
+          {navItems.map(item => (
+            <ListItem key={item.label} onClick={() => scrollToSection(item.target)} sx={{ cursor: 'pointer', padding: 1 }}>
+              <ListItemText primary={item.label} sx={{ textAlign: 'left' }} />
+            </ListItem>
+          ))}
+        </List>
+      </Stack>
+
+      {/* Bottom Section */}
+      <Stack spacing={2} alignItems="center">
+        <Typography variant="caption" color="primary">
+          <Link to='/privacypolicy' style={{ textDecoration: 'none', color: 'inherit' }}>Privacy Policy</Link>
+          &nbsp;|&nbsp;
+          <Link to='/request' style={{ textDecoration: 'none', color: 'inherit' }}>Get a Quote</Link>
+        </Typography>
+
+        <Stack direction="row" spacing={1} justifyContent="center">
+          {SocialMedia.SocialMedias.map((social) => (
+            <Link key={social.id} to={social.url} target="_blank" rel="noopener noreferrer">
+              <IconButton size="small" color="primary">
+                <Box component="img" src={social.icon} alt={social.title} sx={{ width: 20, height: 20, objectFit: 'contain' }} />
+              </IconButton>
+            </Link>
+          ))}
+        </Stack>
+      </Stack>
+    </Stack>
   )
 
   return (
@@ -184,6 +210,8 @@ const NavHeader = () => {
         sx={{
           py: 2,
           display: { xs: 'none', md: 'block' },
+          borderBottom: '1px solid #eee',
+          backgroundColor: '#fff',
         }}
       >
         <Box
@@ -194,30 +222,49 @@ const NavHeader = () => {
             px: 6,
           }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-            <Email fontSize="small" color="primary" />
-            <Typography variant="body2">
-              hello@samify.co.in
-            </Typography>
-          </Box>
-          <Box sx={{ display: 'flex', gap: 1 }}>
+          {/* Left Section: Email and Links */}
+          <Stack direction="row" alignItems="center" spacing={2} divider={<Divider orientation="vertical" flexItem />}>
+            <Stack direction="row" alignItems="center" spacing={0.5}>
+              <Email fontSize="small" color="primary" />
+              <Link to='mailto:hello@samify.co.in' title='Click to send an email' style={{ color: '#000', textDecoration: 'none' }}>
+                <Typography variant="body2" sx={{ '&:hover': { color: 'primary.main' } }}>
+                  hello@samify.co.in
+                </Typography>
+              </Link>
+            </Stack>
+
+            <Link to='/privacypolicy' title='Privacy Policy' style={{ textDecoration: 'none' }}>
+              <Typography variant="caption" color="primary" sx={{ '&:hover': { fontWeight: 'bold' } }}>
+                Privacy Policy
+              </Typography>
+            </Link>
+
+            <Link to='/request' title='Get a Quote' style={{ textDecoration: 'none' }}>
+              <Typography variant="caption" color="primary" sx={{ '&:hover': { fontWeight: 'bold' } }}>
+                Get a Quote
+              </Typography>
+            </Link>
+          </Stack>
+
+          {/* Right Section: Social Icons */}
+          <Stack direction="row" spacing={1}>
             {SocialMedia.SocialMedias.map((social) => (
               <Link key={social.id} to={social.url} target="_blank" rel="noopener noreferrer">
-                <IconButton size="small" color="primary">
+                <IconButton size="small" color="primary" sx={{ transition: '0.2s', '&:hover': { backgroundColor: 'primary.light' } }}>
                   <Box
-                    component={'img'}
+                    component="img"
                     src={social.icon}
                     alt={social.title}
                     sx={{
                       height: 20,
                       width: 20,
-                      aspectRatio: 1,
-                      objectFit: 'contain'
-                    }} />
+                      objectFit: 'contain',
+                    }}
+                  />
                 </IconButton>
               </Link>
             ))}
-          </Box>
+          </Stack>
         </Box>
       </Box>
 
@@ -261,6 +308,9 @@ const NavHeader = () => {
                   onClick={() => {
                     setActiveNav(item.label);
                     sessionStorage.setItem('activeNav', item.label);
+                    if (item.target.startsWith('/')) {
+                      navigate(item.target);
+                    }
                     scrollToSection(item.target);
                   }}
                   sx={{

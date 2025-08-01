@@ -178,6 +178,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
           fullWidth
           required
           margin="normal"
+          autoFocus
         />
 
         {/* Email */}
@@ -241,6 +242,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
                   error={!!errors.services}
                   helperText={errors.service || 'Multiple services can be selected'}
                   fullWidth
+                  required
                 />
               )}
             />
@@ -275,11 +277,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ serviceOptions, showTitle = t
           value={form.message}
           onChange={handleChange}
           error={!!errors.message}
-          helperText={errors.message}
+          helperText={ errors.message || 'Please provide details about your request.'}
           fullWidth
           margin="normal"
           multiline
           minRows={3}
+          spellCheck='true'
         />
 
         {/* Buttons */}

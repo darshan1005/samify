@@ -64,6 +64,10 @@ const GetInTouch = () => {
                                 boxShadow: 2,
                                 whiteSpace: 'nowrap',
                             }}
+                            onClick={() => {
+                                sessionStorage.removeItem('selectedService');
+                                sessionStorage.setItem('multipleServices', 'true');
+                            }}
                         >
                             Get in touch
                         </Button>
