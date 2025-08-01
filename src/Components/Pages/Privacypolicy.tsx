@@ -6,8 +6,10 @@ const PrivacyPolicy = () => {
   const navigate = useNavigate()
 
   const handleClick = () => {
+    sessionStorage.removeItem('selectedService');
+    sessionStorage.setItem('multipleServices', 'true');
     navigate('/request', {
-      state: { scrollToSelection: true },
+      state: { scrollToSelection: false },
     })
   }
   return (

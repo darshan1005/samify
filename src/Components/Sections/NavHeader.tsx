@@ -259,7 +259,13 @@ const NavHeader = () => {
               </Typography>
             </Link>
 
-            <Link to='/request' title='Go to Form' style={{ textDecoration: 'none' }}>
+            <Link to='/request'
+              onClick={() => {
+                sessionStorage.removeItem('selectedService');
+                sessionStorage.setItem('multipleServices', 'true');
+              }}
+              title='Go to Form'
+              style={{ textDecoration: 'none' }}>
               <Typography variant="caption" color="primary" sx={{ '&:hover': { textDecoration: 'underline' } }}>
                 Get a Quote
               </Typography>
