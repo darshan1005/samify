@@ -1,5 +1,5 @@
 import { Box, Typography, Paper, Divider } from '@mui/material'
-import ContactForm from '../Resuable/ContactFrom'
+import ContactForm from '../Resuable/ContactForm'
 import servicesData from '../../Content/ServicesList.json'
 import Header from '../Resuable/Header'
 

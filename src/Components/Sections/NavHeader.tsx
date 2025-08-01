@@ -184,11 +184,14 @@ const NavHeader = () => {
 
       {/* Bottom Section */}
       <Stack spacing={2} alignItems="center">
-        <Typography variant="caption" color="primary">
-          <Link to='/privacypolicy' style={{ textDecoration: 'none', color: 'inherit' }}>Privacy Policy</Link>
-          &nbsp;|&nbsp;
-          <Link to='/request' style={{ textDecoration: 'none', color: 'inherit' }}>Get a Quote</Link>
-        </Typography>
+        <Stack direction="row" alignItems="center" spacing={1} divider={<Divider orientation="vertical" flexItem />}>
+          <Typography variant='caption' color='primary'>
+            <Link to='/privacypolicy' style={{ textDecoration: 'none', color: 'inherit' }}>Privacy Policy</Link>
+          </Typography>
+          <Typography variant='caption' color='primary'>
+            <Link to='/request' style={{ textDecoration: 'none', color: 'inherit' }}>Get a Quote</Link>
+          </Typography>
+        </Stack>
 
         <Stack direction="row" spacing={1} pb={2} justifyContent="center">
           {SocialMedia.SocialMedias.map((social) => (
@@ -240,7 +243,7 @@ const NavHeader = () => {
           }}
         >
           {/* Left Section: Email and Links */}
-          <Stack direction="row" alignItems="center" spacing={2} divider={<Divider orientation="vertical" flexItem />}>
+          <Stack direction="row" alignItems="center" spacing={1.5} divider={<Divider orientation="vertical" flexItem />}>
             <Stack direction="row" alignItems="center" spacing={0.5}>
               <Email fontSize="small" color="primary" />
               <Link to='mailto:hello@samify.co.in' title='Click to send an email' style={{ color: '#000', textDecoration: 'none' }}>
@@ -250,14 +253,14 @@ const NavHeader = () => {
               </Link>
             </Stack>
 
-            <Link to='/privacypolicy' title='Privacy Policy' style={{ textDecoration: 'none' }}>
-              <Typography variant="caption" color="primary" sx={{ '&:hover': { fontWeight: 'bold' } }}>
+            <Link to='/privacypolicy' title='Go to Privacy Policy' style={{ textDecoration: 'none' }}>
+              <Typography variant="caption" color="primary" sx={{ '&:hover': { textDecoration: 'underline' } }}>
                 Privacy Policy
               </Typography>
             </Link>
 
-            <Link to='/request' title='Get a Quote' style={{ textDecoration: 'none' }}>
-              <Typography variant="caption" color="primary" sx={{ '&:hover': { fontWeight: 'bold' } }}>
+            <Link to='/request' title='Go to Form' style={{ textDecoration: 'none' }}>
+              <Typography variant="caption" color="primary" sx={{ '&:hover': { textDecoration: 'underline' } }}>
                 Get a Quote
               </Typography>
             </Link>
@@ -265,30 +268,30 @@ const NavHeader = () => {
 
           {/* Right Section: Social Icons */}
           <Stack direction="row" spacing={1}>
-          {SocialMedia.SocialMedias.map((social) => (
-            <Link key={social.id} to={social.url} target="_blank" rel="noopener noreferrer">
-              <IconButton
-                sx={{
-                  background: `${social.color}1A`, // ~10% opacity (1A in hex)
-                  '&:hover': {
-                    background: `${social.color}33`, // ~20% opacity on hover
-                  },
-                }}
-              >
-                <Box
-                  component="img"
-                  src={social.icon}
-                  alt={social.title}
+            {SocialMedia.SocialMedias.map((social) => (
+              <Link key={social.id} to={social.url} target="_blank" rel="noopener noreferrer">
+                <IconButton
                   sx={{
-                    width: 20,
-                    height: 20,
-                    objectFit: 'contain',
+                    background: `${social.color}1A`, // ~10% opacity (1A in hex)
+                    '&:hover': {
+                      background: `${social.color}33`, // ~20% opacity on hover
+                    },
                   }}
-                />
-              </IconButton>
-            </Link>
-          ))}
-        </Stack>
+                >
+                  <Box
+                    component="img"
+                    src={social.icon}
+                    alt={social.title}
+                    sx={{
+                      width: 20,
+                      height: 20,
+                      objectFit: 'contain',
+                    }}
+                  />
+                </IconButton>
+              </Link>
+            ))}
+          </Stack>
         </Box>
       </Box>
 

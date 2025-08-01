@@ -148,7 +148,7 @@ const Footer = () => {
 
                     {/* Brand */}
                     <Box sx={{ gridArea: 'brand', textAlign: 'left' }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'start', gap: 2 }}>
                             <Typography variant="h4" sx={{ fontWeight: 700, fontSize: { xs: '1.8rem', md: '2.2rem' } }}>
                                 Samify
                             </Typography>
